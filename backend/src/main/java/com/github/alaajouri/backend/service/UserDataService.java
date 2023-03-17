@@ -17,8 +17,12 @@ public class UserDataService {
                 idGenerator.generateID(),
                 userData.name(),
                 userData.gender(),
-                userData.weight()
-
+                userData.weight(),
+                userData.weightGoal(),
+                userData.sleepTimeTarget(),
+                userData.trainingTimeGoal(),
+                userData.stepTarget(),
+                userData.caloriesBurnedTarget()
         );
         return userDataRepository.save(userDataToAdd);
     }

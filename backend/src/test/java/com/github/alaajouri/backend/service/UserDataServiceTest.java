@@ -29,7 +29,7 @@ class UserDataServiceTest {
 
 
         //GIVEN
-        UserData expectedUserData = new UserData("1", "Alaa", "women", "160");
+        UserData expectedUserData = new UserData("1", "Alaa", "women", "55",50,8,3,1500,500);
         when(idGenerator.generateID()).thenReturn("1");
         when(userDataRepository.save(expectedUserData)).thenReturn(expectedUserData);
 
