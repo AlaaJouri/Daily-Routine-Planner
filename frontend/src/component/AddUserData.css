@@ -1,11 +1,13 @@
 body {
-    background-image: url("https://img.wallpapersafari.com/desktop/1680/1050/59/43/poZGVu.jpg");
+    background-image: url("https://img.freepik.com/fotos-premium/3d-happy-face-und-helle-gluehbirne-auf-ausgewogenen-gewichtsskalen-ausgleich-des-eq-und-iq-konzepts_641940-356.jpg");
+    background-size: cover;
     color: white;
+
 }
-.opac-layer {
+.Profile {
     background-color: black;
     opacity: 0.6;
-    width: 60%;
+    width: 70%;
     margin: 20px auto 20px auto;
     padding: 20px;
 }
@@ -34,26 +36,23 @@ body {
     grid-area: 3/2/4/3;
 }
 .item3 {
-    grid-area: 5/2/5/3;
+    grid-area: 4/2/5/3;
 }
 .item4 {
-    grid-area: 4/2/5/3;
+    grid-area: 5/2/6/3;
 }
 .item5 {
     grid-area: 6/2/7/3;
 }
 .item6 {
-    grid-area: 8/2/7/3;
+    grid-area: 7/2/8/3;
 
 }
 .item7 {
-    grid-area: 10/2/5/3;
+    grid-area: 8/2/9/3;
 
 }
-.item7 {
-    grid-area: 10/2/5/3;
 
-}
 .item8 {
     grid-area: 12/2/10/3;
     background-color: white;
