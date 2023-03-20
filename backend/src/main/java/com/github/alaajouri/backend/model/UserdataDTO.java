@@ -10,5 +10,4 @@ public record UserdataDTO(
         int stepTarget,
         int caloriesBurnedTarget) {
 
-
 }

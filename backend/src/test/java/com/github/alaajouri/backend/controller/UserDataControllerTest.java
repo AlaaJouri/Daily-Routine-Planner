@@ -55,6 +55,5 @@ class UserDataControllerTest {
                                     """)
                 )
                 .andExpect(jsonPath("$.id").isNotEmpty());
-
     }
 }
