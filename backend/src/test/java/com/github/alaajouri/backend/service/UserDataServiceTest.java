@@ -1,7 +1,9 @@
 package com.github.alaajouri.backend.service;
 
 import com.github.alaajouri.backend.model.UserData;
+import com.github.alaajouri.backend.model.UserdataDTO;
 import com.github.alaajouri.backend.repository.UserDataRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,18 +29,21 @@ class UserDataServiceTest {
     @Test
     void addUserData() {
 
-
         //GIVEN
-        UserData expectedUserData = new UserData("1", "Alaa", "women", "55",50,8,3,1500,500);
-        when(idGenerator.generateID()).thenReturn("1");
-        when(userDataRepository.save(expectedUserData)).thenReturn(expectedUserData);
-
+        when(idGenerator.generateID()).thenReturn("Whatever Id");
+        UserData UserWithId = new UserData("Whatever Id", "women", "55", "50", 8, 3, 1500, 500, 1);
+        when(userDataRepository.save(UserWithId)).thenReturn(UserWithId);
 
         //WHEN
-        UserData userData = userDataService.addUserData(expectedUserData);
+        UserData expected = UserWithId;
+        UserdataDTO UserdataDTO1 = new UserdataDTO("women", "55", "50", 8, 3, 1500, 500, 1);
+        UserData actualTask = userDataService.addUserData(UserdataDTO1);
 
         //THEN
-        verify(userDataRepository).save(expectedUserData);
-        assertEquals(expectedUserData, userData);
+        verify(userDataRepository).save(UserWithId);
+        verify(idGenerator).generateID();
+
+        Assertions.assertEquals(expected, actualTask);
+
     }
 }

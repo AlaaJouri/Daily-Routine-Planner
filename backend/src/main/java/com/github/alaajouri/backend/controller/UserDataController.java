@@ -3,6 +3,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import com.github.alaajouri.backend.model.UserData;
 import com.github.alaajouri.backend.service.UserDataService;
+import com.github.alaajouri.backend.model.UserdataDTO;
 
 @RestController
 @RequestMapping("api")
@@ -10,7 +11,7 @@ import com.github.alaajouri.backend.service.UserDataService;
 public class UserDataController {
     private final UserDataService userDataService;
     @PostMapping("/userdata")
-    public UserData addWorkout(@RequestBody UserData userData) {
-        return userDataService.addUserData(userData);
+    public UserData addWorkout(@RequestBody UserdataDTO Userdatadto ) {
+        return userDataService.addUserData(Userdatadto);
     }
 }
