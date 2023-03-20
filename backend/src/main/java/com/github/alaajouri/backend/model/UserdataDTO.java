@@ -1,8 +1,5 @@
 package com.github.alaajouri.backend.model;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document("user")
 public record UserdataDTO(
         String name,
         String gender,
