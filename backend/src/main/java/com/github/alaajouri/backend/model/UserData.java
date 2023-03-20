@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("user")
 public record UserData(
+
         @Id
         String id,
         String name,
