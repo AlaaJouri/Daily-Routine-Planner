@@ -7,26 +7,23 @@ import AddUserData from "./component/AddUserData";
 
 function App() {
     const [userData, setUserData] = useState<UserData[]>([])
-  function addUserData(userDataToAdd: UserData) {
 
-    axios.post("/api/userdata", userDataToAdd)
-        .then((response) => {
-            setUserData([...userData, response.data])
-        })
-        .catch((error) => {
-          console.error("I'm sorry. Something went wrong!" + error)
-        });
-  }
+    function addUserData(userDataToAdd: UserData) {
 
-  return (
-    <div className="App">
-<header> Hallllo</header>
+        axios.post("/api/userdata/", userDataToAdd)
+            .then((response) => {
+                setUserData([...userData, response.data])
+            })
+            .catch((error) => {
+                console.error("I'm sorry. Something went wrong!" + error)
+            });
+    }
 
-
+    return (
+        <div className="App">
             <AddUserData addUserData={addUserData}/>
-
-    </div>
-  );
+        </div>
+    );
 }
 
 export default App;

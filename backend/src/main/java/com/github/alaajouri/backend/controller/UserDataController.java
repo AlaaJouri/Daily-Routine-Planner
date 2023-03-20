@@ -6,11 +6,11 @@ import com.github.alaajouri.backend.service.UserDataService;
 import com.github.alaajouri.backend.model.UserdataDTO;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("/api/userdata/")
 @RequiredArgsConstructor
 public class UserDataController {
     private final UserDataService userDataService;
-    @PostMapping("/userdata")
+    @PostMapping
     public UserData addWorkout(@RequestBody UserdataDTO userdata ) {
         return userDataService.addUserData(userdata);
     }

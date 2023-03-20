@@ -26,7 +26,7 @@ class UserDataControllerTest {
     @Test
     @DirtiesContext
     void addUserData() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/userdata").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/userdata/").contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {                    
                                 "name": "Alaa",
@@ -55,6 +55,5 @@ class UserDataControllerTest {
                                     """)
                 )
                 .andExpect(jsonPath("$.id").isNotEmpty());
-
     }
 }

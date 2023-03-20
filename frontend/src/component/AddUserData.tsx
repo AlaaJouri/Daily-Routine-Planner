@@ -1,6 +1,6 @@
 import {UserData} from "../model/UserData";
 import {ChangeEvent, useState} from "react";
-import "./AddUserData.css";
+import "./UserData.css";
 
 type AddUserDataProps = {
     addUserData: (userDataToAdd: UserData) => void,
