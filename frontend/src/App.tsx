@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {UserData} from "./model/UserData";
 
 import axios from "axios";
-import AddUserData from "./component/AddUserData";
+import ProfileUserData from "./component/ProfileUserData";
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
 
     return (
         <div className="App">
-            <AddUserData addUserData={addUserData}/>
+            <ProfileUserData addUserData={addUserData}/>
         </div>
     );
 }

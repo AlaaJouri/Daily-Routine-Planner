@@ -2,11 +2,12 @@ import {UserData} from "../model/UserData";
 import {ChangeEvent, useState} from "react";
 import "./UserData.css";
 
-type AddUserDataProps = {
+type UserDataProps = {
     addUserData: (userDataToAdd: UserData) => void,
+
 }
 
-export default function AddUserData(props: AddUserDataProps) {
+export default function ProfileUserData(props: UserDataProps) {
 
     const [userDataToAdd, setUserDataToAdd] = useState<UserData>({
         "id": "",
@@ -75,6 +76,7 @@ export default function AddUserData(props: AddUserDataProps) {
             caloriesBurnedTarget: parseInt(event.target.value),
         });
     }
+
 
     function handleClickAddUserData() {
         props.addUserData(userDataToAdd);

@@ -1,4 +1,5 @@
 package com.github.alaajouri.backend.controller;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import com.github.alaajouri.backend.model.UserData;
@@ -10,8 +11,14 @@ import com.github.alaajouri.backend.model.UserdataDTO;
 @RequiredArgsConstructor
 public class UserDataController {
     private final UserDataService userDataService;
+
     @PostMapping
-    public UserData addWorkout(@RequestBody UserdataDTO userdata ) {
+    public UserData addUserData(@RequestBody UserdataDTO userdata) {
         return userDataService.addUserData(userdata);
+    }
+
+    @DeleteMapping("{id}")
+    void deleteUserData(@PathVariable String id) {
+        userDataService.deleteUserDataById(id);
     }
 }

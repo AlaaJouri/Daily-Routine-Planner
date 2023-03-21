@@ -1,5 +1,5 @@
 export type UserData = {
-    id?: string,
+    id: string,
     name: string,
     gender: string,
     weight: string

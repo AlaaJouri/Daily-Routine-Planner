@@ -6,6 +6,9 @@ import com.github.alaajouri.backend.repository.UserDataRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 @AllArgsConstructor
 @Service
 public class UserDataService {
@@ -27,5 +30,13 @@ public class UserDataService {
         );
         return userDataRepository.save(userDataToAdd);
     }
+    public void deleteUserDataById(String id) {
+        Optional<UserData> userDataToDelete = userDataRepository.findById(id);
+        if (userDataToDelete.isEmpty()) {
+            throw new NoSuchElementException();
+        } else {
+            userDataRepository.deleteById(id);
 
+        }
+    }
 }
