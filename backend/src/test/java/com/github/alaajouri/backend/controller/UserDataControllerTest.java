@@ -65,7 +65,7 @@ class UserDataControllerTest {
     @Test
     @DirtiesContext
 
-    void deleteWorkout() throws Exception {
+    void deleteUserData() throws Exception {
         // GIVEN
         userDataRepository.save(User1);
 
