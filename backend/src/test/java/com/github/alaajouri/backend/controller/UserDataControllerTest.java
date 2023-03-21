@@ -76,26 +76,4 @@ class UserDataControllerTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
-    @DirtiesContext
-    void getUserDataById() throws Exception {
-        // GIVEN
-        userDataRepository.save(User1);
-
-        // WHEN
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/userdata/" + User1.id()))
-                .andExpect(status().isOk())
-                .andExpect(content().json("""
-                        {                    
-                                "name": "Alaa",
-                                "gender": "women",
-                                "weight": "55",
-                                "weightGoal": 50,
-                                "sleepTimeTarget": 8,
-                                "trainingTimeGoal":3 ,
-                                "stepTarget":1500 ,
-                                "caloriesBurnedTarget":500 
-                         }
-                         """));
-    }
 }

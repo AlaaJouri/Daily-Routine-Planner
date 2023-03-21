@@ -30,6 +30,7 @@ public class UserDataService {
         );
         return userDataRepository.save(userDataToAdd);
     }
+
     public void deleteUserDataById(String id) {
         Optional<UserData> userDataToDelete = userDataRepository.findById(id);
         if (userDataToDelete.isEmpty()) {
@@ -38,8 +39,5 @@ public class UserDataService {
             userDataRepository.deleteById(id);
 
         }
-    }
-    public UserData getUserDataByID(String id) {
-        return userDataRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 }

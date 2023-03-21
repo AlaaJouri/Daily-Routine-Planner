@@ -60,17 +60,4 @@ class UserDataServiceTest {
 
         assertThrows(NoSuchElementException.class, () -> userDataService.deleteUserDataById("1"));
     }
-
-    @Test
-    void getUserDataById() {
-        // GIVEN
-        when(userDataRepository.findById("1")).thenReturn(Optional.empty());
-
-        // WHEN
-        assertThrows(NoSuchElementException.class, () -> userDataService.getUserDataByID("1"));
-
-        // THEN
-        verify(userDataRepository).findById("1");
-    }
-
 }

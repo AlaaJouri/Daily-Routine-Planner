@@ -21,8 +21,4 @@ public class UserDataController {
     void deleteUserData(@PathVariable String id) {
         userDataService.deleteUserDataById(id);
     }
-    @GetMapping("{id}")
-    UserData getUserDataById(@PathVariable String id) {
-        return userDataService.getUserDataByID(id);
-    }
 }
