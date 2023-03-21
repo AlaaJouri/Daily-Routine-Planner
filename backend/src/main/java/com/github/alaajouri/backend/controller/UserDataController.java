@@ -13,12 +13,12 @@ public class UserDataController {
     private final UserDataService userDataService;
 
     @PostMapping
-    public UserData addWorkout(@RequestBody UserdataDTO userdata) {
+    public UserData addUserData(@RequestBody UserdataDTO userdata) {
         return userDataService.addUserData(userdata);
     }
 
     @DeleteMapping("{id}")
-    void deleteWorkout(@PathVariable String id) {
+    void deleteUserData(@PathVariable String id) {
         userDataService.deleteUserDataById(id);
     }
 }
