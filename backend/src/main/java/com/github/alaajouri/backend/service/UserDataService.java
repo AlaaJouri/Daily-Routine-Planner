@@ -31,8 +31,8 @@ public class UserDataService {
         return userDataRepository.save(userDataToAdd);
     }
     public void deleteUserDataById(String id) {
-        Optional<UserData> UserDataToDelete = userDataRepository.findById(id);
-        if (UserDataToDelete.isEmpty()) {
+        Optional<UserData> userDataToDelete = userDataRepository.findById(id);
+        if (userDataToDelete.isEmpty()) {
             throw new NoSuchElementException();
         } else {
             userDataRepository.deleteById(id);
