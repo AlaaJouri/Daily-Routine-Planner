@@ -19,11 +19,6 @@ function App() {
             });
     }
 
-    function deleteUserData(id: string) {
-        axios.delete("/api/userdata/" + id)
-            .catch(console.error);
-    }
-
     return (
         <div className="App">
             <ProfileUserData addUserData={addUserData}/>
