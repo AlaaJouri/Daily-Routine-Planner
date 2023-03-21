@@ -8,6 +8,7 @@ import ProfileUserData from "./component/ProfileUserData";
 function App() {
     const [userData, setUserData] = useState<UserData[]>([])
 
+
     function addUserData(userDataToAdd: UserData) {
 
         axios.post("/api/userdata/", userDataToAdd)

@@ -39,4 +39,7 @@ public class UserDataService {
 
         }
     }
+    public UserData getUserDataByID(String id) {
+        return userDataRepository.findById(id).orElseThrow(NoSuchElementException::new);
+    }
 }

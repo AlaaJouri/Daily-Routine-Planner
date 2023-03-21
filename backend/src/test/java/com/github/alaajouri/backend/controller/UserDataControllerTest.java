@@ -25,10 +25,12 @@ class UserDataControllerTest {
     @Autowired
     MockMvc mockMvc;
     UserData User1;
+
     @BeforeEach
     void setUp() {
         User1 = new UserData("1", "Alaa", "women", "55", 50, 8, 3, 1500, 500);
     }
+
     @Test
     @DirtiesContext
     void addUserData() throws Exception {
@@ -49,7 +51,7 @@ class UserDataControllerTest {
                 .andExpect(content().json(
                         """
                                     {                       
-                                 "name": "Alaa",
+                                "name": "Alaa",
                                 "gender": "women",
                                 "weight": "55",
                                 "weightGoal": 50,
@@ -62,9 +64,9 @@ class UserDataControllerTest {
                 )
                 .andExpect(jsonPath("$.id").isNotEmpty());
     }
+
     @Test
     @DirtiesContext
-
     void deleteUserData() throws Exception {
         // GIVEN
         userDataRepository.save(User1);
@@ -72,5 +74,28 @@ class UserDataControllerTest {
         // WHEN
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/userdata/" + User1.id()))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    @DirtiesContext
+    void getUserDataById() throws Exception {
+        // GIVEN
+        userDataRepository.save(User1);
+
+        // WHEN
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/userdata/" + User1.id()))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        {                    
+                                "name": "Alaa",
+                                "gender": "women",
+                                "weight": "55",
+                                "weightGoal": 50,
+                                "sleepTimeTarget": 8,
+                                "trainingTimeGoal":3 ,
+                                "stepTarget":1500 ,
+                                "caloriesBurnedTarget":500 
+                         }
+                         """));
     }
 }

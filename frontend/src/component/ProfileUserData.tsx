@@ -1,6 +1,8 @@
 import {UserData} from "../model/UserData";
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import "./UserData.css";
+import {useParams} from "react-router-dom";
+import axios from "axios";
 
 type UserDataProps = {
     addUserData: (userDataToAdd: UserData) => void,
@@ -8,9 +10,11 @@ type UserDataProps = {
 }
 
 export default function ProfileUserData(props: UserDataProps) {
-
+    //const params = useParams();
+   // const id: string | undefined = params.id;
     const [userDataToAdd, setUserDataToAdd] = useState<UserData>({
-        "id": "",
+       // id: id ? id : "",
+        "id":"",
         "name": "",
         "gender": "",
         "weight": "",
@@ -20,6 +24,16 @@ export default function ProfileUserData(props: UserDataProps) {
         "stepTarget": 0,
         "caloriesBurnedTarget": 0
     });
+
+    const requestURL: string = "/api/userdata/" + "b78e5e82-360e-49d2-a362-3b106d07c34c"
+    useEffect(() => {
+        axios
+            .get(requestURL)
+            .then((response) => {
+                setUserDataToAdd(response.data);
+            })
+            .catch((error) => console.error(error));
+    }, [requestURL]);
 
     function handleChangeName(event: ChangeEvent<HTMLInputElement>) {
         setUserDataToAdd({
@@ -150,7 +164,7 @@ export default function ProfileUserData(props: UserDataProps) {
                 <div className="item6">
                     <label htmlFor="SchrittZiel">SchrittZiel</label>
                     <br/>
-                    <input value={userDataToAdd.stepTarget} onChange={handleChangeStepTarget}/>
+                    <input value={userDataToAdd.stepTarget}  onChange={handleChangeStepTarget}/>
 
                     <br/>
                 </div>

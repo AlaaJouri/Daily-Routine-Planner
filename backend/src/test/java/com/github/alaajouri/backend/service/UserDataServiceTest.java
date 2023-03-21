@@ -22,12 +22,13 @@ class UserDataServiceTest {
     UserDataRepository userDataRepository;
     IdGenerator idGenerator;
     UserData User1;
+
     @BeforeEach
     public void setUp() {
         userDataRepository = mock(UserDataRepository.class);
         idGenerator = mock(IdGenerator.class);
         userDataService = new UserDataService(userDataRepository, idGenerator);
-        User1=new UserData("1","Alaa","women","55",50,8,3,1500,500);
+        User1 = new UserData("1", "Alaa", "women", "55", 50, 8, 3, 1500, 500);
 
     }
 
@@ -51,6 +52,7 @@ class UserDataServiceTest {
         Assertions.assertEquals(expected, actualTask);
 
     }
+
     @Test
     void deleteUserData() {
         userDataRepository.save(User1);
@@ -58,4 +60,17 @@ class UserDataServiceTest {
 
         assertThrows(NoSuchElementException.class, () -> userDataService.deleteUserDataById("1"));
     }
+
+    @Test
+    void getUserDataById() {
+        // GIVEN
+        when(userDataRepository.findById("1")).thenReturn(Optional.empty());
+
+        // WHEN
+        assertThrows(NoSuchElementException.class, () -> userDataService.getUserDataByID("1"));
+
+        // THEN
+        verify(userDataRepository).findById("1");
+    }
+
 }
