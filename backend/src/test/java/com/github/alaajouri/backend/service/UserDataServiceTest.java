@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -18,12 +21,14 @@ class UserDataServiceTest {
     UserDataService userDataService;
     UserDataRepository userDataRepository;
     IdGenerator idGenerator;
-
+    UserData User1;
     @BeforeEach
     public void setUp() {
         userDataRepository = mock(UserDataRepository.class);
         idGenerator = mock(IdGenerator.class);
         userDataService = new UserDataService(userDataRepository, idGenerator);
+        User1=new UserData("1","Alaa","women","55",50,8,3,1500,500);
+
     }
 
     @Test
@@ -45,5 +50,12 @@ class UserDataServiceTest {
 
         Assertions.assertEquals(expected, actualTask);
 
+    }
+    @Test
+    void deleteUserData() {
+        userDataRepository.save(User1);
+        when(userDataRepository.findById("1")).thenReturn(Optional.empty());
+
+        assertThrows(NoSuchElementException.class, () -> userDataService.deleteUserDataById("1"));
     }
 }

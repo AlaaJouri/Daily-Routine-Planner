@@ -4,6 +4,7 @@ body {
     color: white;
 
 }
+
 .Profile {
     background-color: black;
     opacity: 0.6;
@@ -11,12 +12,15 @@ body {
     margin: 20px auto 20px auto;
     padding: 20px;
 }
+
 #title {
     text-align: center;
 }
+
 #description {
     text-align: center;
 }
+
 .container {
     margin: auto;
     display: grid;
@@ -26,35 +30,50 @@ body {
     grid-row-gap: 20px;
     padding: 20px;
 }
+
 .item0 {
     grid-area: 1/2/2/3;
 }
+
 .item1 {
     grid-area: 2/2/3/3;
 }
+
 .item2 {
     grid-area: 3/2/4/3;
 }
+
 .item3 {
     grid-area: 4/2/5/3;
 }
+
 .item4 {
     grid-area: 5/2/6/3;
 }
+
 .item5 {
     grid-area: 6/2/7/3;
 }
+
 .item6 {
     grid-area: 7/2/8/3;
 
 }
+
 .item7 {
     grid-area: 8/2/9/3;
 
 }
 
 .item8 {
-    grid-area: 12/2/10/3;
+    grid-area: 12/2/11/3;
+    background-color: white;
+    color: black;
+    width: 110px;
+}
+
+.item9 {
+    grid-area: 11/2/10/3;
     background-color: white;
     color: black;
     width: 110px;
