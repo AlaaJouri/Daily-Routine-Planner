@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {UserData} from "./model/UserData";
+
+import axios from "axios";
+import AddUserData from "./component/AddUserData";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [userData, setUserData] = useState<UserData[]>([])
+
+    function addUserData(userDataToAdd: UserData) {
+
+        axios.post("/api/userdata/", userDataToAdd)
+            .then((response) => {
+                setUserData([...userData, response.data])
+            })
+            .catch((error) => {
+                console.error("I'm sorry. Something went wrong!" + error)
+            });
+    }
+
+    return (
+        <div className="App">
+            <AddUserData addUserData={addUserData}/>
+        </div>
+    );
 }
 
 export default App;
