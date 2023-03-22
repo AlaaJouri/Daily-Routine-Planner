@@ -6,7 +6,7 @@ import AuthForm from "../component/AuthForm";
 
 
 type SignInPageProps = {
-    fetchWUserData:() => void;
+    fetchUserData:() => void;
 }
 
 export default function Login (props: SignInPageProps) {
@@ -26,7 +26,7 @@ export default function Login (props: SignInPageProps) {
                     window.sessionStorage.getItem("signInRedirect") || "/";
                 window.sessionStorage.removeItem("signInRedirect");
                 navigate(redirect);
-                props.fetchWUserData();
+                props.fetchUserData();
             })
             .catch((err) => {
                 alert(err.response.data.error);
@@ -34,11 +34,11 @@ export default function Login (props: SignInPageProps) {
     };
 
     return (
-        <Layout>
+
             <AuthForm
                 title="Sign In"
                 buttonText="Sign In"
                 onSubmit={handleSignIn}/>
-        </Layout>
+
     );
 }

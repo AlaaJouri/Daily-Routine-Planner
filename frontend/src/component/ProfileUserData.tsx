@@ -1,7 +1,6 @@
 import {UserData} from "../model/UserData";
 import {ChangeEvent, useEffect, useState} from "react";
 import "./UserData.css";
-import axios from "axios";
 
 type UserDataProps = {
     addUserData: (userDataToAdd: UserData) => void,

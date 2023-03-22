@@ -19,11 +19,11 @@ export default function SignUpPage () {
     };
 
     return (
-        <Layout>
+
             <AuthForm
                 title="Sign Up"
                 buttonText="Sign Up"
                 onSubmit={handleSignUp}/>
-        </Layout>
+
     );
 }

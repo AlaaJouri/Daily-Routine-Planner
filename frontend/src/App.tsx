@@ -21,7 +21,7 @@ function App() {
     const [userData, setUserData] = useState<UserData[]>([])
 
 
-    function fetchWUserData() {
+    function fetchUserData() {
         axios.get("/api/userdata/")
             .then(response => {
                 setUserData(response.data);
@@ -44,7 +44,9 @@ function App() {
         <div className="App">
           <Header/>
             <Routes>
+                <Route path={"/login"} element={<Login fetchUserData={fetchUserData}/>}/>
                 <Route path={"/sign-up"} element={<SignUpPage/>}/>
+                <Route path={"/profile"} element={  <ProfileUserData addUserData={addUserData}/>}/>
                 <Route path={"/logout"} element={<Logout/>}/>
 
             </Routes>
