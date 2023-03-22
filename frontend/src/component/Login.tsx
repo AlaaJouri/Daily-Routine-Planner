@@ -9,7 +9,7 @@ type SignInPageProps = {
     fetchWUserData:() => void;
 }
 
-export default function SignInPage (props: SignInPageProps) {
+export default function Login (props: SignInPageProps) {
     const navigate = useNavigate();
 
     const handleSignIn = (username: string, password: string) => {

@@ -5,8 +5,9 @@ import axios from "axios";
 import ProfileUserData from "./component/ProfileUserData";
 import SignUpPage from "./component/SignUpPage";
 import Cookies from "js-cookie";
-import SignInPage from "./component/SignInPage";
+import Login from "./component/Login";
 import Logout from "./component/Logout";
+import Header from './component/Header';
 
 axios.interceptors.request.use(function (config) {
     return fetch("/api/csrf").then(() => {
@@ -19,14 +20,14 @@ axios.interceptors.request.use(function (config) {
 function App() {
     const [userData, setUserData] = useState<UserData[]>([])
 
-/*
+
     function fetchWUserData() {
         axios.get("/api/userdata/")
             .then(response => {
                 setUserData(response.data);
             })
             .catch(console.error);
-    }*/
+    }
 
     function addUserData(userDataToAdd: UserData) {
 
@@ -41,12 +42,11 @@ function App() {
 
     return (
         <div className="App">
+          <Header/>
             <Routes>
-
-
                 <Route path={"/sign-up"} element={<SignUpPage/>}/>
-                <Route path={"/"} element={ <ProfileUserData addUserData={addUserData}/>}/>
-                 <Route path={"/logout"} element={<Logout/>}/>
+                <Route path={"/logout"} element={<Logout/>}/>
+
             </Routes>
 
         </div>

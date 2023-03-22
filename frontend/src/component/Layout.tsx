@@ -1,7 +1,7 @@
 import React, {ReactNode} from "react";
 import {Link, useLocation} from "react-router-dom";
 import Logout from "./Logout";
-import "./Layout.css";
+//import "./Layout.css";
 
 type Props = {
     children: ReactNode;
