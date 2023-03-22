@@ -17,6 +17,7 @@ axios.interceptors.request.use(function (config) {
 }, function (error) {
     return Promise.reject(error);
 });
+
 function App() {
     const [userData, setUserData] = useState<UserData[]>([])
 
@@ -42,11 +43,11 @@ function App() {
 
     return (
         <div className="App">
-          <Header/>
+            <Header/>
             <Routes>
                 <Route path={"/login"} element={<Login fetchUserData={fetchUserData}/>}/>
                 <Route path={"/sign-up"} element={<SignUpPage/>}/>
-                <Route path={"/profile"} element={  <ProfileUserData addUserData={addUserData}/>}/>
+                <Route path={"/profile"} element={<ProfileUserData addUserData={addUserData}/>}/>
                 <Route path={"/logout"} element={<Logout/>}/>
 
             </Routes>

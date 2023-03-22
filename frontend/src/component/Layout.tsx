@@ -1,13 +1,12 @@
 import React, {ReactNode} from "react";
 import {Link, useLocation} from "react-router-dom";
 import Logout from "./Logout";
-//import "./Layout.css";
 
 type Props = {
     children: ReactNode;
 }
 
-export default function Layout ({children}: Props) {
+export default function Layout({children}: Props) {
     const location = useLocation();
 
     return (

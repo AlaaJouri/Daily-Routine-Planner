@@ -1,13 +1,13 @@
 import React, {FormEvent, useState} from "react";
+
 type AuthFormProps = {
     title: string;
     buttonText: string;
-    onSubmit: (username:string, password:string) => void;
+    onSubmit: (username: string, password: string) => void;
 }
 
 
-
-export default function AuthForm({ title , buttonText, onSubmit }:AuthFormProps) {
+export default function AuthForm({title, buttonText, onSubmit}: AuthFormProps) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -17,7 +17,7 @@ export default function AuthForm({ title , buttonText, onSubmit }:AuthFormProps)
     };
 
     return (
-        <div style={{ padding: "5rem 0" }}>
+        <div style={{padding: "5rem 0"}}>
             <h1>{title}</h1>
 
             <form onSubmit={handleSubmit}>

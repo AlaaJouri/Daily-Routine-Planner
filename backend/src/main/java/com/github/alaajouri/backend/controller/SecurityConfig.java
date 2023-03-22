@@ -1,4 +1,5 @@
 package com.github.alaajouri.backend.controller;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,7 +17,7 @@ import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 @Configuration
 public class SecurityConfig {
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
     }
 
@@ -39,7 +40,6 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/status/admin").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET, "/api/user/me").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/workout").permitAll()
                 .requestMatchers("/api/**").authenticated()
                 .anyRequest().permitAll()
                 .and().build();

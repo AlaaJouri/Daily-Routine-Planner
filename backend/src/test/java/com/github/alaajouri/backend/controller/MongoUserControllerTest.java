@@ -129,11 +129,11 @@ class MongoUserControllerTest {
                 .with(csrf())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
-                                {
-                                    "username": "user",
-                                    "password": "password"
-                                }
-                                """));
+                        {
+                            "username": "user",
+                            "password": "password"
+                        }
+                        """));
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user")
                         .with(csrf()))
                 .andExpect(status().isOk());

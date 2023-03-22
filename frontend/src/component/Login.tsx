@@ -1,15 +1,14 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import Layout from "./Layout";
 import AuthForm from "../component/AuthForm";
 
 
 type SignInPageProps = {
-    fetchUserData:() => void;
+    fetchUserData: () => void;
 }
 
-export default function Login (props: SignInPageProps) {
+export default function Login(props: SignInPageProps) {
     const navigate = useNavigate();
 
     const handleSignIn = (username: string, password: string) => {
@@ -35,10 +34,10 @@ export default function Login (props: SignInPageProps) {
 
     return (
 
-            <AuthForm
-                title="Sign In"
-                buttonText="Sign In"
-                onSubmit={handleSignIn}/>
+        <AuthForm
+            title="Sign In"
+            buttonText="Sign In"
+            onSubmit={handleSignIn}/>
 
     );
 }
