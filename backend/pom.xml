@@ -5,20 +5,18 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
+        <version>3.0.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>com.Github.AlaaJouri</groupId>
     <artifactId>backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>backend</name>
     <description>backend</description>
     <properties>
         <java.version>19</java.version>
-        <sonar.organization>neuefische</sonar.organization>
+        <sonar.organization>alaajouri</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.coverage.exclusions>**/StaticFilesConfig.java</sonar.coverage.exclusions>
-        <sonar.test.exclusions>**/StaticFilesConfig.java</sonar.test.exclusions>
     </properties>
     <dependencies>
         <dependency>
@@ -63,10 +61,10 @@
         </dependency>
 
     </dependencies>
-
     <build>
         <finalName>app</finalName>
         <plugins>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -99,6 +97,8 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
+
 </project>
