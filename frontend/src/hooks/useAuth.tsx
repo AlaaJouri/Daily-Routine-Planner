@@ -8,7 +8,7 @@ type User = {
     role: string;
 }
 
-export default function useAuth (redirectToSignIn?: boolean) {
+export default function useAuth(redirectToSignIn?: boolean) {
 
 
     const [username, setUsername] = React.useState<string>("");
@@ -27,5 +27,5 @@ export default function useAuth (redirectToSignIn?: boolean) {
             }
         });
     }, [pathname, navigate, redirectToSignIn]);
-    return {user,username,password,setUsername,setPassword};
+    return {user, username, password, setUsername, setPassword};
 }
