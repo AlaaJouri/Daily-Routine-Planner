@@ -45,4 +45,5 @@ class MongoUserDetailsServiceTest {
         verify(mongoUserRepository).findByUsername("username");
         Assertions.assertEquals(expected, actual);
     }
+
 }
