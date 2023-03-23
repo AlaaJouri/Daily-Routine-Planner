@@ -138,6 +138,17 @@ class MongoUserControllerTest {
                         .with(csrf()))
                 .andExpect(status().isOk());
     }
+    @Test
+    @DirtiesContext
+    @WithMockUser(username = "user", password = "password")
+    void login_whenUserCredentialsInvalid_whenStatusUnauthorized() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{}")
+                        .with(csrf()))
+                .andExpect(status().isUnauthorized());
+    }
+
 
     @Test
     @DirtiesContext
