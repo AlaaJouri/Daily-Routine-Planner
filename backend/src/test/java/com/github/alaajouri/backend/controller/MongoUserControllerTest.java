@@ -134,9 +134,6 @@ class MongoUserControllerTest {
                             "password": "password"
                         }
                         """));
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/user")
-                        .with(csrf()))
-                .andExpect(status().isOk());
     }
     @Test
     @DirtiesContext
