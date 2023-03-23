@@ -133,7 +133,7 @@ class MongoUserControllerTest {
                             "username": "user",
                             "password": "password"
                         }
-                        """));
+                        """)) .andExpect(status().isUnauthorized());
     }
     @Test
     @DirtiesContext
