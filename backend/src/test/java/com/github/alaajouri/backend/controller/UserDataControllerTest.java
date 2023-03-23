@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.annotation.DirtiesContext;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -33,8 +36,9 @@ class UserDataControllerTest {
 
     @Test
     @DirtiesContext
+    @WithMockUser(username = "user", password = "password")
     void addUserData() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/userdata/").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/userdata/").with(csrf()).contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {                    
                                 "name": "Alaa",
@@ -67,12 +71,13 @@ class UserDataControllerTest {
 
     @Test
     @DirtiesContext
+    @WithMockUser(username = "user", password = "password")
     void deleteUserData() throws Exception {
         // GIVEN
         userDataRepository.save(User1);
 
         // WHEN
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/userdata/" + User1.id()))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/userdata/" + User1.id()).with(csrf()))
                 .andExpect(status().isOk());
     }
 

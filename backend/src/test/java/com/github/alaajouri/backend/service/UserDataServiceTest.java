@@ -17,7 +17,6 @@ import static org.mockito.Mockito.*;
 
 
 class UserDataServiceTest {
-
     UserDataService userDataService;
     UserDataRepository userDataRepository;
     IdGenerator idGenerator;
