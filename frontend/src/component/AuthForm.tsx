@@ -1,4 +1,5 @@
 import React, {FormEvent, useState} from "react";
+import "./Login.css"
 
 type AuthFormProps = {
     title: string;
@@ -17,11 +18,11 @@ export default function AuthForm({title, buttonText, onSubmit}: AuthFormProps) {
     };
 
     return (
-        <div style={{padding: "5rem 0"}}>
+        <div className="login-box">
             <h1>{title}</h1>
 
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="user-box">
                     <label>
                         Username
                         <input
@@ -32,7 +33,7 @@ export default function AuthForm({title, buttonText, onSubmit}: AuthFormProps) {
                     </label>
                 </div>
 
-                <div>
+                <div className="login-box">
                     <label>
                         Password
                         <input

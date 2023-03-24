@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import Login from "./component/Login";
 import Logout from "./component/Logout";
 import Header from './component/Header';
+import MenuAppBar from "./component/MenuAppBar";
 
 axios.interceptors.request.use(function (config) {
     return fetch("/api/csrf").then(() => {
@@ -43,7 +44,7 @@ function App() {
 
     return (
         <div className="App">
-            <Header/>
+        <MenuAppBar/>
             <Routes>
                 <Route path={"/login"} element={<Login fetchUserData={fetchUserData}/>}/>
                 <Route path={"/sign-up"} element={<SignUpPage/>}/>
