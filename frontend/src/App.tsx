@@ -7,8 +7,7 @@ import SignUpPage from "./component/SignUpPage";
 import Cookies from "js-cookie";
 import Login from "./component/Login";
 import Logout from "./component/Logout";
-import Header from './component/Header';
-import MenuAppBar from "./component/MenuAppBar";
+import ResponsiveAppBar from "./component/ResponsiveAppBar";
 
 axios.interceptors.request.use(function (config) {
     return fetch("/api/csrf").then(() => {
@@ -31,24 +30,16 @@ function App() {
             .catch(console.error);
     }
 
-    function addUserData(userDataToAdd: UserData) {
 
-        axios.post("/api/userdata/", userDataToAdd)
-            .then((response) => {
-                setUserData([...userData, response.data])
-            })
-            .catch((error) => {
-                console.error("I'm sorry. Something went wrong!" + error)
-            });
-    }
 
     return (
         <div className="App">
-
+            <ResponsiveAppBar/>
             <Routes>
+
                 <Route path={"/login"} element={<Login fetchUserData={fetchUserData}/>}/>
                 <Route path={"/sign-up"} element={<SignUpPage/>}/>
-                <Route path={"/profile"} element={<ProfileUserData addUserData={addUserData}/>}/>
+
                 <Route path={"/logout"} element={<Logout/>}/>
 
             </Routes>
