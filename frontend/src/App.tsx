@@ -44,7 +44,7 @@ function App() {
 
     return (
         <div className="App">
-        <MenuAppBar/>
+
             <Routes>
                 <Route path={"/login"} element={<Login fetchUserData={fetchUserData}/>}/>
                 <Route path={"/sign-up"} element={<SignUpPage/>}/>

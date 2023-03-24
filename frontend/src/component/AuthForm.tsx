@@ -33,7 +33,7 @@ export default function AuthForm({title, buttonText, onSubmit}: AuthFormProps) {
                     </label>
                 </div>
 
-                <div className="login-box">
+                <div className="user-box">
                     <label>
                         Password
                         <input
