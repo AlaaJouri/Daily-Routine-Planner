@@ -7,7 +7,7 @@ import SignUpPage from "./component/SignUpPage";
 import Cookies from "js-cookie";
 import Login from "./component/Login";
 import Logout from "./component/Logout";
-import Header from './component/Header';
+import ResponsiveAppBar from "./component/ResponsiveAppBar";
 
 axios.interceptors.request.use(function (config) {
     return fetch("/api/csrf").then(() => {
@@ -21,6 +21,17 @@ axios.interceptors.request.use(function (config) {
 function App() {
     const [userData, setUserData] = useState<UserData[]>([])
 
+    function addUserData(userDataToAdd: UserData) {
+        axios
+            .post("/api/userdata/", userDataToAdd)
+            .then((response) => {
+                setUserData(response.data);
+            })
+            .catch((error) => {
+                console.error("I'm sorry. Something went wrong!" + error);
+                // You can add an error message to display to the user here
+            });
+    }
 
     function fetchUserData() {
         axios.get("/api/userdata/")
@@ -30,20 +41,10 @@ function App() {
             .catch(console.error);
     }
 
-    function addUserData(userDataToAdd: UserData) {
-
-        axios.post("/api/userdata/", userDataToAdd)
-            .then((response) => {
-                setUserData([...userData, response.data])
-            })
-            .catch((error) => {
-                console.error("I'm sorry. Something went wrong!" + error)
-            });
-    }
 
     return (
         <div className="App">
-            <Header/>
+            <ResponsiveAppBar/>
             <Routes>
                 <Route path={"/login"} element={<Login fetchUserData={fetchUserData}/>}/>
                 <Route path={"/sign-up"} element={<SignUpPage/>}/>
