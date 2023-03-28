@@ -1,6 +1,9 @@
 package com.github.alaajouri.backend.model;
 
-public record UserdataDTO(
+public record MongoUserDTO(
+        String id,
+        String username,
+        String role,
         String name,
         String gender,
         String weight,

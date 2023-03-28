@@ -13,30 +13,30 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import {useNavigate} from 'react-router-dom';
-import {UserData} from "../model/UserData";
-type Props = {
-    userdata: UserData[]
+import useAuth from "../hooks/useAuth";
 
-}
-function ResponsiveAppBar(props:Props) {
+function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
     const navigate = useNavigate();
-
+    const {user} = useAuth(false)
     const handleUserDataSubmit = () => {
+        navigate('/profile');
 
-        navigate('/profile/'+props.userdata[0].id);
     };
     const handleLoginSubmit = () => {
 
         navigate('/login');
     };
+    const handleSignupSubmit = () => {
+
+        navigate('/sign-up');
+    };
     const handleLogoutSubmit = () => {
 
         navigate('/logout');
     };
-
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -189,6 +189,9 @@ function ResponsiveAppBar(props:Props) {
                             </MenuItem>
                             <MenuItem onClick={handleLogoutSubmit}>
                                 <Typography textAlign="center">Logout</Typography>
+                            </MenuItem>
+                            <MenuItem onClick={handleSignupSubmit}>
+                                <Typography textAlign="center">sign-up</Typography>
                             </MenuItem>
                         </Menu>
                     </Box>

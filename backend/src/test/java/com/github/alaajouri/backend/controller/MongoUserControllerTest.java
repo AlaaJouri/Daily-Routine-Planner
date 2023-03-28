@@ -3,6 +3,7 @@ package com.github.alaajouri.backend.controller;
 
 import com.github.alaajouri.backend.model.MongoUser;
 import com.github.alaajouri.backend.repository.MongoUserRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,18 +20,35 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 class MongoUserControllerTest {
-    @Autowired
-    MockMvc mockMvc;
 
     @Autowired
     MongoUserRepository mongoUserRepository;
+    @Autowired
+    MockMvc mockMvc;
+    MongoUser User1;
 
+    @BeforeEach
+    void setUp() {
+        User1 = new MongoUser("1", "user", "password", "BASIC","Alaa", "W", "55", 50, 50, 8, 3, 1500);
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser(username = "user", password = "password")
+    void deleteUserData() throws Exception {
+        // GIVEN
+        mongoUserRepository.save(User1);
+
+        // WHEN
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/userdata/" + User1.id()).with(csrf()))
+                .andExpect(status().isOk());
+    }
 
     @Test
     @DirtiesContext
     @WithMockUser(username = "user", password = "password")
     void getMe_whenAuthenticated_thenUsername() throws Exception {
-        mongoUserRepository.save(new MongoUser("1", "user", "password", "BASIC"));
+        mongoUserRepository.save(new MongoUser("1", "user", "password", "BASIC","Alaa", "W", "55", 50, 50, 8, 3, 1500));
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user/me")
                         .with(csrf()))
                 .andExpect(status().isOk())

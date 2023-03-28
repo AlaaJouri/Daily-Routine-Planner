@@ -12,8 +12,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 
@@ -30,7 +32,15 @@ class MongoUserDetailsServiceTest {
         passwordEncoder = mock(PasswordEncoder.class);
         idGenerator = mock(IdGenerator.class);
         mongoUserDetailsService = new MongoUserDetailsService(mongoUserRepository);
-        mongoUser = new MongoUser("1", "username", "123", "BASIC");
+        mongoUser = new MongoUser("1", "username", "123", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
+    }
+
+    @Test
+    void deleteUserData() {
+        mongoUserRepository.save(mongoUser);
+        when(mongoUserRepository.findById("1")).thenReturn(Optional.empty());
+
+        assertThrows(NoSuchElementException.class, () -> mongoUserDetailsService.deleteUserDataById("1"));
     }
 
     @Test
