@@ -6,6 +6,17 @@ type User = {
     id: string;
     username: string;
     role: string;
+    name:string,
+    gender:string,
+    weight:string,
+    weightGoal:number,
+    sleepTimeTarget:number,
+    trainingTimeGoal:number,
+    stepTarget:number,
+    caloriesBurnedTarget:number
+
+
+
 }
 
 export default function useAuth(redirectToSignIn?: boolean) {

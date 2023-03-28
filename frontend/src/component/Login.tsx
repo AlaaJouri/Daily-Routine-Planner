@@ -4,11 +4,9 @@ import axios from "axios";
 import AuthForm from "../component/AuthForm";
 
 
-type SignInPageProps = {
-    fetchUserData: () => void;
-}
 
-export default function Login(props: SignInPageProps) {
+
+export default function Login() {
     const navigate = useNavigate();
 
     const handleSignIn = (username: string, password: string) => {
@@ -25,7 +23,7 @@ export default function Login(props: SignInPageProps) {
                     window.sessionStorage.getItem("signInRedirect") || "/";
                 window.sessionStorage.removeItem("signInRedirect");
                 navigate(redirect);
-                props.fetchUserData();
+
             })
             .catch((err) => {
                 alert(err.response.data.error);

@@ -1,6 +1,8 @@
 package com.github.alaajouri.backend.controller;
+
 import com.github.alaajouri.backend.model.MongoUser;
 import com.github.alaajouri.backend.repository.MongoUserRepository;
+import com.github.alaajouri.backend.service.MongoUserDetailsService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,9 +20,15 @@ import java.util.UUID;
 public class MongoUserController {
     private final MongoUserRepository mongoUserRepository;
     private final PasswordEncoder passwordEncoder;
+    private final MongoUserDetailsService userDataService;
+
+    @GetMapping("{id}")
+    MongoUser getUserDataById(@PathVariable String id) {
+        return userDataService.getUserDataByID(id);
+    }
 
     @PostMapping
-    public MongoUser create (@RequestBody MongoUser user) {
+    public MongoUser create(@RequestBody MongoUser user) {
         if (user.username() == null || user.username().length() == 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username is required");
         }
@@ -40,7 +48,17 @@ public class MongoUserController {
                 UUID.randomUUID().toString(),
                 user.username(),
                 passwordEncoder.encode(user.password()),
-                "BASIC"
+                "BASIC",
+                " ",
+                " ",
+                " ",
+                user.weightGoal(),
+                user.sleepTimeTarget(),
+                user.trainingTimeGoal(),
+                user.stepTarget(),
+                user.caloriesBurnedTarget()
+
+
         );
 
         MongoUser out = mongoUserRepository.save(newUser);
@@ -49,17 +67,27 @@ public class MongoUserController {
                 out.id(),
                 out.username(),
                 null,
-                out.role()
+                out.role(),
+                out.name(),
+                out.gender(),
+                out.weight(),
+                out.weightGoal(),
+                out.sleepTimeTarget(),
+                out.trainingTimeGoal(),
+                out.stepTarget(),
+                out.caloriesBurnedTarget()
+
+
         );
     }
 
     @PostMapping("/login")
-    public MongoUser login (Principal principal) {
+    public MongoUser login(Principal principal) {
         return getMe1(principal);
     }
 
     @PostMapping("/logout")
-    public void logout (HttpSession session){
+    public void logout(HttpSession session) {
         session.invalidate();
         SecurityContextHolder.clearContext();
     }
@@ -74,7 +102,15 @@ public class MongoUserController {
                 me.id(),
                 me.username(),
                 null,
-                me.role()
+                me.role(),
+                me.name(),
+                me.gender(),
+                me.weight(),
+                me.weightGoal(),
+                me.sleepTimeTarget(),
+                me.trainingTimeGoal(),
+                me.stepTarget(),
+                me.caloriesBurnedTarget()
         );
     }
 
@@ -87,9 +123,10 @@ public class MongoUserController {
     }
 
     @GetMapping("/admin")
-    public String getAdminStatus () {
+    public String getAdminStatus() {
         return "Admin OK";
     }
+
     @GetMapping
     public String getStatus() {
         return "OK";
