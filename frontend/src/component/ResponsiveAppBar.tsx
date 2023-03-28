@@ -18,7 +18,7 @@ type Props = {
     userdata: UserData[]
 
 }
-function ResponsiveAppBar(props: Props) {
+function ResponsiveAppBar(props:Props) {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -26,7 +26,7 @@ function ResponsiveAppBar(props: Props) {
 
     const handleUserDataSubmit = () => {
 
-        navigate('/profile/'+props.userdata[1].id );
+        navigate('/profile/'+props.userdata[0].id);
     };
     const handleLoginSubmit = () => {
 

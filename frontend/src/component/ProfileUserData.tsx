@@ -7,11 +7,24 @@ import {useParams} from "react-router-dom";
 type UserDataProps = {
     addUserData: (userDataToAdd: UserData) => void,
 
+
 }
 
 export default function ProfileUserData(props: UserDataProps) {
 
     const { id } = useParams();
+    const [userData, setUserData] = useState<UserData>({
+        id: id ? id : "",
+        "name": "",
+        "gender": "",
+        "weight": "",
+        "weightGoal": 0,
+        "sleepTimeTarget": 0,
+        "trainingTimeGoal": 0,
+        "stepTarget": 0,
+        "caloriesBurnedTarget": 0
+    });
+
     const [userDataToAdd, setUserDataToAdd] = useState<UserData>({
         "id":"",
         "name": "",
@@ -29,7 +42,7 @@ export default function ProfileUserData(props: UserDataProps) {
         axios
             .get(requestURL)
             .then((response) => {
-                setUserDataToAdd(response.data);
+                setUserData(response.data);
             })
             .catch((error) => console.error(error));
     }, [requestURL]);
