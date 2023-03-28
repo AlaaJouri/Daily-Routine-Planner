@@ -6,6 +6,7 @@ import com.github.alaajouri.backend.repository.UserDataRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -15,7 +16,9 @@ public class UserDataService {
 
     private final UserDataRepository userDataRepository;
     private final IdGenerator idGenerator;
-
+    public List<UserData> listAllUserdata() {
+        return userDataRepository.findAll();
+    }
     public UserData addUserData(UserdataDTO userData) {
         UserData userDataToAdd = new UserData(
                 idGenerator.generateID(),
@@ -30,7 +33,9 @@ public class UserDataService {
         );
         return userDataRepository.save(userDataToAdd);
     }
-
+    public UserData getUserDataByID(String id) {
+        return userDataRepository.findById(id).orElseThrow(NoSuchElementException::new);
+    }
     public void deleteUserDataById(String id) {
         Optional<UserData> userDataToDelete = userDataRepository.findById(id);
         if (userDataToDelete.isEmpty()) {

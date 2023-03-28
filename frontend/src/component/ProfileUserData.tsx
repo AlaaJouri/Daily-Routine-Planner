@@ -1,6 +1,8 @@
 import {UserData} from "../model/UserData";
 import {ChangeEvent, useEffect, useState} from "react";
 import "./UserData.css";
+import axios from "axios";
+import {useParams} from "react-router-dom";
 
 type UserDataProps = {
     addUserData: (userDataToAdd: UserData) => void,
@@ -8,6 +10,8 @@ type UserDataProps = {
 }
 
 export default function ProfileUserData(props: UserDataProps) {
+
+    const { id } = useParams();
     const [userDataToAdd, setUserDataToAdd] = useState<UserData>({
         "id":"",
         "name": "",
@@ -19,6 +23,18 @@ export default function ProfileUserData(props: UserDataProps) {
         "stepTarget": 0,
         "caloriesBurnedTarget": 0
     });
+
+    const requestURL = `/api/userdata/${id}`;
+    useEffect(() => {
+        axios
+            .get(requestURL)
+            .then((response) => {
+                setUserDataToAdd(response.data);
+            })
+            .catch((error) => console.error(error));
+    }, [requestURL]);
+
+
     function handleChangeName(event: ChangeEvent<HTMLInputElement>) {
         setUserDataToAdd({
             ...userDataToAdd,

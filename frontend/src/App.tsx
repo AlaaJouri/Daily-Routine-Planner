@@ -44,11 +44,11 @@ function App() {
 
     return (
         <div className="App">
-            <ResponsiveAppBar/>
+            <ResponsiveAppBar userdata={userData} />
             <Routes>
                 <Route path={"/login"} element={<Login fetchUserData={fetchUserData}/>}/>
                 <Route path={"/sign-up"} element={<SignUpPage/>}/>
-                <Route path={"/profile"} element={<ProfileUserData addUserData={addUserData}/>}/>
+                <Route path={"/profile/:id"} element={<ProfileUserData addUserData={addUserData}/>}/>
                 <Route path={"/logout"} element={<Logout/>}/>
 
             </Routes>

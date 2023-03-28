@@ -13,8 +13,12 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import {useNavigate} from 'react-router-dom';
+import {UserData} from "../model/UserData";
+type Props = {
+    userdata: UserData[]
 
-function ResponsiveAppBar() {
+}
+function ResponsiveAppBar(props: Props) {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -22,7 +26,7 @@ function ResponsiveAppBar() {
 
     const handleUserDataSubmit = () => {
 
-        navigate('/profile');
+        navigate('/profile/'+props.userdata[1].id );
     };
     const handleLoginSubmit = () => {
 
