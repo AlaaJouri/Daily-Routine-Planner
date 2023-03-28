@@ -1,7 +1,6 @@
 package com.github.alaajouri.backend.service;
 
 import com.github.alaajouri.backend.model.MongoUser;
-import com.github.alaajouri.backend.model.MongoUserDTO;
 import com.github.alaajouri.backend.repository.MongoUserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -11,7 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.List;
 
 

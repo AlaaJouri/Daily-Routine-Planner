@@ -19,7 +19,6 @@ export default function ProfileUserData() {
                     <label htmlFor="name">Name</label>
                     <br/>
                     <input value={user.name}/>
-
                     <br/>
                 </div>
                 <div className="item1">
