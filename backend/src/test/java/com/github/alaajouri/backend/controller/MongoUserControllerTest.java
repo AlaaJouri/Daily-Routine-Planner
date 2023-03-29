@@ -3,6 +3,7 @@ package com.github.alaajouri.backend.controller;
 
 import com.github.alaajouri.backend.model.MongoUser;
 import com.github.alaajouri.backend.repository.MongoUserRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -25,11 +26,19 @@ class MongoUserControllerTest {
     @Autowired
     MockMvc mockMvc;
 
+    MongoUser mongoUser;
+
+    @BeforeEach
+    void setUp() {
+        mongoUser = new MongoUser("1", "user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
+
+    }
+
     @Test
     @DirtiesContext
     @WithMockUser(username = "user", password = "password")
     void getMe_whenAuthenticated_thenUsername() throws Exception {
-        mongoUserRepository.save(new MongoUser("1", "user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500));
+        mongoUserRepository.save(mongoUser);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user/me")
                         .with(csrf()))
                 .andExpect(status().isOk())
@@ -154,5 +163,34 @@ class MongoUserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("OK"));
     }
+
+
+    @Test
+    @DirtiesContext
+    @WithMockUser(username = "user", password = "password")
+    void getUserDataById() throws Exception {
+        // GIVEN
+        mongoUserRepository.save(mongoUser);
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/user" + mongoUser.id()).with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        {              
+                               "id" : "1", 
+                               "username" :"user",
+                               "password":"password",
+                               "role" : "BASIC",
+                                "name" : "Alaa", 
+                                "gender" : "W", 
+                                "weight"  :  "55", 
+                                "weightGoal"  : 50, 
+                                "sleepTimeTarget"  :  50, 
+                                 "trainingTimeGoal" :  8,
+                                 "stepTarget" :  3, 
+                                 "caloriesBurnedTarget" :1500                                                     
+                                                               
+                         }
+                         """));
+    }
+
 
 }
