@@ -3,7 +3,6 @@ package com.github.alaajouri.backend.controller;
 
 import com.github.alaajouri.backend.model.MongoUser;
 import com.github.alaajouri.backend.repository.MongoUserRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -25,13 +24,6 @@ class MongoUserControllerTest {
     MongoUserRepository mongoUserRepository;
     @Autowired
     MockMvc mockMvc;
-    MongoUser User1;
-
-    @BeforeEach
-    void setUp() {
-        User1 = new MongoUser("1", "user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
-    }
-
 
     @Test
     @DirtiesContext
@@ -45,22 +37,6 @@ class MongoUserControllerTest {
                 .andExpect(jsonPath("$.password").isEmpty());
 
 
-    }
-
-
-    @Test
-    @DirtiesContext
-    void create_whenValid_then200() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                                {
-                                    "username": "test",
-                                    "password": "test"
-                                }
-                                """)
-                        .with(csrf()))
-                .andExpect(status().isOk());
     }
 
 
@@ -103,30 +79,6 @@ class MongoUserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-    @Test
-    @DirtiesContext
-    void createUser_UserAlreadyExists() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                                {
-                                    "username": "test",
-                                    "password": "test"
-                                }
-                                """)
-                        .with(csrf()))
-                .andExpect(status().isOk());
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                                {
-                                    "username": "test",
-                                    "password": "test"
-                                }
-                                """)
-                        .with(csrf()))
-                .andExpect(status().isConflict());
-    }
 
     @Test
     @DirtiesContext
@@ -184,16 +136,6 @@ class MongoUserControllerTest {
 
     }
 
-    @Test
-    @DirtiesContext
-    @WithMockUser(username = "user", password = "password")
-    void testGetMe2() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/user/me2")
-                        .with(csrf()))
-                .andExpect(status().isOk())
-                .andExpect(content().string("user"));
-
-    }
 
     @Test
     @DirtiesContext

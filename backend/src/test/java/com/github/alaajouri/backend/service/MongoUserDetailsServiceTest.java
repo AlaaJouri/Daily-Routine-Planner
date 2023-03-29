@@ -1,6 +1,7 @@
 package com.github.alaajouri.backend.service;
 
 import com.github.alaajouri.backend.model.MongoUser;
+import com.github.alaajouri.backend.model.MongoUserDTO;
 import com.github.alaajouri.backend.repository.MongoUserRepository;
 import org.junit.jupiter.api.Test;
 
