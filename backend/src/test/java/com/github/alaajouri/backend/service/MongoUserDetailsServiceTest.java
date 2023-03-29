@@ -47,7 +47,7 @@ class MongoUserDetailsServiceTest {
         passwordEncoder = mock(PasswordEncoder.class);
         idGenerator = mock(IdGenerator.class);
         mongoUserDetailsService = new MongoUserDetailsService(mongoUserRepository, passwordEncoder);
-        //  mongoUser = new MongoUser("1", "username", "123", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
+          mongoUser = new MongoUser("1", "username", "123", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
     }
 
     @Test
@@ -219,29 +219,4 @@ class MongoUserDetailsServiceTest {
         verifyNoMoreInteractions(passwordEncoder, mongoUserRepository);
     }
 }
-/*
-    @Test
-    void create_withMissingPassword_throwsBadRequestException() {
-        // Arrange
-        MongoUserDTO user = new MongoUserDTO(
-                "testuser",
-                null,
-                "Test User",
-                "male",
-                70,
-                65,
-                7,
-                60,
-                10000,
-                500
-        );
-
-        // Act/Assert
-        assertThrows(ResponseStatusException.class, () -> mongoUserController
-
-
-
-
-
-    }*/
 
