@@ -1,6 +1,7 @@
 package com.github.alaajouri.backend.controller;
 
 import com.github.alaajouri.backend.model.MongoUser;
+import com.github.alaajouri.backend.model.MongoUserDTO;
 import com.github.alaajouri.backend.repository.MongoUserRepository;
 import com.github.alaajouri.backend.service.MongoUserDetailsService;
 import jakarta.servlet.http.HttpSession;
@@ -28,7 +29,7 @@ public class MongoUserController {
     }
 
     @PostMapping
-    public MongoUser create(@RequestBody MongoUser user) {
+    public MongoUser create(@RequestBody MongoUserDTO user) {
         if (user.username() == null || user.username().length() == 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username is required");
         }
@@ -52,11 +53,11 @@ public class MongoUserController {
                 " ",
                 " ",
                 " ",
-                user.weightGoal(),
-                user.sleepTimeTarget(),
-                user.trainingTimeGoal(),
-                user.stepTarget(),
-                user.caloriesBurnedTarget()
+                0,
+                0,
+                0,
+                0,
+                0
 
 
         );

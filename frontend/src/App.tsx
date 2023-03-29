@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import axios from "axios";
 import ProfileUserData from "./component/ProfileUserData";
@@ -7,7 +7,6 @@ import Cookies from "js-cookie";
 import Login from "./component/Login";
 import Logout from "./component/Logout";
 import ResponsiveAppBar from "./component/ResponsiveAppBar";
-
 
 axios.interceptors.request.use(function (config) {
     return fetch("/api/csrf").then(() => {
@@ -20,26 +19,13 @@ axios.interceptors.request.use(function (config) {
 
 function App() {
 
-   // const [userData, setUserData] = useState<UserData | undefined>(undefined);
-
-
-
-   /* function fetchUserData() {
-        axios.get("/api/userdata/")
-            .then(response => {
-                setUserData(response.data);
-            })
-            .catch(console.error);
-    }
-*/
-
     return (
         <div className="App">
-            <ResponsiveAppBar />
+            <ResponsiveAppBar/>
             <Routes>
-                <Route path={"/login"} element={<Login />}/>
+                <Route path={"/login"} element={<Login/>}/>
                 <Route path={"/sign-up"} element={<SignUpPage/>}/>
-              <Route path={"/profile"} element={<ProfileUserData/>}/>
+                <Route path={"/profile"} element={<ProfileUserData/>}/>
                 <Route path={"/logout"} element={<Logout/>}/>
 
             </Routes>

@@ -48,4 +48,15 @@ class MongoUserDetailsServiceTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @Test
+    void getUserDataById() {
+        // GIVEN
+        when(mongoUserRepository.findById("1")).thenReturn(Optional.empty());
+
+        // WHEN
+        assertThrows(NoSuchElementException.class, () -> mongoUserDetailsService.getUserDataByID("1"));
+
+        // THEN
+        verify(mongoUserRepository).findById("1");
+    }
 }
