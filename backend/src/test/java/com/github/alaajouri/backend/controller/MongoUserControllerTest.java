@@ -164,7 +164,6 @@ class MongoUserControllerTest {
                 .andExpect(content().string("OK"));
     }
 
-
     @Test
     @DirtiesContext
     @WithMockUser(username = "user", password = "password")
@@ -191,6 +190,7 @@ class MongoUserControllerTest {
                          }
                          """));
     }
+
 
 
 }
