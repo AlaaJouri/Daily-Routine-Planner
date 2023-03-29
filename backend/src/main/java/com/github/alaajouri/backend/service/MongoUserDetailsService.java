@@ -12,27 +12,26 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import lombok.RequiredArgsConstructor;
 
 
 import java.security.Principal;
-import java.util.NoSuchElementException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 
 @Service
+@RequiredArgsConstructor
 public class MongoUserDetailsService implements UserDetailsService {
     private final MongoUserRepository mongoUserRepository;
-    PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+    
 
     public MongoUser getUserDataByID(String id) {
         return mongoUserRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
-
-    public MongoUserDetailsService(MongoUserRepository mongoUserRepository) {
-        this.mongoUserRepository = mongoUserRepository;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

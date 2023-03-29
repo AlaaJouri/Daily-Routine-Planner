@@ -18,7 +18,7 @@ public class MongoUserController {
     private final MongoUserDetailsService userDataService;
 
     @GetMapping("{id}")
-    MongoUser getUserDataById(@PathVariable String id) {
+    public MongoUser getUserDataById(@PathVariable String id) {
         return userDataService.getUserDataByID(id);
     }
 
@@ -44,10 +44,6 @@ public class MongoUserController {
         return userDataService.getMe(principal);
     }
 
-    @GetMapping("/admin")
-    public String getAdminStatus() {
-        return "Admin OK";
-    }
 
     @GetMapping
     public String getStatus() {
