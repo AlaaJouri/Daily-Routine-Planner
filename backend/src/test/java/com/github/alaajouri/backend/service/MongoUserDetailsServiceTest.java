@@ -130,7 +130,7 @@ class MongoUserDetailsServiceTest {
         verify(mongoUserRepository, times(1)).findByUsername(principal.getName());
     }
     @Test
-    public void testCreate() {
+     void testCreate() {
         // Arrange
         MongoUserDTO user = new MongoUserDTO("john_doe","password");
 

@@ -27,7 +27,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class MongoUserControllerTest {
 
 
-
     @Autowired
     MongoUserRepository mongoUserRepository;
     TestRestTemplate restTemplate;
@@ -162,5 +161,7 @@ class MongoUserControllerTest {
                 .andExpect(content().string("OK"));
     }
 
-
 }
+
+
+
