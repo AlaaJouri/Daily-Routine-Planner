@@ -1,6 +1,7 @@
 package com.github.alaajouri.backend.service;
 
 import com.github.alaajouri.backend.model.MongoUser;
+import com.github.alaajouri.backend.model.MongoUserDTO;
 import com.github.alaajouri.backend.repository.MongoUserRepository;
 import org.junit.jupiter.api.Test;
 
@@ -45,8 +46,8 @@ class MongoUserDetailsServiceTest {
         mongoUserRepository = mock(MongoUserRepository.class);
         passwordEncoder = mock(PasswordEncoder.class);
         idGenerator = mock(IdGenerator.class);
-        mongoUserDetailsService = new MongoUserDetailsService(mongoUserRepository,passwordEncoder);
-      //  mongoUser = new MongoUser("1", "username", "123", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
+        mongoUserDetailsService = new MongoUserDetailsService(mongoUserRepository, passwordEncoder);
+        //  mongoUser = new MongoUser("1", "username", "123", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
     }
 
     @Test
@@ -73,6 +74,7 @@ class MongoUserDetailsServiceTest {
         // THEN
         verify(mongoUserRepository).findById("1");
     }
+
     @Test
     void getMe_withValidPrincipal_returnsMongoUser() {
         // Arrange
@@ -114,6 +116,7 @@ class MongoUserDetailsServiceTest {
         // Verify
         verify(mongoUserRepository, times(1)).findByUsername(principal.getName());
     }
+
     @Test
     void getMe_withInvalidPrincipal_throwsUnauthorizedException() {
         // Arrange
@@ -127,5 +130,118 @@ class MongoUserDetailsServiceTest {
         // Verify
         verify(mongoUserRepository, times(1)).findByUsername(principal.getName());
     }
+    @Test
+    public void testCreate() {
+        // Arrange
+        MongoUserDTO user = new MongoUserDTO("john_doe","password");
+
+
+
+        when(mongoUserRepository.existsByUsername(user.username())).thenReturn(false);
+
+
+        when(passwordEncoder.encode(user.password())).thenReturn("encoded_password");
+
+        MongoUser expectedUser = new MongoUser(
+                "1",
+                user.username(),
+                "encoded_password",
+                "BASIC",
+                "",
+                "",
+                "",
+                0,
+                0,
+                0,
+                0,
+                0
+        );
+        when(mongoUserRepository.save(any())).thenReturn(expectedUser);
+
+        MongoUser expectedOutput = new MongoUser(
+                expectedUser.id(),
+                expectedUser.username(),
+                null,
+                expectedUser.role(),
+                expectedUser.name(),
+                expectedUser.gender(),
+                expectedUser.weight(),
+                expectedUser.weightGoal(),
+                expectedUser.sleepTimeTarget(),
+                expectedUser.trainingTimeGoal(),
+                expectedUser.stepTarget(),
+                expectedUser.caloriesBurnedTarget()
+        );
+
+        // Act
+        MongoUser actualOutput = mongoUserDetailsService.create(user);
+
+        // Assert
+        assertEquals(expectedOutput, actualOutput);
+        verify(mongoUserRepository).existsByUsername(user.username());
+        verify(mongoUserRepository).save(any());
+        verify(passwordEncoder).encode(user.password());
+    }
+
+
+
+    @Test
+    void create_withExistingUsername_throwsConflictException() {
+        // Arrange
+        MongoUserDTO user = new MongoUserDTO(
+                "testuser",
+                "testpassword"
+
+        );
+        when(mongoUserRepository.existsByUsername(user.username())).thenReturn(true);
+
+        // Act/Assert
+        assertThrows(ResponseStatusException.class, () -> mongoUserDetailsService.create(user));
+
+        // Verify
+        verify(mongoUserRepository, times(1)).existsByUsername(user.username());
+        verifyNoMoreInteractions(passwordEncoder, mongoUserRepository);
+    }
+
+    @Test
+    void create_withMissingUsername_throwsBadRequestException() {
+        // Arrange
+        MongoUserDTO user = new MongoUserDTO(
+                null,
+                "testpassword"
+
+        );
+
+        // Act/Assert
+        assertThrows(ResponseStatusException.class, () -> mongoUserDetailsService.create(user));
+
+        // Verify
+        verifyNoMoreInteractions(passwordEncoder, mongoUserRepository);
+    }
 }
+/*
+    @Test
+    void create_withMissingPassword_throwsBadRequestException() {
+        // Arrange
+        MongoUserDTO user = new MongoUserDTO(
+                "testuser",
+                null,
+                "Test User",
+                "male",
+                70,
+                65,
+                7,
+                60,
+                10000,
+                500
+        );
+
+        // Act/Assert
+        assertThrows(ResponseStatusException.class, () -> mongoUserController
+
+
+
+
+
+    }*/
 
