@@ -18,7 +18,6 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-
 class MongoUserDetailsServiceTest {
     PasswordEncoder passwordEncoder;
     MongoUserDetailsService mongoUserDetailsService;
