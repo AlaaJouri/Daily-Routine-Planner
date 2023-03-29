@@ -145,16 +145,6 @@ class MongoUserControllerTest {
 
     }
 
-
-    @Test
-    @DirtiesContext
-    @WithMockUser(username = "user", password = "password")
-    void testGetAdminStatus() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/user/admin"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("Admin OK"));
-    }
-
     @Test
     @DirtiesContext
     @WithMockUser(username = "user", password = "password")

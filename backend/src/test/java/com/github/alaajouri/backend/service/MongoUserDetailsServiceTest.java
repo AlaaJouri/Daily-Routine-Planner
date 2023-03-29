@@ -11,6 +11,21 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import org.springframework.web.server.ResponseStatusException;
+
+import java.security.Principal;
+import java.util.Optional;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.security.Principal;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -30,8 +45,8 @@ class MongoUserDetailsServiceTest {
         mongoUserRepository = mock(MongoUserRepository.class);
         passwordEncoder = mock(PasswordEncoder.class);
         idGenerator = mock(IdGenerator.class);
-        mongoUserDetailsService = new MongoUserDetailsService(mongoUserRepository);
-        mongoUser = new MongoUser("1", "username", "123", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
+        mongoUserDetailsService = new MongoUserDetailsService(mongoUserRepository,passwordEncoder);
+      //  mongoUser = new MongoUser("1", "username", "123", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
     }
 
     @Test
@@ -58,4 +73,59 @@ class MongoUserDetailsServiceTest {
         // THEN
         verify(mongoUserRepository).findById("1");
     }
+    @Test
+    void getMe_withValidPrincipal_returnsMongoUser() {
+        // Arrange
+        Principal principal = mock(Principal.class);
+        when(principal.getName()).thenReturn("testuser");
+        MongoUser expected = new MongoUser(
+                "1",
+                "testuser",
+                null,
+                "ROLE_USER",
+                "Test User",
+                "male",
+                "70",
+                65,
+                7,
+                60,
+                10000,
+                500
+        );
+        when(mongoUserRepository.findByUsername(principal.getName())).thenReturn(Optional.of(expected));
+
+        // Act
+        MongoUser result = mongoUserDetailsService.getMe(principal);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(expected.id(), result.id());
+        assertEquals(expected.username(), result.username());
+        assertEquals(expected.role(), result.role());
+        assertEquals(expected.name(), result.name());
+        assertEquals(expected.gender(), result.gender());
+        assertEquals(expected.weight(), result.weight());
+        assertEquals(expected.weightGoal(), result.weightGoal());
+        assertEquals(expected.sleepTimeTarget(), result.sleepTimeTarget());
+        assertEquals(expected.trainingTimeGoal(), result.trainingTimeGoal());
+        assertEquals(expected.stepTarget(), result.stepTarget());
+        assertEquals(expected.caloriesBurnedTarget(), result.caloriesBurnedTarget());
+
+        // Verify
+        verify(mongoUserRepository, times(1)).findByUsername(principal.getName());
+    }
+    @Test
+    void getMe_withInvalidPrincipal_throwsUnauthorizedException() {
+        // Arrange
+        Principal principal = mock(Principal.class);
+        when(principal.getName()).thenReturn("testuser");
+        when(mongoUserRepository.findByUsername(principal.getName())).thenReturn(Optional.empty());
+
+        // Act/Assert
+        assertThrows(ResponseStatusException.class, () -> mongoUserDetailsService.getMe(principal));
+
+        // Verify
+        verify(mongoUserRepository, times(1)).findByUsername(principal.getName());
+    }
 }
+
