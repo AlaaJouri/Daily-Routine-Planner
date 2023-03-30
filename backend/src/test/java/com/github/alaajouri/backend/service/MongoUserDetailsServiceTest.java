@@ -16,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
 import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -27,6 +28,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -46,7 +48,7 @@ class MongoUserDetailsServiceTest {
         passwordEncoder = mock(PasswordEncoder.class);
         idGenerator = mock(IdGenerator.class);
         mongoUserDetailsService = new MongoUserDetailsService(mongoUserRepository, passwordEncoder);
-          mongoUser = new MongoUser("1", "username", "123", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
+        mongoUser = new MongoUser("1", "username", "123", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
     }
 
     @Test
@@ -129,11 +131,11 @@ class MongoUserDetailsServiceTest {
         // Verify
         verify(mongoUserRepository, times(1)).findByUsername(principal.getName());
     }
-    @Test
-     void testCreate() {
-        // Arrange
-        MongoUserDTO user = new MongoUserDTO("john_doe","password");
 
+    @Test
+    void testCreate() {
+        // Arrange
+        MongoUserDTO user = new MongoUserDTO("john_doe", "password");
 
 
         when(mongoUserRepository.existsByUsername(user.username())).thenReturn(false);
@@ -181,7 +183,6 @@ class MongoUserDetailsServiceTest {
         verify(mongoUserRepository).save(any());
         verify(passwordEncoder).encode(user.password());
     }
-
 
 
     @Test
