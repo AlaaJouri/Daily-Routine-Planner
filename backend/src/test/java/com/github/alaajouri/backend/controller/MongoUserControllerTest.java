@@ -1,9 +1,11 @@
 package com.github.alaajouri.backend.controller;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.alaajouri.backend.model.MongoUser;
 import com.github.alaajouri.backend.model.MongoUserDTO;
 import com.github.alaajouri.backend.repository.MongoUserRepository;
+import com.github.alaajouri.backend.service.MongoUserDetailsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -30,6 +36,9 @@ class MongoUserControllerTest {
     @Autowired
     MongoUserRepository mongoUserRepository;
     TestRestTemplate restTemplate;
+    @Autowired
+    MongoUserDetailsService mongoUserDetailsService;
+
     @Autowired
     MockMvc mockMvc;
 
@@ -160,8 +169,55 @@ class MongoUserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("OK"));
     }
+    /*
+    @Test
+    @DirtiesContext
+    @WithMockUser(username = "user", password = "password")
+    public void updateUserDataTest() throws Exception {
+        // Arrange
 
-}
+
+        MongoUserDTO userDto = new MongoUserDTO("user", "password");
+
+        MongoUser updatedUser = new MongoUser("1", userDto.username(), userDto.password(), "user", "Test User",
+                "male", "75", 70, 8, 60, 10000, 2500);
+        mongoUserRepository.save(updatedUser);
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/user/1") .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(userDto)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value("1"))
+                .andExpect(jsonPath("$.username").value(userDto.username()))
+                .andExpect(jsonPath("$.password").value(userDto.password()))
+                .andExpect(jsonPath("$.role").value("user"))
+                .andExpect(jsonPath("$.name").value("Test User"))
+                .andExpect(jsonPath("$.gender").value("male"))
+                .andExpect(jsonPath("$.weight").value("75"))
+                .andExpect(jsonPath("$.weightGoal").value(70))
+                .andExpect(jsonPath("$.sleepTimeTarget").value(8))
+                .andExpect(jsonPath("$.trainingTimeGoal").value(60))
+                .andExpect(jsonPath("$.stepTarget").value(10000))
+                .andExpect(jsonPath("$.caloriesBurnedTarget").value(2500));
+    }
+*/
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
 
 
 

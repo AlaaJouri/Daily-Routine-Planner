@@ -41,6 +41,9 @@ class MongoUserDetailsServiceTest {
     MongoUserRepository mongoUserRepository;
     IdGenerator idGenerator;
     MongoUser mongoUser;
+    MongoUserDTO mongoUserDTO;
+    MongoUserDTO newUserData;
+    MongoUser existingUserData;
 
     @BeforeEach
     void setUp() {
@@ -49,6 +52,22 @@ class MongoUserDetailsServiceTest {
         idGenerator = mock(IdGenerator.class);
         mongoUserDetailsService = new MongoUserDetailsService(mongoUserRepository, passwordEncoder);
         mongoUser = new MongoUser("1", "username", "123", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
+        mongoUserDTO =new MongoUserDTO("username","123");
+         newUserData = new MongoUserDTO("newUsername", "newPassword");
+         existingUserData = new MongoUser(
+                "123",
+                "oldUsername",
+                "oldPassword",
+                "user",
+                "John Doe",
+                "male",
+                "70",
+                2000,
+                7,
+                30,
+                10000,
+                500
+        );
     }
 
     @Test
@@ -218,5 +237,40 @@ class MongoUserDetailsServiceTest {
         // Verify
         verifyNoMoreInteractions(passwordEncoder, mongoUserRepository);
     }
+/*
+    @Test
+    void updateUserData_validInput_returnsUpdatedUserData() {
+        // Arrange
+
+
+        mongoUserRepository.save(existingUserData);
+
+        MongoUser expectedUpdatedUserData = new MongoUser(
+                "123",
+                "newUsername",
+                "oldPassword",
+                "user",
+                "John Doe",
+                "male",
+                "70",
+                2000,
+                7,
+                30,
+                10000,
+                500
+        );
+        when(mongoUserRepository.findById("123")).thenReturn(Optional.of(existingUserData));
+        when(mongoUserRepository.save(any(MongoUser.class))).thenReturn(expectedUpdatedUserData);
+
+        // Act
+        MongoUser actualUpdatedUserData = mongoUserDetailsService.updateUserData("123", newUserData);
+
+        // Assert
+        assertEquals(expectedUpdatedUserData, actualUpdatedUserData);
+        verify(mongoUserRepository).findById("123");
+        verify(mongoUserRepository).save(expectedUpdatedUserData);
+    }
+    */
+
 }
 
