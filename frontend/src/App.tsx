@@ -41,7 +41,6 @@ function App() {
             .catch(console.error);
     }
 
-
     return (
         <div className="App">
             <ResponsiveAppBar/>
