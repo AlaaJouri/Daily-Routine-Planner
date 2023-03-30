@@ -1,5 +1,5 @@
 import {UserData} from "../model/UserData";
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEvent, useState} from "react";
 import "./UserData.css";
 
 type UserDataProps = {
@@ -9,7 +9,7 @@ type UserDataProps = {
 
 export default function ProfileUserData(props: UserDataProps) {
     const [userDataToAdd, setUserDataToAdd] = useState<UserData>({
-        "id":"",
+        "id": "",
         "name": "",
         "gender": "",
         "weight": "",
@@ -19,6 +19,7 @@ export default function ProfileUserData(props: UserDataProps) {
         "stepTarget": 0,
         "caloriesBurnedTarget": 0
     });
+
     function handleChangeName(event: ChangeEvent<HTMLInputElement>) {
         setUserDataToAdd({
             ...userDataToAdd,
@@ -148,7 +149,7 @@ export default function ProfileUserData(props: UserDataProps) {
                 <div className="item6">
                     <label htmlFor="SchrittZiel">SchrittZiel</label>
                     <br/>
-                    <input value={userDataToAdd.stepTarget}  onChange={handleChangeStepTarget}/>
+                    <input value={userDataToAdd.stepTarget} onChange={handleChangeStepTarget}/>
 
                     <br/>
                 </div>
