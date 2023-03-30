@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import java.security.Principal;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -32,7 +33,29 @@ public class MongoUserDetailsService implements UserDetailsService {
         return mongoUserRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
+    public MongoUser updateUserData(String id, MongoUserDTO userData) {
+        Optional<MongoUser> optionalUserData = mongoUserRepository.findById(id);
+        if (optionalUserData.isEmpty()) {
+            throw new NoSuchElementException("UserData with id " + id + " doesn't exist");
+        }
 
+        MongoUser updatedUserData = new MongoUser(
+                "",
+                userData.username(),
+                "",
+                "",
+                "",
+                "",
+                "",
+                0,
+                0,
+                0,
+                0,
+                0
+        );
+
+        return mongoUserRepository.save(updatedUserData);
+    }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         MongoUser mongoUser = mongoUserRepository.findByUsername(username)
