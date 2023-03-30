@@ -237,40 +237,101 @@ class MongoUserDetailsServiceTest {
         // Verify
         verifyNoMoreInteractions(passwordEncoder, mongoUserRepository);
     }
-/*
+
+
     @Test
-    void updateUserData_validInput_returnsUpdatedUserData() {
-        // Arrange
+    void testUpdateUserData() {
+        String id = "1";
+        MongoUserDTO userData = new MongoUserDTO("username", "password");
 
-
-        mongoUserRepository.save(existingUserData);
-
-        MongoUser expectedUpdatedUserData = new MongoUser(
-                "123",
-                "newUsername",
-                "oldPassword",
-                "user",
-                "John Doe",
-                "male",
-                "70",
-                2000,
-                7,
-                30,
-                10000,
-                500
+        MongoUser oldUserData = new MongoUser(
+                id,
+                "old_username",
+                "old_password",
+                "old_role",
+                "old_name",
+                "old_gender",
+                "old_weight",
+                0,
+                0,
+                0,
+                0,
+                0
         );
-        when(mongoUserRepository.findById("123")).thenReturn(Optional.of(existingUserData));
-        when(mongoUserRepository.save(any(MongoUser.class))).thenReturn(expectedUpdatedUserData);
 
-        // Act
-        MongoUser actualUpdatedUserData = mongoUserDetailsService.updateUserData("123", newUserData);
+        MongoUser updatedUserData = new MongoUser(
+                id,
+                userData.username(),
+                oldUserData.password(),
+                oldUserData.role(),
+                oldUserData.name(),
+                oldUserData.gender(),
+                oldUserData.weight(),
+                oldUserData.weightGoal(),
+                oldUserData.sleepTimeTarget(),
+                oldUserData.trainingTimeGoal(),
+                oldUserData.stepTarget(),
+                oldUserData.caloriesBurnedTarget()
+        );
 
-        // Assert
-        assertEquals(expectedUpdatedUserData, actualUpdatedUserData);
-        verify(mongoUserRepository).findById("123");
-        verify(mongoUserRepository).save(expectedUpdatedUserData);
+        // Mock the repository to return the old user data when findById is called with the given ID
+        when(mongoUserRepository.findById(id)).thenReturn(Optional.of(oldUserData));
+
+        // Mock the repository to return the updated user data when save is called with the updated user data
+        when(mongoUserRepository.save(updatedUserData)).thenReturn(updatedUserData);
+
+        // Call the method and assert that it returns the updated user data
+        MongoUser result = mongoUserDetailsService.updateUserData(id, userData);
+       Assertions.assertEquals(updatedUserData, result);
+
+        // Verify that the repository was called with the correct ID and the updated user data
+        verify(mongoUserRepository).findById(id);
+        verify(mongoUserRepository).save(updatedUserData);
+
+        // Assert that the updated user data has the expected field values
+        Assertions.assertEquals(updatedUserData.username(), "username");
+        Assertions.assertEquals(updatedUserData.password(), "old_password");
+        Assertions.assertEquals(updatedUserData.role(), "old_role");
+        Assertions.assertEquals(updatedUserData.name(), "old_name");
+        Assertions.assertEquals(updatedUserData.gender(), "old_gender");
+        Assertions.assertEquals(updatedUserData.weight(), "old_weight");
+        Assertions.assertEquals(updatedUserData.weightGoal(), 0);
+        Assertions.assertEquals(updatedUserData.sleepTimeTarget(), 0);
+        Assertions.assertEquals(updatedUserData.trainingTimeGoal(), 0);
+        Assertions.assertEquals(updatedUserData.stepTarget(), 0);
+        Assertions.assertEquals(updatedUserData.caloriesBurnedTarget(), 0);
     }
-    */
 
+
+
+
+    @Test
+    void testUpdateUserDataThrowsNoSuchElementException() {
+        String id = "1";
+        MongoUserDTO userData = new MongoUserDTO("username", "password");
+
+        // Mock the repository to return an empty optional when findById is called with the given ID
+        when(mongoUserRepository.findById(id)).thenReturn(Optional.empty());
+
+        // Call the method and assert that it throws a NoSuchElementException
+        Assertions.assertThrows(
+                NoSuchElementException.class,
+                () -> mongoUserDetailsService.updateUserData(id, userData)
+        );
+
+        // Verify that the repository was called with the correct ID
+        verify(mongoUserRepository).findById(id);
+
+        // Verify that the repository was not called with any arguments for the save method
+        verify(mongoUserRepository, never()).save(any());
+    }
 }
+
+
+
+
+
+
+
+
 
