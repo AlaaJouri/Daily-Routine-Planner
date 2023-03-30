@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {UserData} from "./model/UserData";
 import {Route, Routes} from "react-router-dom";
 import axios from "axios";
@@ -19,41 +19,42 @@ axios.interceptors.request.use(function (config) {
 });
 
 function App() {
-    const [userData, setUserData] = useState<UserData[]>([])
+    // const [userData, setUserData] = useState<UserData[]>([])
 
     function addUserData(userDataToAdd: UserData) {
-        axios
-            .post("/api/userdata/", userDataToAdd)
-            .then((response) => {
-                setUserData(response.data);
-            })
-            .catch((error) => {
-                console.error("I'm sorry. Something went wrong!" + error);
-                // You can add an error message to display to the user here
-            });
-    }
 
-    function fetchUserData() {
-        axios.get("/api/userdata/")
-            .then(response => {
-                setUserData(response.data);
-            })
-            .catch(console.error);
-    }
+            axios
+                .post("/api/userdata/", userDataToAdd)
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error("I'm sorry. Something went wrong!" + error);
+                    // You can add an error message to display to the user here
+                });
+        }
 
-    return (
-        <div className="App">
-            <ResponsiveAppBar/>
-            <Routes>
-                <Route path={"/login"} element={<Login fetchUserData={fetchUserData}/>}/>
-                <Route path={"/sign-up"} element={<SignUpPage/>}/>
-                <Route path={"/profile"} element={<ProfileUserData addUserData={addUserData}/>}/>
-                <Route path={"/logout"} element={<Logout/>}/>
+        function fetchUserData() {
+            axios.get("/api/userdata/")
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(console.error);
+        }
 
-            </Routes>
+        return (
+            <div className="App">
+                <ResponsiveAppBar/>
+                <Routes>
+                    <Route path={"/login"} element={<Login fetchUserData={fetchUserData}/>}/>
+                    <Route path={"/sign-up"} element={<SignUpPage/>}/>
+                    <Route path={"/profile"} element={<ProfileUserData addUserData={addUserData}/>}/>
+                    <Route path={"/logout"} element={<Logout/>}/>
 
-        </div>
-    );
+                </Routes>
+
+            </div>
+        );
 }
 
 export default App;
