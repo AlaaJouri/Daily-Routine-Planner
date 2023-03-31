@@ -14,7 +14,6 @@ html {
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     border-radius: 10px;
 }
-
 .user-box{
     width: 100%;
     padding: 10px 0;
@@ -25,12 +24,4 @@ html {
     border-bottom: 1px solid #fff;
     outline: none;
     background: transparent;
-}
-
-
-.login-box .user-box input:focus ~ label,
-.login-box .user-box input:valid ~ label { top: -20px;
-    left: 0;
-    color: #03e9f4;
-    font-size: 12px;
 }

@@ -25,17 +25,20 @@ export default function AuthForm({title, buttonText, onSubmit}: AuthFormProps) {
                 <div className="user-box">
                     <label>
                         Username
+                    </label>
+                    <br></br>
                         <input
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.currentTarget.value)}
                         />
-                    </label>
+
                 </div>
 
                 <div className="user-box">
                     <label>
                         Password
+                        <br></br>
                         <input
                             type="password"
                             value={password}
