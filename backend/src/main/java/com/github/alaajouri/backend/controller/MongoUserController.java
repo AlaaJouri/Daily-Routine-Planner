@@ -2,6 +2,7 @@ package com.github.alaajouri.backend.controller;
 
 import com.github.alaajouri.backend.model.MongoUser;
 import com.github.alaajouri.backend.model.MongoUserDTO;
+import com.github.alaajouri.backend.model.MongoUserWithoutIDDTO;
 import com.github.alaajouri.backend.service.MongoUserDetailsService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -50,7 +51,7 @@ public class MongoUserController {
         return "OK";
     }
     @PutMapping("{id}")
-    public MongoUser updateUserData(@PathVariable String id, @RequestBody MongoUserDTO userdata) {
+    public MongoUser updateUserData(@PathVariable String id, @RequestBody MongoUserWithoutIDDTO userdata) {
         return userDataService.updateUserData(id, userdata);
     }
 

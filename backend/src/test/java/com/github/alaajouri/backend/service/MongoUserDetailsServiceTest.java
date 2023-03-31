@@ -2,11 +2,13 @@ package com.github.alaajouri.backend.service;
 
 import com.github.alaajouri.backend.model.MongoUser;
 import com.github.alaajouri.backend.model.MongoUserDTO;
+import com.github.alaajouri.backend.model.MongoUserWithoutIDDTO;
 import com.github.alaajouri.backend.repository.MongoUserRepository;
 import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.mockito.AdditionalAnswers;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -52,9 +54,9 @@ class MongoUserDetailsServiceTest {
         idGenerator = mock(IdGenerator.class);
         mongoUserDetailsService = new MongoUserDetailsService(mongoUserRepository, passwordEncoder);
         mongoUser = new MongoUser("1", "username", "123", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
-        mongoUserDTO =new MongoUserDTO("username","123");
-         newUserData = new MongoUserDTO("newUsername", "newPassword");
-         existingUserData = new MongoUser(
+        mongoUserDTO = new MongoUserDTO("username", "123");
+        newUserData = new MongoUserDTO("newUsername", "newPassword");
+        existingUserData = new MongoUser(
                 "123",
                 "oldUsername",
                 "oldPassword",
@@ -68,6 +70,52 @@ class MongoUserDetailsServiceTest {
                 10000,
                 500
         );
+    }
+
+    @Test
+    public void testUpdateUserData() {
+        // Prepare test data
+        String id = "123";
+        MongoUserWithoutIDDTO userData = new MongoUserWithoutIDDTO("testuser", "password", "ROLE_USER",
+                "Test User", "M", "70", 2000, 8, 60, 10000, 500);
+
+        MongoUser existingUserData = new MongoUser(
+                id,
+                "olduser",
+                "oldpassword",
+                "ROLE_USER",
+                "Old User",
+                "M",
+                "75",
+                1800,
+                7,
+                45,
+                8000,
+                400
+        );
+        when(mongoUserRepository.findById(id)).thenReturn(Optional.of(existingUserData));
+        when(mongoUserRepository.save(any(MongoUser.class))).thenAnswer(AdditionalAnswers.returnsFirstArg());
+
+        // Perform update
+        MongoUser updatedUserData = mongoUserDetailsService.updateUserData(id, userData);
+
+        // Verify update result
+        assertEquals(id, updatedUserData.id());
+        assertEquals(userData.username(), updatedUserData.username());
+        assertEquals(userData.password(), updatedUserData.password());
+        assertEquals(userData.role(), updatedUserData.role());
+        assertEquals(userData.name(), updatedUserData.name());
+        assertEquals(userData.gender(), updatedUserData.gender());
+        assertEquals(userData.weight(), updatedUserData.weight());
+        assertEquals(userData.weightGoal(), updatedUserData.weightGoal());
+        assertEquals(userData.sleepTimeTarget(), updatedUserData.sleepTimeTarget());
+        assertEquals(userData.trainingTimeGoal(), updatedUserData.trainingTimeGoal());
+        assertEquals(userData.stepTarget(), updatedUserData.stepTarget());
+        assertEquals(userData.caloriesBurnedTarget(), updatedUserData.caloriesBurnedTarget());
+
+        // Verify that the repository was called
+        verify(mongoUserRepository).findById(id);
+        verify(mongoUserRepository).save(any(MongoUser.class));
     }
 
     @Test

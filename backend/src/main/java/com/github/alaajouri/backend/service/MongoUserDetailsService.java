@@ -2,6 +2,7 @@ package com.github.alaajouri.backend.service;
 
 import com.github.alaajouri.backend.model.MongoUser;
 import com.github.alaajouri.backend.model.MongoUserDTO;
+import com.github.alaajouri.backend.model.MongoUserWithoutIDDTO;
 import com.github.alaajouri.backend.repository.MongoUserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -33,25 +34,26 @@ public class MongoUserDetailsService implements UserDetailsService {
         return mongoUserRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
-    public MongoUser updateUserData(String id, MongoUserDTO userData) {
+    public MongoUser updateUserData(String id, MongoUserWithoutIDDTO userData) {
         Optional<MongoUser> optionalUserData = mongoUserRepository.findById(id);
+
         if (optionalUserData.isEmpty()) {
             throw new NoSuchElementException("UserData with id " + id + " doesn't exist");
         }
 
         MongoUser updatedUserData = new MongoUser(
-                "",
+                id,
                 userData.username(),
-                "",
-                "",
-                "",
-                "",
-                "",
-                0,
-                0,
-                0,
-                0,
-                0
+                userData.password(),
+                userData.role(),
+                userData.name(),
+                userData.gender(),
+                userData.weight(),
+                userData.weightGoal(),
+                userData.sleepTimeTarget(),
+                userData.trainingTimeGoal(),
+                userData.stepTarget(),
+                userData.caloriesBurnedTarget()
         );
 
         return mongoUserRepository.save(updatedUserData);
@@ -74,7 +76,7 @@ public class MongoUserDetailsService implements UserDetailsService {
         return new MongoUser(
                 me.id(),
                 me.username(),
-                null,
+                me.password(),
                 me.role(),
                 me.name(),
                 me.gender(),

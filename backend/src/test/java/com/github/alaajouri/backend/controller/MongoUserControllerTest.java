@@ -3,7 +3,7 @@ package com.github.alaajouri.backend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.alaajouri.backend.model.MongoUser;
-import com.github.alaajouri.backend.model.MongoUserDTO;
+import com.github.alaajouri.backend.model.MongoUserWithoutIDDTO;
 import com.github.alaajouri.backend.repository.MongoUserRepository;
 import com.github.alaajouri.backend.service.MongoUserDetailsService;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,18 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -35,7 +29,6 @@ class MongoUserControllerTest {
 
     @Autowired
     MongoUserRepository mongoUserRepository;
-    TestRestTemplate restTemplate;
     @Autowired
     MongoUserDetailsService mongoUserDetailsService;
 
@@ -43,10 +36,13 @@ class MongoUserControllerTest {
     MockMvc mockMvc;
 
     MongoUser mongoUser;
+    MongoUserWithoutIDDTO mongoUserWithoutIDDTO;
 
     @BeforeEach
     void setUp() {
         mongoUser = new MongoUser("1", "user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
+
+        mongoUserWithoutIDDTO = new MongoUserWithoutIDDTO("user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
 
     }
 
@@ -59,11 +55,8 @@ class MongoUserControllerTest {
                         .with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.username").value("user"))
-                .andExpect(jsonPath("$.password").isEmpty());
-
-
+                .andExpect(jsonPath("$.password").isNotEmpty());
     }
-
 
     @Test
     @DirtiesContext
@@ -169,45 +162,36 @@ class MongoUserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("OK"));
     }
-    /*
+
     @Test
     @DirtiesContext
     @WithMockUser(username = "user", password = "password")
-    public void updateUserDataTest() throws Exception {
-        // Arrange
+    public void testUpdateUserData() throws Exception {
 
+        // Prepare test data
+        String id = "1";
+        mongoUserRepository.save(mongoUser);
+        MongoUserWithoutIDDTO userData = new MongoUserWithoutIDDTO("testuser", "password", "ROLE_USER",
+                "Test User", "M", "70", 2000, 8, 60, 10000, 500);
 
-        MongoUserDTO userDto = new MongoUserDTO("user", "password");
+        // Perform request and verify response
 
-        MongoUser updatedUser = new MongoUser("1", userDto.username(), userDto.password(), "user", "Test User",
-                "male", "75", 70, 8, 60, 10000, 2500);
-        mongoUserRepository.save(updatedUser);
-
-        mockMvc.perform(MockMvcRequestBuilders.put("/api/user/1") .with(csrf())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(userDto)))
+        mockMvc.perform(put("/api/user/" + id)
+                        .contentType(MediaType.APPLICATION_JSON).with(csrf())
+                        .content(new ObjectMapper().writeValueAsString(userData)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value("1"))
-                .andExpect(jsonPath("$.username").value(userDto.username()))
-                .andExpect(jsonPath("$.password").value(userDto.password()))
-                .andExpect(jsonPath("$.role").value("user"))
-                .andExpect(jsonPath("$.name").value("Test User"))
-                .andExpect(jsonPath("$.gender").value("male"))
-                .andExpect(jsonPath("$.weight").value("75"))
-                .andExpect(jsonPath("$.weightGoal").value(70))
-                .andExpect(jsonPath("$.sleepTimeTarget").value(8))
-                .andExpect(jsonPath("$.trainingTimeGoal").value(60))
-                .andExpect(jsonPath("$.stepTarget").value(10000))
-                .andExpect(jsonPath("$.caloriesBurnedTarget").value(2500));
+                .andExpect(jsonPath("$.username").value(userData.username()))
+                .andExpect(jsonPath("$.name").value(userData.name()))
+                .andExpect(jsonPath("$.gender").value(userData.gender()))
+                .andExpect(jsonPath("$.weight").value(userData.weight()))
+                .andExpect(jsonPath("$.weightGoal").value(userData.weightGoal()))
+                .andExpect(jsonPath("$.sleepTimeTarget").value(userData.sleepTimeTarget()))
+                .andExpect(jsonPath("$.trainingTimeGoal").value(userData.trainingTimeGoal()))
+                .andExpect(jsonPath("$.stepTarget").value(userData.stepTarget()))
+                .andExpect(jsonPath("$.caloriesBurnedTarget").value(userData.caloriesBurnedTarget()));
     }
-*/
 
-
-
-
-
-
-        }
+}
 
 
 

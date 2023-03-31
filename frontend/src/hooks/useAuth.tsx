@@ -5,6 +5,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 export type User = {
     id: string;
     username: string;
+    password:string;
     role: string;
     name:string,
     gender:string,

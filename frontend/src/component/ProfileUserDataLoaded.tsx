@@ -1,6 +1,6 @@
 import axios from "axios";
 import {FormEvent, useState} from "react";
-import useAuth, {User} from "../hooks/useAuth";
+import  {User} from "../hooks/useAuth";
 import {useNavigate} from "react-router-dom";
 
 type Props= {user:User}
@@ -11,6 +11,9 @@ export default function ProfileUserDataLoaded(props:Props) {
     //const { user } = useAuth(false);
 
     const [name, setName] = useState(props.user.name);
+    const id=props.user.id;
+    const username=props.user.username;
+    const password=props.user.password;
     const [gender, setGender] = useState(props.user.gender);
     const [weight, setWeight] = useState(props.user.weight);
     const [weightGoal, setWeightGoal] = useState(props.user.weightGoal);
@@ -32,6 +35,9 @@ export default function ProfileUserDataLoaded(props:Props) {
             e.preventDefault();
             try {
                 const updatedUserData = {
+                    id,
+                    username,
+                    password,
                     name,
                     gender,
                     weight,
