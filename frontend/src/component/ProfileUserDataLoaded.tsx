@@ -8,7 +8,6 @@ type Props= {user:User}
 
 export default function ProfileUserDataLoaded(props:Props) {
     const navigate = useNavigate();
-    //const { user } = useAuth(false);
 
     const [name, setName] = useState(props.user.name);
     const id=props.user.id;
