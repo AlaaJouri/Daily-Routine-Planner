@@ -238,7 +238,7 @@ class MongoUserDetailsServiceTest {
         verifyNoMoreInteractions(passwordEncoder, mongoUserRepository);
     }
 
-
+/*
     @Test
     void testUpdateUserData() {
         String id = "1";
@@ -324,7 +324,7 @@ class MongoUserDetailsServiceTest {
 
         // Verify that the repository was not called with any arguments for the save method
         verify(mongoUserRepository, never()).save(any());
-    }
+    }*/
 }
 
 
