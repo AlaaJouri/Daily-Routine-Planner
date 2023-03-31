@@ -117,7 +117,6 @@ class MongoUserDetailsServiceTest {
         verify(mongoUserRepository).findById(id);
         verify(mongoUserRepository).save(any(MongoUser.class));
     }
-
     @Test
     void loadUserByUsername() {
         //GIVEN
