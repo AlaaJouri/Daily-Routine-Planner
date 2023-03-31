@@ -1,6 +1,5 @@
 import "./UserData.css";
 import useAuth from "../hooks/useAuth";
-import {FormEvent, useState} from "react";
 import ProfileUserDataLoaded from "./ProfileUserDataLoaded";
 
 export default function ProfileUserData() {

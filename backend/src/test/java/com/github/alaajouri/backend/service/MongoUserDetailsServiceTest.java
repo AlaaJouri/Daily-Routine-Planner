@@ -19,15 +19,6 @@ import org.springframework.web.server.ResponseStatusException;
 import java.security.Principal;
 import java.util.Optional;
 
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.security.Principal;
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -35,7 +26,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.*;
 
 class MongoUserDetailsServiceTest {
     PasswordEncoder passwordEncoder;
@@ -73,7 +63,7 @@ class MongoUserDetailsServiceTest {
     }
 
     @Test
-    public void testUpdateUserData() {
+    void testUpdateUserData() {
         // Prepare test data
         String id = "123";
         MongoUserWithoutIDDTO userData = new MongoUserWithoutIDDTO("testuser", "password", "ROLE_USER",
@@ -117,6 +107,7 @@ class MongoUserDetailsServiceTest {
         verify(mongoUserRepository).findById(id);
         verify(mongoUserRepository).save(any(MongoUser.class));
     }
+
     @Test
     void loadUserByUsername() {
         //GIVEN

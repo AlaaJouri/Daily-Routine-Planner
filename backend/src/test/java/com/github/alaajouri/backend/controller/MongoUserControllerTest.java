@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
@@ -97,7 +96,6 @@ class MongoUserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-
     @Test
     @DirtiesContext
     @WithMockUser(username = "user", password = "password")
@@ -166,7 +164,7 @@ class MongoUserControllerTest {
     @Test
     @DirtiesContext
     @WithMockUser(username = "user", password = "password")
-    public void testUpdateUserData() throws Exception {
+    void testUpdateUserData() throws Exception {
 
         // Prepare test data
         String id = "1";
