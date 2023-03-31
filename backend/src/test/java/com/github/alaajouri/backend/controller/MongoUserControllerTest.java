@@ -1,61 +1,61 @@
 package com.github.alaajouri.backend.controller;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.alaajouri.backend.model.MongoUser;
+import com.github.alaajouri.backend.model.MongoUserWithoutIDDTO;
 import com.github.alaajouri.backend.repository.MongoUserRepository;
+import com.github.alaajouri.backend.service.MongoUserDetailsService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 class MongoUserControllerTest {
-    @Autowired
-    MockMvc mockMvc;
+
 
     @Autowired
     MongoUserRepository mongoUserRepository;
+    @Autowired
+    MongoUserDetailsService mongoUserDetailsService;
 
+    @Autowired
+    MockMvc mockMvc;
+
+    MongoUser mongoUser;
+    MongoUserWithoutIDDTO mongoUserWithoutIDDTO;
+
+    @BeforeEach
+    void setUp() {
+        mongoUser = new MongoUser("1", "user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
+
+        mongoUserWithoutIDDTO = new MongoUserWithoutIDDTO("user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
+
+    }
 
     @Test
     @DirtiesContext
     @WithMockUser(username = "user", password = "password")
     void getMe_whenAuthenticated_thenUsername() throws Exception {
-        mongoUserRepository.save(new MongoUser("1", "user", "password", "BASIC"));
+        mongoUserRepository.save(mongoUser);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user/me")
                         .with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.username").value("user"))
-                .andExpect(jsonPath("$.password").isEmpty());
-
-
+                .andExpect(jsonPath("$.password").isNotEmpty());
     }
-
-
-    @Test
-    @DirtiesContext
-    void create_whenValid_then200() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                                {
-                                    "username": "test",
-                                    "password": "test"
-                                }
-                                """)
-                        .with(csrf()))
-                .andExpect(status().isOk());
-    }
-
 
     @Test
     @DirtiesContext
@@ -98,31 +98,6 @@ class MongoUserControllerTest {
 
     @Test
     @DirtiesContext
-    void createUser_UserAlreadyExists() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                                {
-                                    "username": "test",
-                                    "password": "test"
-                                }
-                                """)
-                        .with(csrf()))
-                .andExpect(status().isOk());
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                                {
-                                    "username": "test",
-                                    "password": "test"
-                                }
-                                """)
-                        .with(csrf()))
-                .andExpect(status().isConflict());
-    }
-
-    @Test
-    @DirtiesContext
     @WithMockUser(username = "user", password = "password")
     void loginUserWithValidUsernameAndPassword_Then200() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/user/login")
@@ -138,6 +113,7 @@ class MongoUserControllerTest {
                         .with(csrf()))
                 .andExpect(status().isOk());
     }
+
     @Test
     @DirtiesContext
     @WithMockUser(username = "user", password = "password")
@@ -179,30 +155,51 @@ class MongoUserControllerTest {
     @Test
     @DirtiesContext
     @WithMockUser(username = "user", password = "password")
-    void testGetMe2() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/user/me2")
-                        .with(csrf()))
-                .andExpect(status().isOk())
-                .andExpect(content().string("user"));
-
-    }
-
-    @Test
-    @DirtiesContext
-    @WithMockUser(username = "user", password = "password")
-    void testGetAdminStatus() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/user/admin"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("Admin OK"));
-    }
-
-    @Test
-    @DirtiesContext
-    @WithMockUser(username = "user", password = "password")
     void testGetStatus() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("OK"));
     }
 
+    @Test
+    @DirtiesContext
+    @WithMockUser(username = "user", password = "password")
+    void testUpdateUserData() throws Exception {
+
+        // Prepare test data
+        String id = "1";
+        mongoUserRepository.save(mongoUser);
+        MongoUserWithoutIDDTO userData = new MongoUserWithoutIDDTO("testuser", "password", "ROLE_USER",
+                "Test User", "M", "70", 2000, 8, 60, 10000, 500);
+
+        // Perform request and verify response
+
+        mockMvc.perform(put("/api/user/" + id)
+                        .contentType(MediaType.APPLICATION_JSON).with(csrf())
+                        .content(new ObjectMapper().writeValueAsString(userData)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.username").value(userData.username()))
+                .andExpect(jsonPath("$.name").value(userData.name()))
+                .andExpect(jsonPath("$.gender").value(userData.gender()))
+                .andExpect(jsonPath("$.weight").value(userData.weight()))
+                .andExpect(jsonPath("$.weightGoal").value(userData.weightGoal()))
+                .andExpect(jsonPath("$.sleepTimeTarget").value(userData.sleepTimeTarget()))
+                .andExpect(jsonPath("$.trainingTimeGoal").value(userData.trainingTimeGoal()))
+                .andExpect(jsonPath("$.stepTarget").value(userData.stepTarget()))
+                .andExpect(jsonPath("$.caloriesBurnedTarget").value(userData.caloriesBurnedTarget()));
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

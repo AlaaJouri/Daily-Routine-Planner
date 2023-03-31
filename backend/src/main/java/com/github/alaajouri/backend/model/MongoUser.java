@@ -1,11 +1,24 @@
 package com.github.alaajouri.backend.model;
 
-public record MongoUser(
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document("mongoUser")
+public record MongoUser(
+        @Id
         String id,
         String username,
         String password,
-        String role
+        String role,
+        String name,
+        String gender,
+        String weight,
+        int weightGoal,
+        int sleepTimeTarget,
+        int trainingTimeGoal,
+        int stepTarget,
+        int caloriesBurnedTarget
+
 
 ) {
 }

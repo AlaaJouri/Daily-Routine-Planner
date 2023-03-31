@@ -19,20 +19,22 @@ function ResponsiveAppBar() {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
     const navigate = useNavigate();
-
     const handleUserDataSubmit = () => {
-
         navigate('/profile');
+
     };
     const handleLoginSubmit = () => {
 
         navigate('/login');
     };
+    const handleSignupSubmit = () => {
+
+        navigate('/sign-up');
+    };
     const handleLogoutSubmit = () => {
 
         navigate('/logout');
     };
-
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -185,6 +187,9 @@ function ResponsiveAppBar() {
                             </MenuItem>
                             <MenuItem onClick={handleLogoutSubmit}>
                                 <Typography textAlign="center">Logout</Typography>
+                            </MenuItem>
+                            <MenuItem onClick={handleSignupSubmit}>
+                                <Typography textAlign="center">sign-up</Typography>
                             </MenuItem>
                         </Menu>
                     </Box>

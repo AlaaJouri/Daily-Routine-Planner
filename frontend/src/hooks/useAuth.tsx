@@ -2,10 +2,22 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 
-type User = {
+export type User = {
     id: string;
     username: string;
+    password:string;
     role: string;
+    name:string,
+    gender:string,
+    weight:string,
+    weightGoal:number,
+    sleepTimeTarget:number,
+    trainingTimeGoal:number,
+    stepTarget:number,
+    caloriesBurnedTarget:number
+
+
+
 }
 
 export default function useAuth(redirectToSignIn?: boolean) {
