@@ -24,7 +24,7 @@ export default function AktivitaetenUpdate(props: Props) {
     const [burnedCalories, setBurnedCalories] = useState(props.user.burnedCalories);
     const [trainingTimes, setTrainingTimes] = useState(props.user.trainingTimes);
 
-    const updateUser = async (updatedUserData: any) => {
+    const updateAktivity = async (updatedUserData: any) => {
         axios
             .put("/api/user/" + props.user.id, updatedUserData)
             .then(() => {
@@ -37,7 +37,7 @@ export default function AktivitaetenUpdate(props: Props) {
     const handleSave = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const updatedUserData = {
+            const updatedUserDataAktivity = {
                 id,
                 username,
                 password,
@@ -55,7 +55,7 @@ export default function AktivitaetenUpdate(props: Props) {
 
 
             };
-            await updateUser(updatedUserData);
+            await updateAktivity(updatedUserDataAktivity);
             // show success message or navigate to a different page
         } catch (error) {
             console.error('Failed to update user data', error);
