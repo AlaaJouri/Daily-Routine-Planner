@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import Login from "./component/Login";
 import Logout from "./component/Logout";
 import ResponsiveAppBar from "./component/ResponsiveAppBar";
+import Activity from "./component/AktivitaetenGet";
 
 axios.interceptors.request.use(function (config) {
     return fetch("/api/csrf").then(() => {
@@ -27,7 +28,7 @@ function App() {
                 <Route path={"/sign-up"} element={<SignUpPage/>}/>
                 <Route path={"/profile"} element={<ProfileUserData/>}/>
                 <Route path={"/logout"} element={<Logout/>}/>
-
+                <Route path={"/activity"} element={<Activity/>}/>
             </Routes>
         </div>
     );

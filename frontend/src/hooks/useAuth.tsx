@@ -14,7 +14,10 @@ export type User = {
     sleepTimeTarget:number,
     trainingTimeGoal:number,
     stepTarget:number,
-    caloriesBurnedTarget:number
+    caloriesBurnedTarget:number,
+    steps:number,
+    burnedCalories:number,
+    trainingTimes:number
 
 
 

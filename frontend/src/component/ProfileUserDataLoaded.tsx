@@ -8,11 +8,6 @@ type Props= {user:User}
 
 export default function ProfileUserDataLoaded(props:Props) {
     const navigate = useNavigate();
-
-    const [name, setName] = useState(props.user.name);
-    const id=props.user.id;
-    const username=props.user.username;
-    const password=props.user.password;
     const [gender, setGender] = useState(props.user.gender);
     const [weight, setWeight] = useState(props.user.weight);
     const [weightGoal, setWeightGoal] = useState(props.user.weightGoal);
@@ -20,6 +15,14 @@ export default function ProfileUserDataLoaded(props:Props) {
     const [trainingTimeGoal, setTrainingTimeGoal] = useState(props.user.trainingTimeGoal);
     const [stepTarget, setStepTarget] = useState(props.user.stepTarget);
     const [caloriesBurnedTarget, setCaloriesBurnedTarget] = useState(props.user.caloriesBurnedTarget);
+    const id=props.user.id;
+    const username=props.user.username;
+    const password=props.user.password;
+    const [name, setName] = useState(props.user.name);
+    const [steps, setSteps] = useState(props.user.steps);
+    const [burnedCalories, setBurnedCalories] = useState(props.user.burnedCalories);
+    const [trainingTimes, setTrainingTimes] = useState(props.user.trainingTimes);
+
     const updateUser = async (updatedUserData: any) => {
         axios
             .put("/api/user/" + props.user.id,updatedUserData)
@@ -45,6 +48,10 @@ export default function ProfileUserDataLoaded(props:Props) {
                     trainingTimeGoal,
                     stepTarget,
                     caloriesBurnedTarget,
+                    steps,
+                    burnedCalories,
+                    trainingTimes
+
                 };
                 await updateUser(updatedUserData);
                 // show success message or navigate to a different page

@@ -35,6 +35,10 @@ function ResponsiveAppBar() {
 
         navigate('/logout');
     };
+    const handleActivitySubmit = () => {
+
+        navigate('/activity');
+    };
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -129,7 +133,7 @@ function ResponsiveAppBar() {
 
                         <Button
 
-                            onClick={handleCloseNavMenu}
+                            onClick={handleActivitySubmit}
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
                             Aktivitäten

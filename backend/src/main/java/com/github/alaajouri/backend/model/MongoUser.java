@@ -17,7 +17,10 @@ public record MongoUser(
         int sleepTimeTarget,
         int trainingTimeGoal,
         int stepTarget,
-        int caloriesBurnedTarget
+        int caloriesBurnedTarget,
+        int steps,
+        int burnedCalories,
+        int trainingTimes
 
 
 ) {
