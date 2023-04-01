@@ -39,9 +39,9 @@ class MongoUserControllerTest {
 
     @BeforeEach
     void setUp() {
-        mongoUser = new MongoUser("1", "user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
+        mongoUser = new MongoUser("1", "user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500,0,0,0);
 
-        mongoUserWithoutIDDTO = new MongoUserWithoutIDDTO("user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
+        mongoUserWithoutIDDTO = new MongoUserWithoutIDDTO("user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500,0,0,0);
 
     }
 
@@ -170,7 +170,7 @@ class MongoUserControllerTest {
         String id = "1";
         mongoUserRepository.save(mongoUser);
         MongoUserWithoutIDDTO userData = new MongoUserWithoutIDDTO("testuser", "password", "ROLE_USER",
-                "Test User", "M", "70", 2000, 8, 60, 10000, 500);
+                "Test User", "M", "70", 2000, 8, 60, 10000, 500,0,0,0);
 
         // Perform request and verify response
 

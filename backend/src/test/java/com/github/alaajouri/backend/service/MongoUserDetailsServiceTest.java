@@ -43,7 +43,7 @@ class MongoUserDetailsServiceTest {
         passwordEncoder = mock(PasswordEncoder.class);
         idGenerator = mock(IdGenerator.class);
         mongoUserDetailsService = new MongoUserDetailsService(mongoUserRepository, passwordEncoder);
-        mongoUser = new MongoUser("1", "username", "123", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
+        mongoUser = new MongoUser("1", "username", "123", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500,0,0,0);
         mongoUserDTO = new MongoUserDTO("username", "123");
         newUserData = new MongoUserDTO("newUsername", "newPassword");
         existingUserData = new MongoUser(
@@ -58,7 +58,7 @@ class MongoUserDetailsServiceTest {
                 7,
                 30,
                 10000,
-                500
+                500,0,0,0
         );
     }
 
@@ -67,7 +67,7 @@ class MongoUserDetailsServiceTest {
         // Prepare test data
         String id = "123";
         MongoUserWithoutIDDTO userData = new MongoUserWithoutIDDTO("testuser", "password", "ROLE_USER",
-                "Test User", "M", "70", 2000, 8, 60, 10000, 500);
+                "Test User", "M", "70", 2000, 8, 60, 10000, 500,0,0,0);
 
         MongoUser existingUserData = new MongoUser(
                 id,
@@ -81,7 +81,7 @@ class MongoUserDetailsServiceTest {
                 7,
                 45,
                 8000,
-                400
+                400,0,0,0
         );
         when(mongoUserRepository.findById(id)).thenReturn(Optional.of(existingUserData));
         when(mongoUserRepository.save(any(MongoUser.class))).thenAnswer(AdditionalAnswers.returnsFirstArg());
@@ -150,7 +150,7 @@ class MongoUserDetailsServiceTest {
                 7,
                 60,
                 10000,
-                500
+                500,0,0,0
         );
         when(mongoUserRepository.findByUsername(principal.getName())).thenReturn(Optional.of(expected));
 
@@ -212,7 +212,7 @@ class MongoUserDetailsServiceTest {
                 0,
                 0,
                 0,
-                0
+                0,0,0,0
         );
         when(mongoUserRepository.save(any())).thenReturn(expectedUser);
 
@@ -228,7 +228,10 @@ class MongoUserDetailsServiceTest {
                 expectedUser.sleepTimeTarget(),
                 expectedUser.trainingTimeGoal(),
                 expectedUser.stepTarget(),
-                expectedUser.caloriesBurnedTarget()
+                expectedUser.caloriesBurnedTarget(),
+                expectedUser.steps(),
+                expectedUser.burnedCalories(),
+                expectedUser.trainingTimes()
         );
 
         // Act
