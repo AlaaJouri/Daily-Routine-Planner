@@ -1,32 +1,32 @@
 import axios from "axios";
 import {FormEvent, useState} from "react";
-import  {User} from "../hooks/useAuth";
+import {User} from "../hooks/useAuth";
 import {useNavigate} from "react-router-dom";
 
-type Props= {user:User}
+type Props = { user: User }
 
 
-export default function AktivitaetenUpdate(props:Props) {
+export default function AktivitaetenUpdate(props: Props) {
 
     const navigate = useNavigate();
-    const [gender, setGender] = useState(props.user.gender);
-    const [weight, setWeight] = useState(props.user.weight);
-    const [weightGoal, setWeightGoal] = useState(props.user.weightGoal);
-    const [sleepTimeTarget, setSleepTimeTarget] = useState(props.user.sleepTimeTarget);
-    const [trainingTimeGoal, setTrainingTimeGoal] = useState(props.user.trainingTimeGoal);
-    const [stepTarget, setStepTarget] = useState(props.user.stepTarget);
-    const [caloriesBurnedTarget, setCaloriesBurnedTarget] = useState(props.user.caloriesBurnedTarget);
-    const id=props.user.id;
-    const username=props.user.username;
-    const password=props.user.password;
-    const [name, setName] = useState(props.user.name);
+    const gender = props.user.gender;
+    const weight = props.user.weight;
+    const weightGoal = props.user.weightGoal;
+    const sleepTimeTarget = props.user.sleepTimeTarget;
+    const trainingTimeGoal = props.user.trainingTimeGoal;
+    const stepTarget = props.user.stepTarget;
+    const caloriesBurnedTarget = props.user.caloriesBurnedTarget;
+    const id = props.user.id;
+    const username = props.user.username;
+    const password = props.user.password;
+    const name = props.user.name;
     const [steps, setSteps] = useState(props.user.steps);
     const [burnedCalories, setBurnedCalories] = useState(props.user.burnedCalories);
     const [trainingTimes, setTrainingTimes] = useState(props.user.trainingTimes);
 
     const updateUser = async (updatedUserData: any) => {
         axios
-            .put("/api/user/" + props.user.id,updatedUserData)
+            .put("/api/user/" + props.user.id, updatedUserData)
             .then(() => {
                 navigate("/activity");
             })
