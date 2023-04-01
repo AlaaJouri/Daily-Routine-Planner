@@ -5,7 +5,6 @@ import {useNavigate} from "react-router-dom";
 
 type Props = { user: User }
 
-
 export default function AktivitaetenUpdate(props: Props) {
 
     const navigate = useNavigate();
