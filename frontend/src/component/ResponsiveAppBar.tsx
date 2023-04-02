@@ -39,6 +39,10 @@ function ResponsiveAppBar() {
 
         navigate('/activity');
     };
+    const handleNutritionSubmit = () => {
+
+        navigate('/nutrition');
+    };
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -140,7 +144,7 @@ function ResponsiveAppBar() {
                         </Button>
                         <Button
 
-                            onClick={handleCloseNavMenu}
+                            onClick={handleNutritionSubmit}
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
                             Ernährung

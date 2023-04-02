@@ -5,20 +5,23 @@ import {useLocation, useNavigate} from "react-router-dom";
 export type User = {
     id: string;
     username: string;
-    password:string;
+    password: string;
     role: string;
-    name:string,
-    gender:string,
-    weight:string,
-    weightGoal:number,
-    sleepTimeTarget:number,
-    trainingTimeGoal:number,
-    stepTarget:number,
-    caloriesBurnedTarget:number,
-    steps:number,
-    burnedCalories:number,
-    trainingTimes:number
-
+    name: string,
+    gender: string,
+    weight: string,
+    weightGoal: number,
+    sleepTimeTarget: number,
+    trainingTimeGoal: number,
+    stepTarget: number,
+    caloriesBurnedTarget: number,
+    steps: number,
+    burnedCalories: number,
+    trainingTimes: number,
+    Breakfast: string,
+    Lunch: string,
+    Dinner: string,
+    snacks: string
 
 
 }

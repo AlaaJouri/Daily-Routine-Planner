@@ -1,15 +1,15 @@
 import "./UserData.css";
 import useAuth from "../hooks/useAuth";
-import AktivitaetenUpdate from "./AktivitaetenUpdate";
+import ErnaehrungUpdate from "./ErnaehrungUpdate";
 
-export default function AktivitaetenGet() {
+export default function ErnaehrungGet() {
     const {user} = useAuth(false);
 
 
     if (!user) return <p> User not fund</p>;
     return(
         <>
-            <AktivitaetenUpdate user={user}/>
+            <ErnaehrungUpdate user={user}/>
         </>
     )
 }

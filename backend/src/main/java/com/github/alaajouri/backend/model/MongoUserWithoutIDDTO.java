@@ -13,5 +13,9 @@ public record MongoUserWithoutIDDTO(String username,
                                     int caloriesBurnedTarget,
                                     int steps,
                                     int burnedCalories,
-                                    int trainingTimes) {
+                                    int trainingTimes,
+                                    String Breakfast,
+                                    String Lunch,
+                                    String Dinner,
+                                    String snacks) {
 }

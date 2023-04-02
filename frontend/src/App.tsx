@@ -8,6 +8,7 @@ import Login from "./component/Login";
 import Logout from "./component/Logout";
 import ResponsiveAppBar from "./component/ResponsiveAppBar";
 import Activity from "./component/AktivitaetenGet";
+import Nutrition from "./component/ErnaehrungGet";
 
 axios.interceptors.request.use(function (config) {
     return fetch("/api/csrf").then(() => {
@@ -29,6 +30,7 @@ function App() {
                 <Route path={"/profile"} element={<ProfileUserData/>}/>
                 <Route path={"/logout"} element={<Logout/>}/>
                 <Route path={"/activity"} element={<Activity/>}/>
+                <Route path={"/nutrition"} element={<Nutrition/>}/>
             </Routes>
         </div>
     );

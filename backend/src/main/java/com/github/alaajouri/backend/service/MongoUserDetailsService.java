@@ -56,7 +56,11 @@ public class MongoUserDetailsService implements UserDetailsService {
                 userData.caloriesBurnedTarget(),
                 userData.steps(),
                 userData.burnedCalories(),
-                userData.trainingTimes()
+                userData.trainingTimes(),
+                userData.Breakfast(),
+                userData.Lunch(),
+                userData.Dinner(),
+                userData.snacks()
         );
 
         return mongoUserRepository.save(updatedUserData);
@@ -91,7 +95,11 @@ public class MongoUserDetailsService implements UserDetailsService {
                 me.caloriesBurnedTarget(),
                 me.steps(),
                 me.burnedCalories(),
-                me.trainingTimes()
+                me.trainingTimes(),
+                me.Breakfast(),
+                me.Lunch(),
+                me.Dinner(),
+                me.snacks()
         );}
     public MongoUser create(MongoUserDTO user) {
         if (user.username() == null || user.username().length() == 0) {
@@ -124,7 +132,12 @@ public class MongoUserDetailsService implements UserDetailsService {
                 0,
                 0,
                 0,
-                0
+                0,
+                " " ,
+                " ",
+                " ",
+                " "
+
 
 
         );
@@ -146,8 +159,11 @@ public class MongoUserDetailsService implements UserDetailsService {
                 out.caloriesBurnedTarget(),
                 out.steps(),
                 out.burnedCalories(),
-                out.trainingTimes()
-
+                out.trainingTimes(),
+                out.Breakfast(),
+                out.Lunch(),
+                out.Dinner(),
+                out.snacks()
 
         );
     }
