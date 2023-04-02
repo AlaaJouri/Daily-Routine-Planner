@@ -57,9 +57,9 @@ public class MongoUserDetailsService implements UserDetailsService {
                 userData.steps(),
                 userData.burnedCalories(),
                 userData.trainingTimes(),
-                userData.Breakfast(),
-                userData.Lunch(),
-                userData.Dinner(),
+                userData.breakfast(),
+                userData.lunch(),
+                userData.dinner(),
                 userData.snacks()
         );
 
@@ -96,9 +96,9 @@ public class MongoUserDetailsService implements UserDetailsService {
                 me.steps(),
                 me.burnedCalories(),
                 me.trainingTimes(),
-                me.Breakfast(),
-                me.Lunch(),
-                me.Dinner(),
+                me.breakfast(),
+                me.lunch(),
+                me.dinner(),
                 me.snacks()
         );}
     public MongoUser create(MongoUserDTO user) {
@@ -160,9 +160,9 @@ public class MongoUserDetailsService implements UserDetailsService {
                 out.steps(),
                 out.burnedCalories(),
                 out.trainingTimes(),
-                out.Breakfast(),
-                out.Lunch(),
-                out.Dinner(),
+                out.breakfast(),
+                out.lunch(),
+                out.dinner(),
                 out.snacks()
 
         );

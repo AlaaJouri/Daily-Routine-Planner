@@ -21,9 +21,9 @@ public record MongoUser(
         int steps,
         int burnedCalories,
         int trainingTimes,
-        String Breakfast,
-        String Lunch,
-        String Dinner,
+        String breakfast,
+        String lunch,
+        String dinner,
         String snacks
 
 

@@ -18,9 +18,9 @@ export type User = {
     steps: number,
     burnedCalories: number,
     trainingTimes: number,
-    Breakfast: string,
-    Lunch: string,
-    Dinner: string,
+    breakfast: string,
+    lunch: string,
+    dinner: string,
     snacks: string
 
 
