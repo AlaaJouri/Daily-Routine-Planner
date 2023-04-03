@@ -3,11 +3,12 @@ import {FormEvent, useState} from "react";
 import {User} from "../hooks/useAuth";
 import {useNavigate} from "react-router-dom";
 import * as React from 'react';
+import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import NativeSelect from '@mui/material/NativeSelect';
-import MenuItem from "@mui/material/MenuItem";
 import Select from '@mui/material/Select';
+
 
 type Props = { user: User }
 
@@ -25,9 +26,9 @@ export default function AktivitaetenUpdate(props: Props) {
     const username = props.user.username;
     const password = props.user.password;
     const name = props.user.name;
-    const steps= props.user.steps;
-    const burnedCalories= props.user.burnedCalories;
-    const trainingTimes=props.user.trainingTimes;
+    const steps = props.user.steps;
+    const burnedCalories = props.user.burnedCalories;
+    const trainingTimes = props.user.trainingTimes;
     const [breakfast, setBreakfast] = useState(props.user.breakfast);
     const [lunch, setLunch] = useState(props.user.lunch);
     const [dinner, setDinner] = useState(props.user.dinner);
@@ -67,7 +68,6 @@ export default function AktivitaetenUpdate(props: Props) {
                 snacks
 
 
-
             };
             await updateNutrition(updatedUserDataAktivity);
             // show success message or navigate to a different page
@@ -77,65 +77,96 @@ export default function AktivitaetenUpdate(props: Props) {
         }
     };
     return (
-        <div >
+        <div>
             <div>
                 <h1 id="title">Ernährung</h1>
                 <hr/>
             </div>
-            <form id="survey-form" className="container"onSubmit={handleSave} >
-                <FormControl >
-                    <InputLabel id="demo-simple-select-label">Fruhstück</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={breakfast}
-                        label="breakfast"
-                        onChange={(e) => setBreakfast(e.target.value)}
-                    >
-                        <MenuItem value={10}>Gesund</MenuItem>
-                        <MenuItem value={20}>Ungesund</MenuItem>
-                    </Select>
-                </FormControl>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Mittagessen</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={lunch}
-                        label="lunch"
-                        onChange={(e) => setLunch(e.target.value)}
-                    >
-                        <MenuItem value={10}>Gesund</MenuItem>
-                        <MenuItem value={20}>Ungesund</MenuItem>
-                    </Select>
-                </FormControl>
-                <FormControl fullWidth>
-                    <InputLabel id="Dinner">Dinner</InputLabel>
-                    <Select
-                        labelId="Dinner"
-                        id="Dinner"
-                        value={dinner}
-                        label="Dinner"
-                        onChange={(e) => setDinner(e.target.value)}
-                    >
-                        <MenuItem value={10}>Gesund</MenuItem>
-                        <MenuItem value={20}>Ungesund</MenuItem>
-                    </Select>
-                </FormControl>
-                <FormControl >
-                    <InputLabel id="demo-simple-select-label">Snachs</InputLabel>
-                    <Select
-                        labelId="demo-sim"
-                        id="demo-simple-select"
-                        value={snacks}
-                        label="Snachs"
-                        onChange={(e) => setSnacks(e.target.value)}
-                    >
-                        <MenuItem value={10}>Gesund</MenuItem>
-                        <MenuItem value={20}>Ungesund</MenuItem>
-                    </Select>
-                </FormControl>
-                <button className="item8"> Speichern</button>
+            <form id="survey-form" onSubmit={handleSave}>
+                <Box sx={{minWidth: 120}}>
+                    <FormControl fullWidth>
+                        <InputLabel sx={{color: "white"}} id="demo-simple-select-label">Fruhstück</InputLabel>
+                        <Select
+                            sx={{
+
+                                color: "white", // ändert die Schriftfarbe
+
+
+                            }}
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={breakfast}
+                            label="breakfast"
+                            onChange={(e) => setBreakfast(e.target.value)}
+                        >
+                            <MenuItem value={10}>Gesund</MenuItem>
+                            <MenuItem value={20}>Ungesund</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <br/>
+                    <br/>
+                    <FormControl fullWidth>
+                        <InputLabel sx={{color: "white"}} id="demo-simple-select-label">Mittagessen</InputLabel>
+                        <Select
+                            sx={{
+
+                                color: "white", // ändert die Schriftfarbe
+                            }}
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={lunch}
+                            label="lunch"
+                            onChange={(e) => setLunch(e.target.value)}
+                        >
+                            <MenuItem value={10}>Gesund</MenuItem>
+                            <MenuItem value={20}>Ungesund</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <br/>
+                    <br/>
+                    <FormControl fullWidth>
+                        <InputLabel sx={{color: "white"}} id="demo-simple-select-label">Abenessen</InputLabel>
+                        <Select
+                            sx={{
+
+                                color: "white", // ändert die Schriftfarbe
+                            }}
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={dinner}
+                            label="Dinner"
+                            onChange={(e) => setDinner(e.target.value)}
+                        >
+                            <MenuItem value={10}>Gesund</MenuItem>
+                            <MenuItem value={20}>Ungesund</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <br/>
+                    <br/>
+                    <FormControl fullWidth sx={{color: 'white'}}>
+                        <InputLabel sx={{color: "white", overflowY:'visible'}} id="demo-simple-select-label">Snachs</InputLabel>
+                        <Select
+                            sx={{
+
+                                color: 'white', // ändert die Schriftfarbe
+                                broder: '1px solid red',
+
+                            }}
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={snacks}
+                            label="Snachs"
+                            onChange={(e) => setSnacks(e.target.value)}
+                        >
+                            <MenuItem value={10}>Gesund</MenuItem>
+                            <MenuItem value={20}>Ungesund</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <button className="item8"> Speichern</button>
+                </Box>
             </form>
         </div>
     );
