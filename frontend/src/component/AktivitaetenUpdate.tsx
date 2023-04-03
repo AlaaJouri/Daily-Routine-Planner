@@ -2,6 +2,9 @@ import axios from "axios";
 import {FormEvent, useState} from "react";
 import {User} from "../hooks/useAuth";
 import {useNavigate} from "react-router-dom";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 type Props = { user: User }
 
@@ -64,28 +67,29 @@ export default function AktivitaetenUpdate(props: Props) {
     return (
         <div className="Profile">
             <div>
-                <h1 id="title"className="title">Aktivitäten</h1>
+                <h1 id="title" className="title">Aktivitäten</h1>
                 <hr/>
             </div>
             <form id="survey-form" className="container" onSubmit={handleSave}>
-                <div className="item0">
-                    <label htmlFor="steps" className="label">Schritten</label>
-                    <br/>
-                    <input value={steps} onChange={(e) => setSteps(parseInt(e.target.value))}/>
-                    <br/>
-                </div>
-                <div className="item1">
-                    <label htmlFor="burnedCalories"className="label">vebrannten Kaloriern</label>
-                    <br/>
-                    <input value={burnedCalories} onChange={(e) => setBurnedCalories(parseInt(e.target.value))}/>
-                    <br/>
-                </div>
-                <div className="item2">
-                    <label htmlFor="trainingTimes"className="label">Trainingszeiten</label>
-                    <br/>
-                    <input value={trainingTimes} onChange={(e) => setTrainingTimes(parseInt(e.target.value))}/>
-                    <br/>
-                </div>
+
+                <Box
+                    component="form"
+                    sx={{
+                        '& > :not(style)': {m: 1, width: '25ch'},
+                    }}
+                    noValidate
+                    autoComplete="off"
+                >
+                    <TextField id="outlined-basic" label="Schritten" variant="outlined" value={steps}
+                               onChange={(e) => setSteps(parseInt(e.target.value))}/>
+
+                    <TextField id="outlined-basic" label="vebrannten Kaloriern" variant="outlined"
+                               value={burnedCalories} onChange={(e) => setBurnedCalories(parseInt(e.target.value))}/>
+
+                    <TextField id="outlined-basic" label="Trainingszeiten" variant="outlined" value={trainingTimes}
+                               onChange={(e) => setTrainingTimes(parseInt(e.target.value))}/>
+
+                </Box>
 
                 <button className="item8"> Speichern</button>
 

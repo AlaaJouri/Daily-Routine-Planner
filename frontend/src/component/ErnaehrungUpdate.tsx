@@ -87,15 +87,16 @@ export default function AktivitaetenUpdate(props: Props) {
             <form id="survey-form" onSubmit={handleSave}>
                 <Box sx={{minWidth: 120}}>
                     <FormControl fullWidth>
-                        <InputLabel sx={{color: "black",fontWeight:'bold',fontSize:24 }} id="demo-simple-select-label">Fruhstück</InputLabel>
+                        <InputLabel id="demo-simple-select-label">Fruhstück</InputLabel>
                         <Select
                             sx={{
 
                                 color: "black", // ändert die Schriftfarbe
-                                display: 'flex'
-
+                                display: 'flex',
+                                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: 'black'
+                                }
                             }}
-
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={breakfast}
@@ -109,12 +110,18 @@ export default function AktivitaetenUpdate(props: Props) {
                     <br/>
                     <br/>
                     <FormControl fullWidth>
-                        <InputLabel sx={{color: "black",fontWeight:'bold',fontSize:24 }} id="demo-simple-select-label">Mittagessen</InputLabel>
+                        <InputLabel id="demo-simple-select-label">Mittagessen</InputLabel>
                         <Select
                             sx={{
 
                                 color: "black", // ändert die Schriftfarbe
-                            }}
+                                display: 'flex',
+                                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: 'black',
+                                    color: 'black'
+                                }
+                            }
+                            }
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={lunch}
@@ -128,11 +135,14 @@ export default function AktivitaetenUpdate(props: Props) {
                     <br/>
                     <br/>
                     <FormControl fullWidth>
-                        <InputLabel sx={{color: "black",fontWeight:'bold',fontSize:24 }}id="demo-simple-select-label">Abenessen</InputLabel>
+                        <InputLabel id="demo-simple-select-label">Abenessen</InputLabel>
                         <Select
                             sx={{
-
                                 color: "black", // ändert die Schriftfarbe
+                                display: 'flex',
+                                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: 'black'
+                                }
                             }}
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
@@ -147,13 +157,15 @@ export default function AktivitaetenUpdate(props: Props) {
                     <br/>
                     <br/>
                     <FormControl fullWidth sx={{color: 'black'}}>
-                        <InputLabel sx={{color: "black",fontWeight:'bold',fontSize:24 }} id="demo-simple-select-label">Snachs</InputLabel>
+                        <InputLabel id="demo-simple-select-label">Snachs</InputLabel>
                         <Select
                             sx={{
+                                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: 'black',
+                                    color: 'black', // ändert die Schriftfarbe
+                                    broder: '1px solid red',
 
-                                color: 'black', // ändert die Schriftfarbe
-                                broder: '1px solid red',
-
+                                }
                             }}
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"

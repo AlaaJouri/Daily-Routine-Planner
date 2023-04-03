@@ -2,6 +2,9 @@ import axios from "axios";
 import {FormEvent, useState} from "react";
 import {User} from "../hooks/useAuth";
 import {useNavigate} from "react-router-dom";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import * as React from "react";
 
 type Props = { user: User }
 
@@ -63,63 +66,42 @@ export default function ProfileUserDataLoaded(props: Props) {
     return (
         <div className="Profile">
             <div>
-                <h1 id="title"className="title">Profile</h1>
+                <h1 id="title" className="title">Profile</h1>
                 <p id="description" className="title">Planen Sie Ihren Tag</p>
                 <hr/>
             </div>
+
             <form id="survey-form" className="container" onSubmit={handleSave}>
-                <div className="item0">
-                    <label htmlFor="name"className="label">Name</label>
-                    <br/>
-                    <input value={name} onChange={(e) => setName(e.target.value)}/>
-                    <br/>
-                </div>
-                <div className="item1">
-                    <label htmlFor="Geschlecht"className="label">Geschlecht</label>
-                    <br/>
-                    <input value={gender} onChange={(e) => setGender(e.target.value)}/>
-                    <br/>
-                </div>
-                <div className="item2">
-                    <label htmlFor="Gewicht"className="label">Gewicht</label>
-                    <br/>
-                    <input value={weight} onChange={(e) => setWeight(e.target.value)}/>
-                    <br/>
-                </div>
-                <div className="item3">
-                    <label htmlFor="Zielgewicht"className="label">Zielgewicht</label>
-                    <br/>
-                    <input value={weightGoal} onChange={(e) => setWeightGoal(parseInt(e.target.value))}/>
-                    <br/>
-                </div>
-                <div className="item4">
-                    <label htmlFor="Schlafzeitziel"className="label">Schlafzeitziel</label>
-                    <br/>
-                    <input value={sleepTimeTarget} onChange={(e) => setSleepTimeTarget(parseInt(e.target.value))}/>
-                    <br/>
-                </div>
-                <div className="item5">
-                    <label htmlFor="TrainingszeitZiel"className="label">Trainingszeit Ziel</label>
-                    <br/>
-                    <input value={trainingTimeGoal}
-                           onChange={(e) => setTrainingTimeGoal(parseInt(e.target.value))}/>
-                </div>
-                <div className="item6">
-                    <label htmlFor="SchrittZiel"className="label">SchrittZiel</label>
-                    <br/>
-                    <input value={stepTarget} onChange={(e) => setStepTarget(parseInt(e.target.value))}/>
+                <Box
+                    component="form"
+                    sx={{
+                        '& > :not(style)': {m: 1, width: '25ch'},
+                    }}
+                    noValidate
+                    autoComplete="off"
+                >
+                    <TextField id="outlined-basic" label="Schritten" variant="outlined" value={name}
+                               onChange={(e) => setName(e.target.value)}/>
 
-                    <br/>
-                </div>
-                <div className="item7">
-                    <label htmlFor="KalorienverbrauchZiel"className="label">KalorienverbrauchZiel</label>
-                    <br/>
-                    <input value={caloriesBurnedTarget}
-                           placeholder={"caloriesBurnedTarget"}
-                           onChange={(e) => setCaloriesBurnedTarget(parseInt(e.target.value))}/>
+                    <TextField id="outlined-basic" label="Geschlecht" variant="outlined" value={gender}
+                               onChange={(e) => setGender(e.target.value)}/>
+                    <TextField id="outlined-basic" label="Gewicht" variant="outlined" value={weight}
+                               onChange={(e) => setWeight(e.target.value)}/>
+                    <TextField id="outlined-basic" label="Zielgewicht" variant="outlined" value={weightGoal}
+                               onChange={(e) => setWeightGoal(parseInt(e.target.value))}/>
+                    <TextField id="outlined-basic" label="SchlafzeitZiel" value={sleepTimeTarget}
+                               onChange={(e) => setSleepTimeTarget(parseInt(e.target.value))}/>
+                    <TextField id="outlined-basic" label="TrainingszeitZiel" variant="outlined" value={trainingTimeGoal}
+                               onChange={(e) => setTrainingTimeGoal(parseInt(e.target.value))}/>
+                    <TextField id="outlined-basic" label="SchrittZiel" variant="outlined" value={stepTarget}
+                               onChange={(e) => setStepTarget(parseInt(e.target.value))}/>
+                    <TextField id="outlined-basic" label="KalorienverbrauchZiel" variant="outlined"
+                               value={caloriesBurnedTarget}
+                               placeholder={"caloriesBurnedTarget"}
+                               onChange={(e) => setCaloriesBurnedTarget(parseInt(e.target.value))}/>
+                </Box>
+                <br/>
 
-                    <br/>
-                </div>
                 <button className="item8"> Speichern</button>
 
             </form>
