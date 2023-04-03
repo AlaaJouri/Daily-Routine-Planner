@@ -111,10 +111,20 @@ function ResponsiveAppBar() {
                                 display: {xs: 'block', md: 'none'},
                             }}
                         >
-
+                            <MenuItem onClick={handleActivitySubmit}>
+                                <Typography textAlign="center">Aktivitäten</Typography>
+                            </MenuItem>
+                            <MenuItem onClick={handleNutritionSubmit}>
+                                <Typography textAlign="center">Ernährung</Typography>
+                            </MenuItem>
+                            <MenuItem onClick={handleUserDataSubmit}>
+                                <Typography textAlign="center">Schlafzeiten</Typography>
+                            </MenuItem>
+                            <MenuItem onClick={handleUserDataSubmit}>
+                                <Typography textAlign="center">Lesen</Typography>
+                            </MenuItem>
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>
                     <Typography
                         variant="h5"
                         noWrap
@@ -131,8 +141,9 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        Tagesplaner
                     </Typography>
+
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
 
                         <Button

@@ -187,9 +187,9 @@ class MongoUserControllerTest {
                 .andExpect(jsonPath("$.trainingTimeGoal").value(userData.trainingTimeGoal()))
                 .andExpect(jsonPath("$.stepTarget").value(userData.stepTarget()))
                 .andExpect(jsonPath("$.caloriesBurnedTarget").value(userData.caloriesBurnedTarget()))
-                .andExpect(jsonPath("$.breakfast").value(userData.Breakfast()))
-                .andExpect(jsonPath("$.lunch").value(userData.Lunch()))
-                .andExpect(jsonPath("$.dinner").value(userData.Dinner()))
+                .andExpect(jsonPath("$.breakfast").value(userData.breakfast()))
+                .andExpect(jsonPath("$.lunch").value(userData.lunch()))
+                .andExpect(jsonPath("$.dinner").value(userData.dinner()))
                 .andExpect(jsonPath("$.snacks").value(userData.snacks()));
     }
 

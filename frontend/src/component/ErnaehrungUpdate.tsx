@@ -14,7 +14,7 @@ type Props = { user: User }
 
 export default function AktivitaetenUpdate(props: Props) {
 
-    const navigate = useNavigate();
+    const navigate1 = useNavigate();
     const gender = props.user.gender;
     const weight = props.user.weight;
     const weightGoal = props.user.weightGoal;
@@ -38,7 +38,7 @@ export default function AktivitaetenUpdate(props: Props) {
         axios
             .put("/api/user/" + props.user.id, updatedUserData)
             .then(() => {
-                navigate("/nutrition");
+                navigate1("/nutrition");
             })
             .catch((err) => {
                 alert(err.response.data.error);
@@ -77,19 +77,21 @@ export default function AktivitaetenUpdate(props: Props) {
         }
     };
     return (
-        <div>
+        <div className="Profile">
             <div>
-                <h1 id="title">Ernährung</h1>
+                <h1 id="title" className="title">Ernährung</h1>
                 <hr/>
             </div>
+            <br/>
+            <br/>
             <form id="survey-form" onSubmit={handleSave}>
                 <Box sx={{minWidth: 120}}>
                     <FormControl fullWidth>
-                        <InputLabel sx={{color: "white"}} id="demo-simple-select-label">Fruhstück</InputLabel>
+                        <InputLabel sx={{color: "black",fontWeight:'bold',fontSize:24 }} id="demo-simple-select-label">Fruhstück</InputLabel>
                         <Select
                             sx={{
 
-                                color: "white", // ändert die Schriftfarbe
+                                color: "black", // ändert die Schriftfarbe
 
 
                             }}
@@ -106,11 +108,11 @@ export default function AktivitaetenUpdate(props: Props) {
                     <br/>
                     <br/>
                     <FormControl fullWidth>
-                        <InputLabel sx={{color: "white"}} id="demo-simple-select-label">Mittagessen</InputLabel>
+                        <InputLabel sx={{color: "black",fontWeight:'bold',fontSize:24 }} id="demo-simple-select-label">Mittagessen</InputLabel>
                         <Select
                             sx={{
 
-                                color: "white", // ändert die Schriftfarbe
+                                color: "black", // ändert die Schriftfarbe
                             }}
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
@@ -125,11 +127,11 @@ export default function AktivitaetenUpdate(props: Props) {
                     <br/>
                     <br/>
                     <FormControl fullWidth>
-                        <InputLabel sx={{color: "white"}} id="demo-simple-select-label">Abenessen</InputLabel>
+                        <InputLabel sx={{color: "black",fontWeight:'bold',fontSize:24 }}id="demo-simple-select-label">Abenessen</InputLabel>
                         <Select
                             sx={{
 
-                                color: "white", // ändert die Schriftfarbe
+                                color: "black", // ändert die Schriftfarbe
                             }}
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
@@ -143,12 +145,12 @@ export default function AktivitaetenUpdate(props: Props) {
                     </FormControl>
                     <br/>
                     <br/>
-                    <FormControl fullWidth sx={{color: 'white'}}>
-                        <InputLabel sx={{color: "white", overflowY:'visible'}} id="demo-simple-select-label">Snachs</InputLabel>
+                    <FormControl fullWidth sx={{color: 'black'}}>
+                        <InputLabel sx={{color: "black",fontWeight:'bold',fontSize:24 }} id="demo-simple-select-label">Snachs</InputLabel>
                         <Select
                             sx={{
 
-                                color: 'white', // ändert die Schriftfarbe
+                                color: 'black', // ändert die Schriftfarbe
                                 broder: '1px solid red',
 
                             }}

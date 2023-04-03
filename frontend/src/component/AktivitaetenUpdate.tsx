@@ -64,24 +64,24 @@ export default function AktivitaetenUpdate(props: Props) {
     return (
         <div className="Profile">
             <div>
-                <h1 id="title">Aktivitäten</h1>
+                <h1 id="title"className="title">Aktivitäten</h1>
                 <hr/>
             </div>
             <form id="survey-form" className="container" onSubmit={handleSave}>
                 <div className="item0">
-                    <label htmlFor="steps">Schritten</label>
+                    <label htmlFor="steps" className="label">Schritten</label>
                     <br/>
                     <input value={steps} onChange={(e) => setSteps(parseInt(e.target.value))}/>
                     <br/>
                 </div>
                 <div className="item1">
-                    <label htmlFor="burnedCalories">vebrannten Kaloriern</label>
+                    <label htmlFor="burnedCalories"className="label">vebrannten Kaloriern</label>
                     <br/>
                     <input value={burnedCalories} onChange={(e) => setBurnedCalories(parseInt(e.target.value))}/>
                     <br/>
                 </div>
                 <div className="item2">
-                    <label htmlFor="trainingTimes">Trainingszeiten</label>
+                    <label htmlFor="trainingTimes"className="label">Trainingszeiten</label>
                     <br/>
                     <input value={trainingTimes} onChange={(e) => setTrainingTimes(parseInt(e.target.value))}/>
                     <br/>
