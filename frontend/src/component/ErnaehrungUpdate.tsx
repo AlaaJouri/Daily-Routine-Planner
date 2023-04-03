@@ -92,9 +92,10 @@ export default function AktivitaetenUpdate(props: Props) {
                             sx={{
 
                                 color: "black", // ändert die Schriftfarbe
-
+                                display: 'flex'
 
                             }}
+
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={breakfast}
