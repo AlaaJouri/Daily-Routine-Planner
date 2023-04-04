@@ -11,17 +11,9 @@ type PropsAktivitaeten = { user: User }
 export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
 
     const navigate = useNavigate();
-    const gender = props.user.gender;
-    const weight = props.user.weight;
-    const weightGoal = props.user.weightGoal;
-    const sleepTimeTarget = props.user.sleepTimeTarget;
-    const trainingTimeGoal = props.user.trainingTimeGoal;
-    const stepTarget = props.user.stepTarget;
-    const caloriesBurnedTarget = props.user.caloriesBurnedTarget;
+
     const id = props.user.id;
-    const username = props.user.username;
-    const password = props.user.password;
-    const name = props.user.name;
+
     const [steps, setSteps] = useState(props.user.steps);
     const [burnedCalories, setBurnedCalories] = useState(props.user.burnedCalories);
     const [trainingTimes, setTrainingTimes] = useState(props.user.trainingTimes);
@@ -41,16 +33,6 @@ export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
         try {
             const updatedUserDataAktivity = {
                 id,
-                username,
-                password,
-                name,
-                gender,
-                weight,
-                weightGoal,
-                sleepTimeTarget,
-                trainingTimeGoal,
-                stepTarget,
-                caloriesBurnedTarget,
                 steps,
                 burnedCalories,
                 trainingTimes
