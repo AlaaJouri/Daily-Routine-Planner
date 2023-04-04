@@ -6,9 +6,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-type Props = { user: User }
+type PropsAktivitaeten = { user: User }
 
-export default function AktivitaetenUpdate(props: Props) {
+export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
 
     const navigate = useNavigate();
     const gender = props.user.gender;
