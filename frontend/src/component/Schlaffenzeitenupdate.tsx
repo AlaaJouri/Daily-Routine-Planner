@@ -19,7 +19,7 @@ import TextField from "@mui/material/TextField";
 type Props = { user: User }
 
 
-export default function ProfileUserDataLoaded(props: Props) {
+export default function Schlaffenzeitenupdate(props: Props) {
     const navigate1 = useNavigate();
     const gender = props.user.gender;
     const weight = props.user.weight;

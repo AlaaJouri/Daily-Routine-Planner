@@ -28,7 +28,7 @@ const theme = createTheme({
 });
 
 
-export default function AktivitaetenUpdate(props: Props) {
+export default function ErnaehrungUpdate(props: Props) {
 
     const navigate1 = useNavigate();
     const gender = props.user.gender;
