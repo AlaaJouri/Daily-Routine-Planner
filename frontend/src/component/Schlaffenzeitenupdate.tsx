@@ -14,6 +14,11 @@ import HotelIcon from '@mui/icons-material/Hotel';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Typography from '@mui/material/Typography';
 import TextField from "@mui/material/TextField";
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
+
 
 
 type Props = { user: User }
@@ -91,7 +96,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                 <h1 id="title" className="title">Profile</h1>
                 <hr/>
             </div>
-
+            <form id="survey-form" onSubmit={handleSave}>
 
             <Timeline position="alternate">
                 <TimelineItem>
@@ -101,8 +106,17 @@ export default function ProfileUserDataLoaded(props: Props) {
                         variant="body2"
                         color="text.secondary"
                     >
-                        <TextField id="outlined-basic"  type="time"  variant="outlined" value={standup}
-                                   onChange={(e) => setStandup(new Date(Date.parse(e.target.value)))}/>
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DemoContainer components={['MobileTimePicker', 'MobileTimePicker']}>
+                                <MobileTimePicker label={'"minutes"'} openTo="minutes" />
+                                <MobileTimePicker
+                                    label={'"seconds"'}
+                                    openTo="seconds"
+                                    views={['minutes', 'seconds']}
+                                    format="mm:ss"
+                                />
+                            </DemoContainer>
+                        </LocalizationProvider>
 
                     </TimelineOppositeContent>
                     <TimelineSeparator>
@@ -150,6 +164,7 @@ export default function ProfileUserDataLoaded(props: Props) {
             </Timeline>
             <br/>
             <button className="item8"> Speichern</button>
+        </form>
         </div>
             );
 

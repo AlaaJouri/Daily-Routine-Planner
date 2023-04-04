@@ -14,6 +14,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import lombok.RequiredArgsConstructor;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 
@@ -122,7 +127,9 @@ public class MongoUserDetailsService implements UserDetailsService {
                     "User already exists"
             );
         }
-Date now=new Date();
+        LocalTime now = LocalTime.now();
+
+
         MongoUser newUser = new MongoUser(
                 UUID.randomUUID().toString(),
                 user.username(),
@@ -143,7 +150,7 @@ Date now=new Date();
                 " ",
                 " ",
                 " ",
-                now,
+                now ,
                 now
 
 

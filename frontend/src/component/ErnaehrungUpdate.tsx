@@ -8,9 +8,25 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import {createTheme, formLabelClasses, ThemeProvider} from "@mui/material";
 
 
 type Props = { user: User }
+
+const theme = createTheme({
+    components: {
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    '&.Mui-focused': {
+                        color: 'black',
+                    },
+                },
+            },
+        },
+    },
+});
+
 
 export default function AktivitaetenUpdate(props: Props) {
 
@@ -77,6 +93,7 @@ export default function AktivitaetenUpdate(props: Props) {
         }
     };
     return (
+        <ThemeProvider theme={theme}>
         <div className="Profile">
             <div>
                 <h1 id="title" className="title">Ernährung</h1>
@@ -89,6 +106,7 @@ export default function AktivitaetenUpdate(props: Props) {
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">Fruhstück</InputLabel>
                         <Select
+
                             sx={{
 
                                 color: "black", // ändert die Schriftfarbe
@@ -112,16 +130,6 @@ export default function AktivitaetenUpdate(props: Props) {
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">Mittagessen</InputLabel>
                         <Select
-                            sx={{
-
-                                color: "black", // ändert die Schriftfarbe
-                                display: 'flex',
-                                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                    borderColor: 'black',
-                                    color: 'black'
-                                }
-                            }
-                            }
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={lunch}
@@ -135,7 +143,7 @@ export default function AktivitaetenUpdate(props: Props) {
                     <br/>
                     <br/>
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Abenessen</InputLabel>
+                        <InputLabel id="demo-simple-select-label">Abendessen</InputLabel>
                         <Select
                             sx={{
                                 color: "black", // ändert die Schriftfarbe
@@ -184,5 +192,6 @@ export default function AktivitaetenUpdate(props: Props) {
                 </Box>
             </form>
         </div>
+        </ThemeProvider>
     );
 }

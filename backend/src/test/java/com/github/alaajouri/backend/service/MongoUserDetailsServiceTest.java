@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.Optional;
 
@@ -37,7 +38,7 @@ class MongoUserDetailsServiceTest {
     MongoUserDTO mongoUserDTO;
     MongoUserDTO newUserData;
     MongoUser existingUserData;
-    Date now;
+    LocalTime now;
 
     @BeforeEach
     void setUp() {
@@ -45,7 +46,7 @@ class MongoUserDetailsServiceTest {
         passwordEncoder = mock(PasswordEncoder.class);
         idGenerator = mock(IdGenerator.class);
         mongoUserDetailsService = new MongoUserDetailsService(mongoUserRepository, passwordEncoder);
-        now=new Date();
+        now= LocalTime.now();
         mongoUser = new MongoUser("1", "username", "123", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500,0,0,0,"", "",
                "","",now,now);
         mongoUserDTO = new MongoUserDTO("username", "123");

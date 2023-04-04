@@ -1,5 +1,8 @@
 package com.github.alaajouri.backend.model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 public record MongoUserWithoutIDDTO(String username,
@@ -20,6 +23,6 @@ public record MongoUserWithoutIDDTO(String username,
                                     String lunch,
                                     String dinner,
                                     String snacks,
-                                    Date standup,
-                                    Date sleep) {
+                                    LocalTime standup,
+                                    LocalTime sleep) {
 }
