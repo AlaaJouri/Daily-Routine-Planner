@@ -2,15 +2,25 @@ import axios from "axios";
 import {FormEvent, useState} from "react";
 import {User} from "../hooks/useAuth";
 import {useNavigate} from "react-router-dom";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 import * as React from "react";
+import Timeline from "@mui/lab/Timeline";
+import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
+import TimelineDot from '@mui/lab/TimelineDot';
+import HotelIcon from '@mui/icons-material/Hotel';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import Typography from '@mui/material/Typography';
+import TextField from "@mui/material/TextField";
+
 
 type Props = { user: User }
 
 
 export default function ProfileUserDataLoaded(props: Props) {
-    const navigate = useNavigate();
+    const navigate1 = useNavigate();
     const gender = props.user.gender;
     const weight = props.user.weight;
     const weightGoal = props.user.weightGoal;
@@ -25,7 +35,7 @@ export default function ProfileUserDataLoaded(props: Props) {
     const steps = props.user.steps;
     const burnedCalories = props.user.burnedCalories;
     const trainingTimes = props.user.trainingTimes;
-    const breakfast= useState(props.user.breakfast);
+    const breakfast= props.user.breakfast;
     const lunch= props.user.lunch;
     const dinner= props.user.dinner;
     const snacks= props.user.snacks;
@@ -36,7 +46,7 @@ export default function ProfileUserDataLoaded(props: Props) {
         axios
             .put("/api/user/" + props.user.id, updatedUserData)
             .then(() => {
-                navigate("/profile");
+                navigate1("/sleep-times");
             })
             .catch((err) => {
                 alert(err.response.data.error);
@@ -60,6 +70,10 @@ export default function ProfileUserDataLoaded(props: Props) {
                 steps,
                 burnedCalories,
                 trainingTimes,
+                breakfast,
+                lunch,
+                dinner,
+                snacks,
                 standup,
                 sleep
 
@@ -75,30 +89,69 @@ export default function ProfileUserDataLoaded(props: Props) {
         <div className="Profile">
             <div>
                 <h1 id="title" className="title">Profile</h1>
-                <p id="description" className="title">Planen Sie Ihren Tag</p>
                 <hr/>
             </div>
 
-            <form id="survey-form" className="container" onSubmit={handleSave}>
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': {m: 1, width: '25ch'},
-                    }}
-                    noValidate
-                    autoComplete="off"
-                >
-                    <TextField id="outlined-basic" label="Schritten" variant="outlined" value={standup}
-                               onChange={(e) => setStandup(new Date(Date.parse(e.target.value)))}/>
 
-                    <TextField id="outlined-basic" label="Geschlecht" variant="outlined" value={sleep}
-                               onChange={(e) => setSleep(new Date(Date.parse(e.target.value)))}/>
-                </Box>
-                <br/>
+            <Timeline position="alternate">
+                <TimelineItem>
+                    <TimelineOppositeContent
+                        sx={{ m: 'auto 0' }}
+                        align="right"
+                        variant="body2"
+                        color="text.secondary"
+                    >
+                        <TextField id="outlined-basic"  type="time"  variant="outlined" value={standup}
+                                   onChange={(e) => setStandup(new Date(Date.parse(e.target.value)))}/>
 
-                <button className="item8"> Speichern</button>
+                    </TimelineOppositeContent>
+                    <TimelineSeparator>
+                        <TimelineConnector />
+                        <TimelineDot color= "inherit">
+                            <WbSunnyIcon />
+                        </TimelineDot>
+                        <TimelineConnector />
+                    </TimelineSeparator>
+                    <TimelineContent sx={{ py: '12px', px: 2 }}>
+                        <Typography variant="h6" component="span">
+                            Aufstehen
+                        </Typography>
+                    <br/>
+                        <br/>
+                        <br/>
+                    </TimelineContent>
+                </TimelineItem>
+                <TimelineItem>
+                    <TimelineOppositeContent
+                        sx={{ m: 'auto 0' }}
+                        variant="body2"
+                        color="text.secondary"
+                    >
+                        <TextField id="outlined-basic" type="time" value={sleep}
+                                   onChange={(e) => setSleep(new Date(Date.parse(e.target.value)))}/>
+                    </TimelineOppositeContent>
+                    <TimelineSeparator>
+                        <TimelineConnector />
+                        <TimelineDot color= "inherit">
+                            <HotelIcon />
+                        </TimelineDot>
+                        <TimelineConnector />
+                    </TimelineSeparator>
+                    <TimelineContent sx={{ py: '12px', px: 2 }}>
+                        <Typography variant="h6" component="span" >
+                            Schlaffen
+                        </Typography>
+                        <br/> <br/>
+                        <Typography>              </Typography>
+                    </TimelineContent>
+                </TimelineItem>
 
-            </form>
+
+            </Timeline>
+            <br/>
+            <button className="item8"> Speichern</button>
         </div>
-    );
-}
+            );
+
+
+            }

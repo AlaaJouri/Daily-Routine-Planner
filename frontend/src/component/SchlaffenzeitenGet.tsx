@@ -1,6 +1,6 @@
 import "./UserData.css";
 import useAuth from "../hooks/useAuth";
-import schlaffenzeitenupdate from "./Schlaffenzeitenupdate";
+import Schlaffenzeitenupdate from "./Schlaffenzeitenupdate";
 
 export default function ProfileUserData() {
     const {user} = useAuth(false);
@@ -9,7 +9,7 @@ export default function ProfileUserData() {
     if (!user) return <p> User not fund</p>;
     return(
         <>
-            <schlaffenzeitenupdate user={user}/>
+            <Schlaffenzeitenupdate user={user}/>
         </>
     )
 }
