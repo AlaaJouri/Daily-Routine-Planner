@@ -9,6 +9,7 @@ import Logout from "./component/Logout";
 import ResponsiveAppBar from "./component/ResponsiveAppBar";
 import Activity from "./component/AktivitaetenGet";
 import Nutrition from "./component/ErnaehrungGet";
+import Sleeptimes from "./component/SchlaffenzeitenGet";
 
 axios.interceptors.request.use(function (config) {
     return fetch("/api/csrf").then(() => {
@@ -31,6 +32,7 @@ function App() {
                 <Route path={"/logout"} element={<Logout/>}/>
                 <Route path={"/activity"} element={<Activity/>}/>
                 <Route path={"/nutrition"} element={<Nutrition/>}/>
+                <Route path={"/sleep-times"} element={<Sleeptimes/>}/>
             </Routes>
         </div>
     );

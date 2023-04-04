@@ -3,6 +3,8 @@ package com.github.alaajouri.backend.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 @Document("mongoUser")
 public record MongoUser(
         @Id
@@ -24,7 +26,9 @@ public record MongoUser(
         String breakfast,
         String lunch,
         String dinner,
-        String snacks
+        String snacks,
+        Date standup,
+        Date sleep
 
 
 ) {

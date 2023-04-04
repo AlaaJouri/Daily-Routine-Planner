@@ -22,7 +22,8 @@ export type User = {
     lunch: string,
     dinner: string,
     snacks: string
-
+     standup: Date,
+     sleep:Date
 
 }
 

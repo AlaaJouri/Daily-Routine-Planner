@@ -1,5 +1,7 @@
 package com.github.alaajouri.backend.model;
 
+import java.util.Date;
+
 public record MongoUserWithoutIDDTO(String username,
                                     String password,
                                     String role,
@@ -17,5 +19,7 @@ public record MongoUserWithoutIDDTO(String username,
                                     String breakfast,
                                     String lunch,
                                     String dinner,
-                                    String snacks) {
+                                    String snacks,
+                                    Date standup,
+                                    Date sleep) {
 }

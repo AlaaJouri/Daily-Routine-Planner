@@ -14,9 +14,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import lombok.RequiredArgsConstructor;
+import java.util.Date;
 
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -60,7 +62,9 @@ public class MongoUserDetailsService implements UserDetailsService {
                 userData.breakfast(),
                 userData.lunch(),
                 userData.dinner(),
-                userData.snacks()
+                userData.snacks(),
+                userData.standup(),
+                userData.sleep()
         );
 
         return mongoUserRepository.save(updatedUserData);
@@ -99,7 +103,9 @@ public class MongoUserDetailsService implements UserDetailsService {
                 me.breakfast(),
                 me.lunch(),
                 me.dinner(),
-                me.snacks()
+                me.snacks(),
+                me.standup(),
+                me.sleep()
         );}
     public MongoUser create(MongoUserDTO user) {
         if (user.username() == null || user.username().length() == 0) {
@@ -116,7 +122,7 @@ public class MongoUserDetailsService implements UserDetailsService {
                     "User already exists"
             );
         }
-
+Date now=new Date();
         MongoUser newUser = new MongoUser(
                 UUID.randomUUID().toString(),
                 user.username(),
@@ -136,7 +142,10 @@ public class MongoUserDetailsService implements UserDetailsService {
                 " " ,
                 " ",
                 " ",
-                " "
+                " ",
+                now ,
+                now
+
 
 
 
@@ -163,7 +172,9 @@ public class MongoUserDetailsService implements UserDetailsService {
                 out.breakfast(),
                 out.lunch(),
                 out.dinner(),
-                out.snacks()
+                out.snacks(),
+                out.standup(),
+                out.sleep()
 
         );
     }
