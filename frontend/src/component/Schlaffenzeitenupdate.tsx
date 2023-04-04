@@ -42,7 +42,7 @@ export default function ProfileUserDataLoaded(props: Props) {
     const [standup, setStandup] = useState(props.user.standup);
     const [sleep, setSleep] = useState(props.user.sleep);
 
-    const updateUser = async (updatedUserData: any) => {
+    const updateUserSleepTime = async (updatedUserData: any) => {
         axios
             .put("/api/user/" + props.user.id, updatedUserData)
             .then(() => {
@@ -52,7 +52,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                 alert(err.response.data.error);
             });
     }
-    const handleSave = async (e: FormEvent<HTMLFormElement>) => {
+    const handleSaveSleepTime = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             const updatedUserData = {
@@ -78,7 +78,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                 sleep
 
             };
-            await updateUser(updatedUserData);
+            await updateUserSleepTime(updatedUserData);
             // show success message or navigate to a different page
         } catch (error) {
             console.error('Failed to update user data', error);
@@ -91,7 +91,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                 <h1 id="title" className="title">Profile</h1>
                 <hr/>
             </div>
-            <form id="survey-form" className="container" onSubmit={handleSave}>
+            <form id="survey-form" className="container" onSubmit={handleSaveSleepTime}>
 
 
             <Timeline position="alternate">

@@ -8,7 +8,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import {createTheme, formLabelClasses, ThemeProvider} from "@mui/material";
+import {createTheme,ThemeProvider} from "@mui/material";
 
 
 type Props = { user: User }

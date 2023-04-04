@@ -15,15 +15,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import lombok.RequiredArgsConstructor;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 
 import java.security.Principal;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -74,6 +69,7 @@ public class MongoUserDetailsService implements UserDetailsService {
 
         return mongoUserRepository.save(updatedUserData);
     }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         MongoUser mongoUser = mongoUserRepository.findByUsername(username)
@@ -84,6 +80,7 @@ public class MongoUserDetailsService implements UserDetailsService {
                 List.of(new SimpleGrantedAuthority("ROLE_" + mongoUser.role()))
         );
     }
+
     public MongoUser getMe(Principal principal) {
         MongoUser me = mongoUserRepository
                 .findByUsername(principal.getName())
@@ -111,7 +108,9 @@ public class MongoUserDetailsService implements UserDetailsService {
                 me.snacks(),
                 me.standup(),
                 me.sleep()
-        );}
+        );
+    }
+
     public MongoUser create(MongoUserDTO user) {
         if (user.username() == null || user.username().length() == 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username is required");
@@ -146,14 +145,12 @@ public class MongoUserDetailsService implements UserDetailsService {
                 0,
                 0,
                 0,
-                " " ,
                 " ",
                 " ",
                 " ",
-                now ,
+                " ",
+                now,
                 now
-
-
 
 
         );
