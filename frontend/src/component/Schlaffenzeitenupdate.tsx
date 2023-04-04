@@ -91,6 +91,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                 <h1 id="title" className="title">Profile</h1>
                 <hr/>
             </div>
+            <form id="survey-form" className="container" onSubmit={handleSave}>
 
 
             <Timeline position="alternate">
@@ -101,8 +102,14 @@ export default function ProfileUserDataLoaded(props: Props) {
                         variant="body2"
                         color="text.secondary"
                     >
-                        <TextField id="outlined-basic"  type="time"  variant="outlined" value={standup}
-                                   onChange={(e) => setStandup(new Date(Date.parse(e.target.value)))}/>
+
+                        <TextField
+                            id="outlined-basic"
+                            type="time"
+                            variant="outlined"
+                            value={standup ? standup.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : ''}
+                            onChange={(e) => setStandup(new Date(Date.parse(`2000-01-01T${e.target.value}:00`)))}
+                        />
 
                     </TimelineOppositeContent>
                     <TimelineSeparator>
@@ -127,8 +134,15 @@ export default function ProfileUserDataLoaded(props: Props) {
                         variant="body2"
                         color="text.secondary"
                     >
-                        <TextField id="outlined-basic" type="time" value={sleep}
-                                   onChange={(e) => setSleep(new Date(Date.parse(e.target.value)))}/>
+
+                        <TextField
+                            id="outlined-basic"
+                            type="time"
+                            variant="outlined"
+                            value={sleep ? sleep.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : ''}
+                            onChange={(e) => setSleep(new Date(Date.parse(`2000-01-01T${e.target.value}:00`)))}
+                        />
+
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineConnector />
@@ -150,6 +164,7 @@ export default function ProfileUserDataLoaded(props: Props) {
             </Timeline>
             <br/>
             <button className="item8"> Speichern</button>
+            </form>
         </div>
             );
 
