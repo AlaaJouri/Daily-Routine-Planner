@@ -48,7 +48,7 @@ class MongoUserDetailsServiceTest {
         mongoUserDetailsService = new MongoUserDetailsService(mongoUserRepository, passwordEncoder);
         now= LocalTime.now();
         mongoUser = new MongoUser("1", "username", "123", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500,0,0,0,"", "",
-               "","",now,now);
+                "","",now,now);
         mongoUserDTO = new MongoUserDTO("username", "123");
         newUserData = new MongoUserDTO("newUsername", "newPassword");
         existingUserData = new MongoUser(
@@ -291,10 +291,6 @@ class MongoUserDetailsServiceTest {
     }
 
 }
-
-
-
-
 
 
 
