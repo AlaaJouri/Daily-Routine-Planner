@@ -1,5 +1,5 @@
 import axios from "axios";
-import {FormEvent, useState} from "react";
+import {ChangeEvent, FormEvent, useState} from "react";
 import {User} from "../hooks/useAuth";
 import {useNavigate} from "react-router-dom";
 import * as React from "react";
@@ -14,12 +14,26 @@ import HotelIcon from '@mui/icons-material/Hotel';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Typography from '@mui/material/Typography';
 import TextField from "@mui/material/TextField";
+import moment from "moment";
 
 
 type Props = { user: User }
 
 
-export default function Schlaffenzeitenupdate(props: Props) {
+export default function Schlafenzeitenupdate(props: Props) {
+
+    function handelTime1 (event:ChangeEvent<HTMLInputElement>){
+        const value = event.target.value;
+
+        setSleep(value);
+    }
+    function handelTime2 (event:ChangeEvent<HTMLInputElement>){
+    const value = event.target.value;
+    const [hours, minutes] = value.split(":");
+    const seconds = parseInt(hours) * 60 * 60 + parseInt(minutes) * 60;
+    const inputDate = moment.unix(seconds);
+    setStandup(inputDate.toISOString());}
+
     const navigate1 = useNavigate();
 
     const id = props.user.id;
@@ -54,6 +68,12 @@ export default function Schlaffenzeitenupdate(props: Props) {
             // show error message to the user
         }
     };
+   // const x=(standup ? moment(standup).format("HH:mm"):"");
+    const x = moment(standup).isValid() ? moment(standup).format("HH:mm") : "";
+    const y = moment(sleep).isValid() ? moment(sleep).format("HH:mm") : "";
+
+
+    console.log(sleep)
     return (
         <div className="Profile">
             <div>
@@ -76,10 +96,9 @@ export default function Schlaffenzeitenupdate(props: Props) {
                             id="outlined-basic"
                             type="time"
                             variant="outlined"
-                            value={standup ? standup.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : ''}
-                            onChange={(e) => setStandup(new Date(Date.parse(`2000-01-01T${e.target.value}:00`)))}
+                            value={x}
+                            onChange={handelTime2}
                         />
-
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineConnector />
@@ -108,8 +127,9 @@ export default function Schlaffenzeitenupdate(props: Props) {
                             id="outlined-basic"
                             type="time"
                             variant="outlined"
-                            value={sleep ? sleep.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : ''}
-                            onChange={(e) => setSleep(new Date(Date.parse(`2000-01-01T${e.target.value}:00`)))}
+                            value={sleep}
+                            onChange={handelTime1}
+
                         />
 
                     </TimelineOppositeContent>
