@@ -22,17 +22,26 @@ type Props = { user: User }
 
 export default function Schlafenzeitenupdate(props: Props) {
 
-    function handelTime1 (event:ChangeEvent<HTMLInputElement>){
-        const value = event.target.value;
-
-        setSleep(value);
+    function padZero(num: number) {
+        return num < 10 ? `0${num}` : `${num}`;
     }
-    function handelTime2 (event:ChangeEvent<HTMLInputElement>){
-    const value = event.target.value;
-    const [hours, minutes] = value.split(":");
-    const seconds = parseInt(hours) * 60 * 60 + parseInt(minutes) * 60;
-    const inputDate = moment.unix(seconds);
-    setStandup(inputDate.toISOString());}
+
+    function handleTime1(event: ChangeEvent<HTMLInputElement>){
+        const value = event.target.value;
+        const selectedTime = new Date(`2000-01-01T${value}`);
+        const hours = padZero(selectedTime.getHours());
+        const minutes = padZero(selectedTime.getMinutes());
+        const formattedTime = `${hours}:${minutes}`;
+        setSleep(formattedTime);
+    }
+    function handleTime2(event: ChangeEvent<HTMLInputElement>){
+        const value = event.target.value;
+        const selectedTime = new Date(`2000-01-01T${value}`);
+        const hours = padZero(selectedTime.getHours());
+        const minutes = padZero(selectedTime.getMinutes());
+        const formattedTime = `${hours}:${minutes}`;
+        setStandup(formattedTime);
+    }
 
     const navigate1 = useNavigate();
 
@@ -96,8 +105,8 @@ export default function Schlafenzeitenupdate(props: Props) {
                             id="outlined-basic"
                             type="time"
                             variant="outlined"
-                            value={x}
-                            onChange={handelTime2}
+                            value={standup}
+                            onChange={handleTime2}
                         />
                     </TimelineOppositeContent>
                     <TimelineSeparator>
@@ -123,13 +132,13 @@ export default function Schlafenzeitenupdate(props: Props) {
                         color="text.secondary"
                     >
 
+
                         <TextField
                             id="outlined-basic"
                             type="time"
                             variant="outlined"
                             value={sleep}
-                            onChange={handelTime1}
-
+                            onChange={handleTime1}
                         />
 
                     </TimelineOppositeContent>
