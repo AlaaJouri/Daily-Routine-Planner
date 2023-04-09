@@ -77,9 +77,6 @@ export default function Schlafenzeitenupdate(props: Props) {
             // show error message to the user
         }
     };
-   // const x=(standup ? moment(standup).format("HH:mm"):"");
-    const x = moment(standup).isValid() ? moment(standup).format("HH:mm") : "";
-    const y = moment(sleep).isValid() ? moment(sleep).format("HH:mm") : "";
 
 
     console.log(sleep)
