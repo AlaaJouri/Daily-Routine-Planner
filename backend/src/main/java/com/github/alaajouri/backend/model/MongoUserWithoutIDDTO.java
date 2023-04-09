@@ -22,7 +22,9 @@ public record MongoUserWithoutIDDTO(String username,
                                     String breakfast,
                                     String lunch,
                                     String dinner,
-                                    String snacks
+                                    String snacks,
+                                    LocalTime standup,
+                                    LocalTime sleep
 
                                     ) {
 }

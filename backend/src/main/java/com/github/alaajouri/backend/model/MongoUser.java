@@ -29,7 +29,9 @@ public record MongoUser(
         String breakfast,
         String lunch,
         String dinner,
-        String snacks
+        String snacks,
+        LocalTime standup,
+        LocalTime sleep
 
 
 ) {

@@ -44,7 +44,23 @@ export default function Schlafenzeitenupdate(props: Props) {
     }
 
     const navigate1 = useNavigate();
-
+    const gender = props.user.gender;
+    const weight = props.user.weight;
+    const weightGoal = props.user.weightGoal;
+    const sleepTimeTarget = props.user.sleepTimeTarget;
+    const trainingTimeGoal = props.user.trainingTimeGoal;
+    const stepTarget = props.user.stepTarget;
+    const caloriesBurnedTarget = props.user.caloriesBurnedTarget;
+    const username = props.user.username;
+    const password = props.user.password;
+    const name = props.user.name;
+    const steps = props.user.steps;
+    const burnedCalories = props.user.burnedCalories;
+    const trainingTimes = props.user.trainingTimes;
+    const breakfast =props.user.breakfast;
+    const lunch= props.user.lunch;
+    const dinner= props.user.dinner;
+    const snacks = props.user.snacks;
     const id = props.user.id;
 
     const [standup, setStandup] = useState(props.user.standup);
@@ -65,7 +81,23 @@ export default function Schlafenzeitenupdate(props: Props) {
         try {
             const updatedUserData = {
                 id,
-
+                username,
+                password,
+                name,
+                gender,
+                weight,
+                weightGoal,
+                sleepTimeTarget,
+                trainingTimeGoal,
+                stepTarget,
+                caloriesBurnedTarget,
+                steps,
+                burnedCalories,
+                trainingTimes,
+                breakfast,
+                lunch,
+                dinner,
+                snacks,
                 standup,
                 sleep
 
