@@ -46,7 +46,10 @@ function ResponsiveAppBar() {
 
         navigate('/sleep-times');
     };
+    const handleLesenSubmit = () => {
 
+        navigate('/lesen');
+    };
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -123,7 +126,7 @@ function ResponsiveAppBar() {
                             <MenuItem onClick={handleSleeptimesSubmit}>
                                 <Typography textAlign="center">Schlafzeiten</Typography>
                             </MenuItem>
-                            <MenuItem onClick={handleUserDataSubmit}>
+                            <MenuItem onClick={handleLesenSubmit}>
                                 <Typography textAlign="center">Lesen</Typography>
                             </MenuItem>
                         </Menu>
@@ -165,14 +168,14 @@ function ResponsiveAppBar() {
                         </Button>
                         <Button
 
-                            onClick={handleCloseNavMenu}
+                            onClick={handleSleeptimesSubmit}
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
                             Schlafzeiten
                         </Button>
                         <Button
 
-                            onClick={handleCloseNavMenu}
+                            onClick={handleLesenSubmit}
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
                             Lesen
