@@ -23,17 +23,6 @@ export default function UpdateBuch(props: UpdateBuchProps) {
 
     const [buch, setBuch] = useState<Buch | undefined>();
 
-    const requestURL: string = "/api/book/" + id
-
-    useEffect(() => {
-        axios
-            .get(requestURL)
-            .then((response) => {
-                setBuch(response.data);
-                console.log(buch);
-            })
-            .catch((error) => console.error(error));
-    }, [requestURL]);
 
     function onChangeTitle(event: ChangeEvent<HTMLInputElement>) {
         setBuchToUpdate({
