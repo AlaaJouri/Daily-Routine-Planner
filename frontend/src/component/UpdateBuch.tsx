@@ -1,7 +1,6 @@
 import {Buch} from "../model/Buch";
-import {ChangeEvent, FormEvent, useEffect, useState} from "react";
+import {ChangeEvent, FormEvent, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import axios from "axios";
 import IconButton from "@mui/material/IconButton";
 import * as React from "react";
 

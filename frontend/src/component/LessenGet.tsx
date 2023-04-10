@@ -2,15 +2,11 @@ import "./UserData.css";
 import useAuth from "../hooks/useAuth";
 import LessenBuecher from "./LessenBuecher";
 import AddBuch from "./AddBuch";
-import UpdateBuch from "./UpdateBuch";
 import {useEffect, useState} from "react";
 import {Buch} from "../model/Buch";
 import axios from "axios";
 import Divider from '@mui/material/Divider';
 import * as React from 'react';
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
 
 
 export default function LessenGet() {

@@ -15,8 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import lombok.RequiredArgsConstructor;
 
-import java.time.LocalTime;
-
 
 import java.security.Principal;
 import java.util.List;
@@ -127,9 +125,6 @@ public class MongoUserDetailsService implements UserDetailsService {
                     "User already exists"
             );
         }
-        LocalTime now = LocalTime.now();
-
-
         MongoUser newUser = new MongoUser(
                 UUID.randomUUID().toString(),
                 user.username(),

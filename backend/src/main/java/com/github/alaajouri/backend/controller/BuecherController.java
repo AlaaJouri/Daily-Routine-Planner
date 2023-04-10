@@ -13,31 +13,31 @@ import java.util.List;
 
 public class BuecherController {
 
-    private final BuecherService BuecherService;
+    private final BuecherService buecherService;
 
     @GetMapping("/book")
     public List<Buecher> buchList() {
-        return BuecherService.listAllBuecher();
+        return buecherService.listAllBuecher();
     }
 
     @PostMapping("/book")
     public Buecher addBook(@RequestBody Buecher buch) {
-        return BuecherService.addBook(buch);
+        return buecherService.addBook(buch);
     }
 
     @GetMapping("/book/{id}")
     Buecher getBuchById(@PathVariable String id) {
-        return BuecherService.getBuchByID(id);
+        return buecherService.getBuchByID(id);
     }
 
     @DeleteMapping("book/{id}")
     void deleteBuch(@PathVariable String id) {
-        BuecherService.deleteBuchById(id);
+        buecherService.deleteBuchById(id);
     }
 
     @PutMapping("/book/{id}")
     public Buecher updateSleep(@PathVariable String id, @RequestBody Buecher buchToChange) {
-        return BuecherService.updateBuch(id, buchToChange);
+        return buecherService.updateBuch(id, buchToChange);
     }
 
 }

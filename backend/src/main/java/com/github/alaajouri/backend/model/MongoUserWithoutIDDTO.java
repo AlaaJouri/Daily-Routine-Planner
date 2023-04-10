@@ -1,9 +1,6 @@
 package com.github.alaajouri.backend.model;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Date;
 
 public record MongoUserWithoutIDDTO(String username,
                                     String password,
@@ -26,5 +23,5 @@ public record MongoUserWithoutIDDTO(String username,
                                     LocalTime standup,
                                     LocalTime sleep
 
-                                    ) {
+) {
 }
