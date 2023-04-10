@@ -18,6 +18,7 @@ export default function UpdateBuch(props: UpdateBuchProps) {
     const [buchToUpdate, setBuchToUpdate] = useState<Buch>({
         id: id ? id : "",
         title: "",
+        isChecked:false
     });
 
     const [buch, setBuch] = useState<Buch | undefined>();
@@ -37,7 +38,7 @@ export default function UpdateBuch(props: UpdateBuchProps) {
         setBuchToUpdate({
             ...buchToUpdate,
             id: "",
-            title: "",
+            title: ""
         })
     }
 

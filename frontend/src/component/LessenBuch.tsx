@@ -10,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import * as React from 'react';
 import {pink} from '@mui/material/colors';
+import {FormEvent} from "react";
 
 
 type BuchProps = {
@@ -26,11 +27,24 @@ export default function LessenBuch(props: BuchProps) {
     }
 
 
+
+    const [isChecked, setIsChecked] = React.useState<boolean>( props.buch.isChecked);
+    function handleCheckboxChange(event: React.ChangeEvent<HTMLInputElement>) {
+        setIsChecked(event.target.checked);
+        props.buch.isChecked = event.target.checked;
+
+    }
+
+
+
     return (
+
         <Stack direction="row" spacing={1}>
+
             <FormControlLabel
                 label={props.buch.title}
-                control={<Checkbox sx={{
+                control={<Checkbox checked={isChecked}
+                                   onChange={handleCheckboxChange}  sx={{
                     color: pink[100],
                     '&.Mui-checked': {
                         color: pink[100],

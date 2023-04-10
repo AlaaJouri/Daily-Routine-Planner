@@ -24,7 +24,8 @@ public class BuecherService {
     public Buecher addBook(Buecher buch) {
         Buecher buchToAdd = new Buecher(
                 idGenerator.generateID(),
-                buch.title()
+                buch.title(),
+                buch.isChecked()
         );
         return buecherRepository.save(buchToAdd);
     }
@@ -48,7 +49,7 @@ public class BuecherService {
             throw new NoSuchElementException(id);
         }
         buecherRepository.deleteById(id);
-        Buecher updateBuch = new Buecher(id, buchToChange.title());
+        Buecher updateBuch = new Buecher(id, buchToChange.title(), buchToChange.isChecked());
 
         return buecherRepository.save(updateBuch);
 

@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 public record Buecher(    @Id
                           String id,
-                          String title) {
+                          String title,
+                          boolean isChecked ) {
 
 }
