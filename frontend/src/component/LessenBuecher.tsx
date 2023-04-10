@@ -1,5 +1,5 @@
 import {Buch} from "../model/Buch";
-import LesenBuch from "./LesenBuch";
+import LessenBuch from "./LessenBuch";
 import useAuth from "../hooks/useAuth";
 import Layout from "./Layout";
 
@@ -10,12 +10,12 @@ type BuecherProps = {
 
 }
 
-export default function LesenBuecher (props: BuecherProps) {
+export default function LessenBuecher (props: BuecherProps) {
     const user = useAuth(true);
     const buecher = props.buecher
         .map((buecher) => {
             return (
-                <LesenBuch buch={buecher} key={buecher.id} deleteBuch={props.deleteBuch}/>)
+                <LessenBuch buch={buecher} key={buecher.id} deleteBuch={props.deleteBuch}/>)
         })
     return (
         <Layout>

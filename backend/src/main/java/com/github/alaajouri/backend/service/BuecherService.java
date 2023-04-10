@@ -21,7 +21,7 @@ public class BuecherService {
         return buecherRepository.findAll();
     }
 
-    public Buecher addBuch(Buecher buch) {
+    public Buecher addBook(Buecher buch) {
         Buecher buchToAdd = new Buecher(
                 idGenerator.generateID(),
                 buch.title()

@@ -48,7 +48,7 @@ function ResponsiveAppBar() {
     };
     const handleLesenSubmit = () => {
 
-        navigate('/lesen');
+        navigate('/lessen');
     };
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);

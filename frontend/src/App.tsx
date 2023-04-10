@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Route, Routes} from "react-router-dom";
 import axios from "axios";
 import ProfileUserData from "./component/ProfileUserData";
@@ -10,8 +10,9 @@ import ResponsiveAppBar from "./component/ResponsiveAppBar";
 import Activity from "./component/AktivitaetenGet";
 import Nutrition from "./component/ErnaehrungGet";
 import Sleeptimes from "./component/SchlafenzeitenGet";
-import Lesen from "./component/LesenGet";
-import { Buch } from './model/Buch';
+import Lessen from "./component/LessenGet";
+import Book from "./component/UpdateBuch";
+import {Buch} from "./model/Buch";
 
 axios.interceptors.request.use(function (config) {
     return fetch("/api/csrf").then(() => {
@@ -23,6 +24,21 @@ axios.interceptors.request.use(function (config) {
 });
 
 function App() {
+    const [buch, setBuch] = useState<Buch[]>([])
+
+    function fetchBuecher() {
+        axios.get("/api/book")
+            .then(response => {
+                setBuch(response.data);
+            })
+            .catch(console.error);
+    }
+
+    function updateBuch(buch: Buch) {
+        axios.put("/api/book/" + buch.id, buch)
+            .then(fetchBuecher)
+            .catch(console.error);
+    }
 
     return (
         <div className="App">
@@ -35,7 +51,8 @@ function App() {
                 <Route path={"/activity"} element={<Activity/>}/>
                 <Route path={"/nutrition"} element={<Nutrition/>}/>
                 <Route path={"/sleep-times"} element={<Sleeptimes/>}/>
-                <Route path={"/lesen"} element={<Lesen/>}/>
+                <Route path={"/lessen"} element={<Lessen/>}/>
+                <Route path={"/book/update/:id"} element={<Book buch={buch}  updateBuch={updateBuch} />}/>
             </Routes>
         </div>
     );

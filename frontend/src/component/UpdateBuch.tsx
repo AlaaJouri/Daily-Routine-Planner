@@ -52,12 +52,14 @@ export default function UpdateBuch (props: UpdateBuchProps) {
     }
 
     return (
+        <div className="Profile">
         <form onSubmit={onSave}>
             <div className={"row"}>
                 <input className={"text-input"} type="text" placeholder={buch?.title} value={buchToUpdate.title} onChange={onChangeTitle}/>
             </div>
             <button>Update</button>
         </form>
+        </div>
 
     )
 }

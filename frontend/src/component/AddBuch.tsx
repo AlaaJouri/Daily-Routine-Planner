@@ -2,7 +2,7 @@ import {Buch} from "../model/Buch";
 import {ChangeEvent, useState} from "react";
 
 type AddBuchProps = {
-    addBuch: (buchToAdd: Buch) => void,
+    addbuch: (buchToAdd: Buch) => void,
 }
 
 export default function AddBuch(props: AddBuchProps) {
@@ -21,7 +21,7 @@ export default function AddBuch(props: AddBuchProps) {
     }
 
     function handleClickAddBuch() {
-        props.addBuch(buchToAdd);
+        props.addbuch(buchToAdd);
         setBuchToAdd({
             ...buchToAdd,
             id: "",
@@ -32,7 +32,7 @@ export default function AddBuch(props: AddBuchProps) {
     return (
         <div className={"row"}>
             <input className={"text-input"} value={buchToAdd.title} onChange={handleChangeTitle} placeholder={"title"}/>
-            <button onClick={handleClickAddBuch}>Add your Bookk</button>
+            <button onClick={handleClickAddBuch}>Add</button>
         </div>
     );
 }

@@ -15,27 +15,27 @@ public class BuecherController {
 
     private final BuecherService BuecherService;
 
-    @GetMapping("/Buecher")
+    @GetMapping("/book")
     public List<Buecher> buchList() {
         return BuecherService.listAllBuecher();
     }
 
-    @PostMapping("/Buecher")
-    public Buecher addBuch(@RequestBody Buecher buch) {
-        return BuecherService.addBuch(buch);
+    @PostMapping("/book")
+    public Buecher addBook(@RequestBody Buecher buch) {
+        return BuecherService.addBook(buch);
     }
 
-    @GetMapping("/Buecher/{id}")
+    @GetMapping("/book/{id}")
     Buecher getBuchById(@PathVariable String id) {
         return BuecherService.getBuchByID(id);
     }
 
-    @DeleteMapping("Buecher/{id}")
+    @DeleteMapping("book/{id}")
     void deleteBuch(@PathVariable String id) {
         BuecherService.deleteBuchById(id);
     }
 
-    @PutMapping("/Buecher/{id}")
+    @PutMapping("/book/{id}")
     public Buecher updateSleep(@PathVariable String id, @RequestBody Buecher buchToChange) {
         return BuecherService.updateBuch(id, buchToChange);
     }
