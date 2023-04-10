@@ -7,7 +7,7 @@ export default function AktivitaetenGet() {
 
 
     if (!user) return <p> User not fund</p>;
-    return(
+    return (
         <>
             <AktivitaetenUpdate user={user}/>
         </>

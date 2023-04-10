@@ -1,15 +1,17 @@
 import {Buch} from "../model/Buch";
 import {ChangeEvent, FormEvent, useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import axios from "axios";
+import IconButton from "@mui/material/IconButton";
+import * as React from "react";
 
 
 type UpdateBuchProps = {
-    buch:Buch[]
+    buch: Buch[]
     updateBuch: (buchToUpdate: Buch) => void
 }
 
-export default function UpdateBuch (props: UpdateBuchProps) {
+export default function UpdateBuch(props: UpdateBuchProps) {
 
     const params = useParams()
     const id: string | undefined = params.id
@@ -21,7 +23,7 @@ export default function UpdateBuch (props: UpdateBuchProps) {
 
     const [buch, setBuch] = useState<Buch | undefined>();
 
-    const requestURL: string = "/api/buecher/" + id
+    const requestURL: string = "/api/book/" + id
 
     useEffect(() => {
         axios
@@ -53,12 +55,15 @@ export default function UpdateBuch (props: UpdateBuchProps) {
 
     return (
         <div className="Profile">
-        <form onSubmit={onSave}>
-            <div className={"row"}>
-                <input className={"text-input"} type="text" placeholder={buch?.title} value={buchToUpdate.title} onChange={onChangeTitle}/>
-            </div>
-            <button>Update</button>
-        </form>
+            <form onSubmit={onSave}>
+                <div className={"row"}>
+                    <input className={"text-input"} type="text" placeholder={buch?.title} value={buchToUpdate.title}
+                           onChange={onChangeTitle}/>
+                </div>
+                <button>Update</button>
+                <IconButton><Link className={"link-header"} to={"/lessen"}>Zurück </Link></IconButton>
+
+            </form>
         </div>
 
     )

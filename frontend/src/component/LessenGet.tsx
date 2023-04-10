@@ -33,7 +33,6 @@ export default function LessenGet() {
     }
 
 
-
     useEffect(() => {
         fetchBuecher()
     }, [])
@@ -50,18 +49,18 @@ export default function LessenGet() {
 
 
     if (!user) return <p> User not fund</p>;
-    return(
-   <div className="Profile">
+    return (
+        <div className="Profile">
 
-       <h2>fügen Sie ein Buch ein</h2>
+            <h2>fügen Sie ein Buch ein</h2>
 
-          <AddBuch addbuch={addBuch}/>
-   <br/>
-       <br/>
-       <br/>
-       <Divider />
+            <AddBuch addbuch={addBuch}/>
+            <br/>
+            <br/>
+            <br/>
+            <Divider/>
 
-<LessenBuecher buecher={buch} deleteBuch={deleteBuch}/>
+            <LessenBuecher buecher={buch} deleteBuch={deleteBuch}/>
 
 
         </div>

@@ -11,7 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FormGroup from '@mui/material/FormGroup';
 
 import * as React from 'react';
-import { pink } from '@mui/material/colors';
+import {pink} from '@mui/material/colors';
 
 
 type BuchProps = {
@@ -19,7 +19,7 @@ type BuchProps = {
     deleteBuch: (id: string) => void
 }
 
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+const label = {inputProps: {'aria-label': 'Checkbox demo'}};
 export default function LessenBuch(props: BuchProps) {
 
 
@@ -32,7 +32,7 @@ export default function LessenBuch(props: BuchProps) {
         <Stack direction="row" spacing={1}>
             <FormControlLabel
                 label={props.buch.title}
-                control={<Checkbox  sx={{
+                control={<Checkbox sx={{
                     color: pink[100],
                     '&.Mui-checked': {
                         color: pink[100],
@@ -41,15 +41,13 @@ export default function LessenBuch(props: BuchProps) {
             />
 
 
-
-
-
-
-            <IconButton onClick={handleDelete}  aria-label="delete">
-                <DeleteIcon />
+            <IconButton onClick={handleDelete} aria-label="delete">
+                <DeleteIcon/>
             </IconButton>
 
-            <IconButton  className={"buch-update"}><Link className={"link-header"} to={"/book/update/"+ props.buch.id}><EditIcon /> </Link></IconButton>
+            <IconButton className={"buch-update"}><Link className={"link-header"}
+                                                        to={"/book/update/" + props.buch.id}><EditIcon/>
+            </Link></IconButton>
 
         </Stack>
 

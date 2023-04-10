@@ -7,7 +7,7 @@ export default function ProfileUserData() {
 
 
     if (!user) return <p> User not fund</p>;
-    return(
+    return (
         <>
             <Schlafenzeitenupdate user={user}/>
         </>

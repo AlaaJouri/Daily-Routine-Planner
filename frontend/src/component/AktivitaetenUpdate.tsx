@@ -10,9 +10,25 @@ type PropsAktivitaeten = { user: User }
 
 export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
 
-    const navigate = useNavigate();
-
+    const navigate2 = useNavigate();
+    const gender = props.user.gender;
+    const weight = props.user.weight;
+    const weightGoal = props.user.weightGoal;
+    const sleepTimeTarget = props.user.sleepTimeTarget;
+    const trainingTimeGoal = props.user.trainingTimeGoal;
+    const stepTarget = props.user.stepTarget;
+    const caloriesBurnedTarget = props.user.caloriesBurnedTarget;
+    const username = props.user.username;
+    const password = props.user.password;
+    const name = props.user.name;
+    const breakfast = props.user.breakfast;
+    const lunch = props.user.lunch;
+    const dinner = props.user.dinner;
+    const snacks = props.user.snacks;
     const id = props.user.id;
+
+    const standup = props.user.standup;
+    const sleep = props.user.sleep;
 
     const [steps, setSteps] = useState(props.user.steps);
     const [burnedCalories, setBurnedCalories] = useState(props.user.burnedCalories);
@@ -22,7 +38,7 @@ export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
         axios
             .put("/api/user/" + props.user.id, updatedUserData)
             .then(() => {
-                navigate("/activity");
+                navigate2("/activity");
             })
             .catch((err) => {
                 alert(err.response.data.error);
@@ -33,10 +49,25 @@ export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
         try {
             const updatedUserDataAktivity = {
                 id,
+                username,
+                password,
+                name,
+                gender,
+                weight,
+                weightGoal,
+                sleepTimeTarget,
+                trainingTimeGoal,
+                stepTarget,
+                caloriesBurnedTarget,
                 steps,
                 burnedCalories,
-                trainingTimes
-
+                trainingTimes,
+                breakfast,
+                lunch,
+                dinner,
+                snacks,
+                standup,
+                sleep
 
             };
             await updateAktivity(updatedUserDataAktivity);
