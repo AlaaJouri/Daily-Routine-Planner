@@ -101,7 +101,7 @@ export default function ErnaehrungUpdate(props: Props) {
             </div>
             <br/>
             <br/>
-            <form id="survey-form" onSubmit={handleSave}>
+            <form onSubmit={handleSave}>
                 <Box sx={{minWidth: 120}}>
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">Fruhstück</InputLabel>

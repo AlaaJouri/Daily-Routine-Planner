@@ -120,7 +120,7 @@ export default function Schlafenzeitenupdate(props: Props) {
                 <h1 id="title" className="title">Schlaffzeiten</h1>
                 <hr/>
             </div>
-            <form id="survey-form" className="container" onSubmit={handleSaveSleepTime}>
+            <form  onSubmit={handleSaveSleepTime}>
 
 
                 <Timeline position="alternate">

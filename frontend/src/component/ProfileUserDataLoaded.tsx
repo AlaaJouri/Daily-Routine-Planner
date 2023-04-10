@@ -71,7 +71,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                 <hr/>
             </div>
 
-            <form  className="container" onSubmit={handleSave}>
+            <form   onSubmit={handleSave}>
                 <Box
                     component="form"
                     sx={{

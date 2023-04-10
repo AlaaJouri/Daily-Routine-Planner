@@ -83,7 +83,7 @@ export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
                 <h1 id="title" className="title">Aktivitäten</h1>
                 <hr/>
             </div>
-            <form id="survey-form" className="container" onSubmit={handleSave}>
+            <form onSubmit={handleSave}>
 
                 <Box
                     component="form"
