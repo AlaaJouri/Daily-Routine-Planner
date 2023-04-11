@@ -180,7 +180,7 @@ export default function Schlafenzeitenupdate(props: Props) {
                             </TimelineDot>
                             <TimelineConnector/>
                         </TimelineSeparator>
-                        <TimelineContent sx={{py: '12px', px: 3}}>
+                        <TimelineContent sx={{py: '12px', px: 2}}>
                             <Typography variant="h6" component="span">
                                 Schlaffen
                             </Typography>
