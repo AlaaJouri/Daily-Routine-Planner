@@ -80,7 +80,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                     noValidate
                     autoComplete="off"
                 >
-                    <TextField id="outlined-basic" label="Schritten" variant="outlined" value={name}
+                    <TextField id="outlined-basic" label="Name" variant="outlined" value={name}
                                onChange={(e) => setName(e.target.value)}/>
 
                     <TextField id="outlined-basic" label="Geschlecht" variant="outlined" value={gender}
