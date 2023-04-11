@@ -120,7 +120,7 @@ export default function ErnaehrungUpdate(props: Props) {
                             value={breakfast}
                             label="breakfast"
                             onChange={(e) => setBreakfast(e.target.value)}
-                            variant="filled"
+                            variant="outlined"
                         >
                             <MenuItem value={10}>Gesund</MenuItem>
                             <MenuItem value={20}>Ungesund</MenuItem>
@@ -132,20 +132,25 @@ export default function ErnaehrungUpdate(props: Props) {
                         <InputLabel id="demo-simple-select-label">Mittagessen</InputLabel>
                         <Select
                             sx={{
-
-                                color: "black", // ändert die Schriftfarbe
-                                display: 'flex',
                                 '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                     borderColor: 'black',
-
-                                }
+                                },
+                                '&.Mui-focused .MuiSelect-icon': {
+                                    color: 'black',
+                                },
+                                '&.MuiInput-underline:after': {
+                                    borderBottomColor: 'black',
+                                },
+                                '&.MuiInputBase-root': {
+                                    color: 'black',
+                                },
                             }}
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={lunch}
                             label="lunch"
                             onChange={(e) => setLunch(e.target.value)}
-                            variant="filled"
+                            variant="outlined"
                         >
                             <MenuItem value={10}>Gesund</MenuItem>
                             <MenuItem value={20}>Ungesund</MenuItem>
@@ -168,7 +173,7 @@ export default function ErnaehrungUpdate(props: Props) {
                             value={dinner}
                             label="Dinner"
                             onChange={(e) => setDinner(e.target.value)}
-                            variant="filled"
+                            variant="outlined"
                         >
                             <MenuItem value={10}>Gesund</MenuItem>
                             <MenuItem value={20}>Ungesund</MenuItem>
@@ -192,7 +197,7 @@ export default function ErnaehrungUpdate(props: Props) {
                             value={snacks}
                             label="Snachs"
                             onChange={(e) => setSnacks(e.target.value)}
-                            variant="filled"
+                            variant="outlined"
                         >
                             <MenuItem value={10}>Gesund</MenuItem>
                             <MenuItem value={20}>Ungesund</MenuItem>

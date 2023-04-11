@@ -81,24 +81,80 @@ export default function ProfileUserDataLoaded(props: Props) {
                     autoComplete="off"
                 >
                     <TextField id="outlined-basic" label="Name" variant="outlined" value={name}
-                               onChange={(e) => setName(e.target.value)}/>
+                               onChange={(e) => setName(e.target.value)} sx={{
+                        '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
+                        },
+                        '& .MuiInputLabel-outlined.Mui-focused': {
+                            color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
+                        },
+                    }}/>
 
                     <TextField id="outlined-basic" label="Geschlecht" variant="outlined" value={gender}
-                               onChange={(e) => setGender(e.target.value)}/>
+                               onChange={(e) => setGender(e.target.value)} sx={{
+                        '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
+                        },
+                        '& .MuiInputLabel-outlined.Mui-focused': {
+                            color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
+                        },
+                    }}/>
                     <TextField id="outlined-basic" label="Gewicht" variant="outlined" value={weight}
-                               onChange={(e) => setWeight(e.target.value)}/>
+                               onChange={(e) => setWeight(e.target.value)} sx={{
+                        '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
+                        },
+                        '& .MuiInputLabel-outlined.Mui-focused': {
+                            color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
+                        },
+                    }}/>
                     <TextField id="outlined-basic" label="Zielgewicht" variant="outlined" value={weightGoal}
-                               onChange={(e) => setWeightGoal(parseInt(e.target.value))}/>
+                               onChange={(e) => setWeightGoal(parseInt(e.target.value))} sx={{
+                        '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
+                        },
+                        '& .MuiInputLabel-outlined.Mui-focused': {
+                            color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
+                        },
+                    }}/>
                     <TextField id="outlined-basic" label="SchlafzeitZiel" value={sleepTimeTarget}
-                               onChange={(e) => setSleepTimeTarget(parseInt(e.target.value))}/>
+                               onChange={(e) => setSleepTimeTarget(parseInt(e.target.value))} sx={{
+                        '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
+                        },
+                        '& .MuiInputLabel-outlined.Mui-focused': {
+                            color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
+                        },
+                    }}/>
                     <TextField id="outlined-basic" label="TrainingszeitZiel" variant="outlined" value={trainingTimeGoal}
-                               onChange={(e) => setTrainingTimeGoal(parseInt(e.target.value))}/>
+                               onChange={(e) => setTrainingTimeGoal(parseInt(e.target.value))} sx={{
+                        '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
+                        },
+                        '& .MuiInputLabel-outlined.Mui-focused': {
+                            color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
+                        },
+                    }}/>
                     <TextField id="outlined-basic" label="SchrittZiel" variant="outlined" value={stepTarget}
-                               onChange={(e) => setStepTarget(parseInt(e.target.value))}/>
+                               onChange={(e) => setStepTarget(parseInt(e.target.value))} sx={{
+                        '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
+                        },
+                        '& .MuiInputLabel-outlined.Mui-focused': {
+                            color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
+                        },
+                    }}/>
                     <TextField id="outlined-basic" label="KalorienverbrauchZiel" variant="outlined"
                                value={caloriesBurnedTarget}
                                placeholder={"caloriesBurnedTarget"}
-                               onChange={(e) => setCaloriesBurnedTarget(parseInt(e.target.value))}/>
+                               onChange={(e) => setCaloriesBurnedTarget(parseInt(e.target.value))} sx={{
+                        '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
+                        },
+                        '& .MuiInputLabel-outlined.Mui-focused': {
+                            color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
+                        },
+                    }}/>
                 </Box>
                 <br/>
 

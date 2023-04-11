@@ -138,6 +138,14 @@ export default function Schlafenzeitenupdate(props: Props) {
                                 variant="outlined"
                                 value={standup}
                                 onChange={handleTime2}
+                                sx={{
+                                    '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
+                                    },
+                                    '& .MuiInputLabel-outlined.Mui-focused': {
+                                        color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
+                                    },
+                                }}
                             />
                         </TimelineOppositeContent>
                         <TimelineSeparator>
@@ -170,6 +178,14 @@ export default function Schlafenzeitenupdate(props: Props) {
                                 variant="outlined"
                                 value={sleep}
                                 onChange={handleTime1}
+                                sx={{
+                                    '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
+                                    },
+                                    '& .MuiInputLabel-outlined.Mui-focused': {
+                                        color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
+                                    },
+                                }}
                             />
 
                         </TimelineOppositeContent>
