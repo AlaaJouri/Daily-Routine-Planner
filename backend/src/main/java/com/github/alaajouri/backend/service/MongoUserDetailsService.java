@@ -29,7 +29,6 @@ public class MongoUserDetailsService implements UserDetailsService {
     private final MongoUserRepository mongoUserRepository;
     private final PasswordEncoder passwordEncoder;
 
-
     public MongoUser getUserDataByID(String id) {
         return mongoUserRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }

@@ -33,7 +33,7 @@ class BuecherControllerTest {
     @BeforeEach
     void setUp() {
         buch1 = new Buecher("1", "Buch1", true);
-        buecherDTO = new BuecherDTO( "Buch1", true);
+        buecherDTO = new BuecherDTO("Buch1", true);
         buch2 = new Buecher("2", "Buch2", true);
     }
 
@@ -83,22 +83,23 @@ class BuecherControllerTest {
     void checkAddBuch() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/book").with(csrf()).contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                {                     
-                                "title": "Buch1",
-                         "isChecked": true
-                                }
-                                """))
+                                       {                     
+                                       "title": "Buch1",
+                                "isChecked": true
+                                       }
+                                       """))
                 .andExpect(status().isOk())
                 .andExpect(content().json(
                         """
-                                {                       
-                                 "title": "Buch1",
-                         "isChecked": true
-                                }
-                                """)
+                                       {                       
+                                        "title": "Buch1",
+                                "isChecked": true
+                                       }
+                                       """)
                 )
                 .andExpect(jsonPath("$.id").isNotEmpty());
     }
+
     @Test
     @DirtiesContext
     @WithMockUser(username = "user", password = "password")
@@ -108,11 +109,11 @@ class BuecherControllerTest {
                         .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                {
-                                "id":"1",  "title": "Buch1",
-                         "isChecked": true
-                                } 
-                                """))
+                                       {
+                                       "id":"1",  "title": "Buch1",
+                                "isChecked": true
+                                       } 
+                                       """))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                         {

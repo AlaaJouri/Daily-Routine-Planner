@@ -10,9 +10,8 @@ export default function AddBuch(props: AddBuchProps) {
     const [buchToAdd, setBuchToAdd] = useState<Buch>({
         id: "",
         title: "",
-        isChecked:false
+        isChecked: false
     });
-
 
     function handleChangeTitle(event: ChangeEvent<HTMLInputElement>) {
         setBuchToAdd({

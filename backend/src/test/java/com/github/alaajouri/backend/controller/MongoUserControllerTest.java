@@ -40,12 +40,13 @@ class MongoUserControllerTest {
     MongoUser mongoUser;
     MongoUserWithoutIDDTO mongoUserWithoutIDDTO;
     LocalTime now;
+
     @BeforeEach
     void setUp() {
         now = LocalTime.now();
-        mongoUser = new MongoUser("1", "user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500, 0, 0, 0, "", "", "", "",LocalTime.of(6,0),LocalTime.of(22,0));
+        mongoUser = new MongoUser("1", "user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500, 0, 0, 0, "", "", "", "", LocalTime.of(6, 0), LocalTime.of(22, 0));
 
-        mongoUserWithoutIDDTO = new MongoUserWithoutIDDTO("user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500, 0, 0, 0, "", "", "", "",LocalTime.of(6,0),LocalTime.of(22,0));
+        mongoUserWithoutIDDTO = new MongoUserWithoutIDDTO("user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500, 0, 0, 0, "", "", "", "", LocalTime.of(6, 0), LocalTime.of(22, 0));
 
     }
 

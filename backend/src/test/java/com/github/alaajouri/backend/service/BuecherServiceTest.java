@@ -73,8 +73,6 @@ class BuecherControllerTest {
         verify(buecherRepository).findById("1");
     }
 
-
-
     @Test
     void checkUpdateBuch() {
         //GIVEN

@@ -105,14 +105,15 @@ export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
                                }}/>
 
                     <TextField id="outlined-basic" label="vebrannten Kaloriern" variant="outlined"
-                               value={burnedCalories} onChange={(e) => setBurnedCalories(parseInt(e.target.value))}sx={{
-                        '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
-                            borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
-                        },
-                        '& .MuiInputLabel-outlined.Mui-focused': {
-                            color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
-                        },
-                    }}/>
+                               value={burnedCalories} onChange={(e) => setBurnedCalories(parseInt(e.target.value))}
+                               sx={{
+                                   '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                       borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
+                                   },
+                                   '& .MuiInputLabel-outlined.Mui-focused': {
+                                       color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
+                                   },
+                               }}/>
 
                     <TextField id="outlined-basic" label="Trainingszeiten" variant="outlined" value={trainingTimes}
                                onChange={(e) => setTrainingTimes(parseInt(e.target.value))} sx={{
