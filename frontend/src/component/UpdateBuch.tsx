@@ -53,6 +53,5 @@ export default function UpdateBuch(props: UpdateBuchProps) {
 
             </form>
         </div>
-
     )
 }
