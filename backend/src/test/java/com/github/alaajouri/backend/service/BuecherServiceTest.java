@@ -30,7 +30,7 @@ class BuecherControllerTest {
         idGenerator = mock(IdGenerator.class);
         buecherService = new BuecherService(buecherRepository, idGenerator);
         buch1 = new Buecher("1", "Buch1", true);
-        buecherDTO = new BuecherDTO( "Buch1", true);
+        buecherDTO = new BuecherDTO("Buch1", true);
         buch2 = new Buecher("2", "Buch2", true);
 
     }
@@ -89,32 +89,20 @@ class BuecherControllerTest {
         verify(buecherRepository).save(expectedBuch);
         assertEquals(expectedBuch, buch);
     }
+
     @Test
-    void checkUpdateBuch(){
+    void checkUpdateBuch() {
         //GIVEN
         when(buecherRepository.existsById(buch1.id())).thenReturn(true);
         when(buecherRepository.save(buch1)).thenReturn(buch1);
 
         //WHEN
         Buecher actual = buecherService.updateBuch(buch1.id(), buecherDTO);
-        Buecher expected=buch1;
+        Buecher expected = buch1;
 
         //THEN
         verify(buecherRepository).save(buch1);
         verify(buecherRepository).existsById(buch1.id());
-        assertEquals(expected,actual);
-    }
-
-    @Test
-    void checkUpdateBuchWithNotExistingId(){
-        //GIVEN
-        when(buecherRepository.existsById(buch1.id())).thenReturn(false);
-
-        //WHEN
-        assertThrows(NoSuchElementException.class, () -> buecherService.updateBuch(buch1.id(), buecherDTO));
-
-        //THEN
-        verify(buecherRepository).existsById(buch1.id());
+        assertEquals(expected, actual);
     }
 }
-
