@@ -41,7 +41,6 @@ export default function UpdateBuch(props: UpdateBuchProps) {
             title: ""
         })
     }
-
     return (
         <div className="Profile">
             <form  onSubmit={onSave}>
