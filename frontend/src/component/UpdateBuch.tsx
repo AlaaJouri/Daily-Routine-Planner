@@ -21,7 +21,7 @@ export default function UpdateBuch(props: UpdateBuchProps) {
         isChecked:false
     });
 
-    const [buch, setBuch] = useState<Buch | undefined>();
+    const [buch] = useState<Buch | undefined>();
 
 
     function onChangeTitle(event: ChangeEvent<HTMLInputElement>) {

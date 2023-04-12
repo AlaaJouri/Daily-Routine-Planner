@@ -3,7 +3,6 @@ import LessenBuch from "./LessenBuch";
 import useAuth from "../hooks/useAuth";
 import Layout from "./Layout";
 import * as React from "react";
-import {FormEvent} from "react";
 
 type BuecherProps = {
 

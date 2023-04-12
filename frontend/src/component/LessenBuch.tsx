@@ -10,8 +10,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import * as React from 'react';
 import {pink} from '@mui/material/colors';
-import {FormEvent} from "react";
-
 
 type BuchProps = {
     buch: Buch
