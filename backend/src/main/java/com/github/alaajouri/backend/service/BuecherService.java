@@ -1,5 +1,6 @@
 package com.github.alaajouri.backend.service;
 
+import com.github.alaajouri.backend.model.BuecherDTO;
 import com.github.alaajouri.backend.repository.BuecherRepository;
 import lombok.AllArgsConstructor;
 import com.github.alaajouri.backend.model.Buecher;
@@ -21,7 +22,7 @@ public class BuecherService {
         return buecherRepository.findAll();
     }
 
-    public Buecher addBook(Buecher buch) {
+    public Buecher addBuch(Buecher buch) {
         Buecher buchToAdd = new Buecher(
                 idGenerator.generateID(),
                 buch.title(),
@@ -44,7 +45,7 @@ public class BuecherService {
         }
     }
 
-    public Buecher updateBuch(String id, Buecher buchToChange) {
+    public Buecher updateBuch(String id, BuecherDTO buchToChange) {
         if (!buecherRepository.existsById(id)) {
             throw new NoSuchElementException(id);
         }

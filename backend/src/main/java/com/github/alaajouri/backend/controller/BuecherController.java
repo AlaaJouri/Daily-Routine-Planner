@@ -1,6 +1,7 @@
 package com.github.alaajouri.backend.controller;
 
 import com.github.alaajouri.backend.model.Buecher;
+import com.github.alaajouri.backend.model.BuecherDTO;
 import com.github.alaajouri.backend.service.BuecherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +22,8 @@ public class BuecherController {
     }
 
     @PostMapping("/book")
-    public Buecher addBook(@RequestBody Buecher buch) {
-        return buecherService.addBook(buch);
+    public Buecher addBuch(@RequestBody Buecher buch) {
+        return buecherService.addBuch(buch);
     }
 
     @GetMapping("/book/{id}")
@@ -36,7 +37,7 @@ public class BuecherController {
     }
 
     @PutMapping("/book/{id}")
-    public Buecher updateSleep(@PathVariable String id, @RequestBody Buecher buchToChange) {
+    public Buecher updateSleep(@PathVariable String id, @RequestBody BuecherDTO buchToChange) {
         return buecherService.updateBuch(id, buchToChange);
     }
 
