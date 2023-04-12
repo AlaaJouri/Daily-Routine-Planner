@@ -22,7 +22,7 @@ public class BuecherService {
         return buecherRepository.findAll();
     }
 
-    public Buecher addBuch(Buecher buch) {
+    public Buecher addBuch(BuecherDTO buch) {
         Buecher buchToAdd = new Buecher(
                 idGenerator.generateID(),
                 buch.title(),

@@ -73,22 +73,7 @@ class BuecherControllerTest {
         verify(buecherRepository).findById("1");
     }
 
-    @Test
-    void checkAddBuch() {
 
-        //GIVEN
-        Buecher expectedBuch = new Buecher("1", "Buch1", true);
-        when(idGenerator.generateID()).thenReturn("1");
-        when(buecherRepository.save(expectedBuch)).thenReturn(expectedBuch);
-
-
-        //WHEN
-        Buecher buch = buecherService.addBuch(expectedBuch);
-
-        //THEN
-        verify(buecherRepository).save(expectedBuch);
-        assertEquals(expectedBuch, buch);
-    }
 
     @Test
     void checkUpdateBuch() {

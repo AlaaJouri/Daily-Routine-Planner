@@ -22,7 +22,7 @@ public class BuecherController {
     }
 
     @PostMapping("/book")
-    public Buecher addBuch(@RequestBody Buecher buch) {
+    public Buecher addBuch(@RequestBody BuecherDTO buch) {
         return buecherService.addBuch(buch);
     }
 
