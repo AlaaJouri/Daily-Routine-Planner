@@ -9,7 +9,7 @@ import Logout from "./component/Logout";
 import ResponsiveAppBar from "./component/ResponsiveAppBar";
 import Activity from "./component/AktivitaetenGet";
 import Nutrition from "./component/ErnaehrungGet";
-import Sleeptimes from "./component/SchlafenzeitenGet";
+import Sleeptimes from "./component/SchlafzeitenGet";
 import Lessen from "./component/LessenGet";
 import Book from "./component/UpdateBuch";
 import {Buch} from "./model/Buch";
