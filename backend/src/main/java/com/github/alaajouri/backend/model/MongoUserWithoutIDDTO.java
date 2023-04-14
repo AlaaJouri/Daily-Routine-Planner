@@ -21,7 +21,8 @@ public record MongoUserWithoutIDDTO(String username,
                                     String dinner,
                                     String snacks,
                                     LocalTime standup,
-                                    LocalTime sleep
+                                    LocalTime sleep,
+                                    int water
 
 ) {
 }

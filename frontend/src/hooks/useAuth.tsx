@@ -23,7 +23,8 @@ export type User = {
     dinner: string,
     snacks: string
      standup: string,
-     sleep:string
+     sleep:string,
+    water:number
 
 }
 

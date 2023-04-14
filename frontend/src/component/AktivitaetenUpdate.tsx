@@ -29,7 +29,7 @@ export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
 
     const standup = props.user.standup;
     const sleep = props.user.sleep;
-
+    const water = props.user.water;
     const [steps, setSteps] = useState(props.user.steps);
     const [burnedCalories, setBurnedCalories] = useState(props.user.burnedCalories);
     const [trainingTimes, setTrainingTimes] = useState(props.user.trainingTimes);
@@ -67,7 +67,8 @@ export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
                 dinner,
                 snacks,
                 standup,
-                sleep
+                sleep,
+                water
 
             };
             await updateAktivity(updatedUserDataAktivity);

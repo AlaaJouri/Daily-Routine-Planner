@@ -44,9 +44,9 @@ class MongoUserControllerTest {
     @BeforeEach
     void setUp() {
         now = LocalTime.now();
-        mongoUser = new MongoUser("1", "user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500, 0, 0, 0, "", "", "", "", LocalTime.of(6, 0), LocalTime.of(22, 0));
+        mongoUser = new MongoUser("1", "user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500, 0, 0, 0, "", "", "", "", LocalTime.of(6, 0), LocalTime.of(22, 0),0);
 
-        mongoUserWithoutIDDTO = new MongoUserWithoutIDDTO("user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500, 0, 0, 0, "", "", "", "", LocalTime.of(6, 0), LocalTime.of(22, 0));
+        mongoUserWithoutIDDTO = new MongoUserWithoutIDDTO("user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500, 0, 0, 0, "", "", "", "", LocalTime.of(6, 0), LocalTime.of(22, 0),0);
 
     }
 
@@ -165,37 +165,7 @@ class MongoUserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("OK"));
     }
-/*
-    @Test
-    @DirtiesContext
-    @WithMockUser(username = "user", password = "password")
-    void testUpdateUserData() throws Exception {
-        LocalTime now= LocalTime.now();
-        // Prepare test data
-        String id = "1";
-        mongoUserRepository.save(mongoUser);
-        MongoUserWithoutIDDTO userData = new MongoUserWithoutIDDTO("testuser", "password", "ROLE_USER",
-                "Test User", "M", "70", 2000, 8, 60, 10000, 500, 0, 0, 0, "", "", "", "",LocalTime.of(6,0),LocalTime.of(22,0));
-        // Perform request and verify response
-        mockMvc.perform(put("/api/user/" + id)
-                        .contentType(MediaType.APPLICATION_JSON).with(csrf())
-                        .content(new ObjectMapper().writeValueAsString(userData)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.username").value(userData.username()))
-                .andExpect(jsonPath("$.name").value(userData.name()))
-                .andExpect(jsonPath("$.gender").value(userData.gender()))
-                .andExpect(jsonPath("$.weight").value(userData.weight()))
-                .andExpect(jsonPath("$.weightGoal").value(userData.weightGoal()))
-                .andExpect(jsonPath("$.sleepTimeTarget").value(userData.sleepTimeTarget()))
-                .andExpect(jsonPath("$.trainingTimeGoal").value(userData.trainingTimeGoal()))
-                .andExpect(jsonPath("$.stepTarget").value(userData.stepTarget()))
-                .andExpect(jsonPath("$.caloriesBurnedTarget").value(userData.caloriesBurnedTarget()))
-                .andExpect(jsonPath("$.breakfast").value(userData.breakfast()))
-                .andExpect(jsonPath("$.lunch").value(userData.lunch()))
-                .andExpect(jsonPath("$.dinner").value(userData.dinner()))
-                .andExpect(jsonPath("$.snacks").value(userData.snacks()))
-        ;
-    }*/
+
 
 }
 

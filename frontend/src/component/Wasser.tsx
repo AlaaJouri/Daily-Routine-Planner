@@ -1,5 +1,11 @@
-import { useState } from "react";
+import {FormEvent, useState} from "react";
 import "./Wasser.css";
+import * as React from "react";
+import {User} from "../hooks/useAuth";
+import {useNavigate} from "react-router-dom";
+import axios from "axios";
+
+type Props = { user: User }
 
 interface CupProps {
     amount: number;
@@ -7,7 +13,8 @@ interface CupProps {
     onClick: (index: number) => void;
 }
 
-function Wasser({ amount, index, onClick }: CupProps) {
+function Wasser({amount, index, onClick}: CupProps) {
+
     const isFull = amount > 0;
 
     function handleClick() {
@@ -25,7 +32,77 @@ function Wasser({ amount, index, onClick }: CupProps) {
     );
 }
 
-export default function DrinkWater() {
+export default function DrinkWater(props: Props) {
+    const navigate2 = useNavigate();
+    const gender = props.user.gender;
+    const weight = props.user.weight;
+    const weightGoal = props.user.weightGoal;
+    const sleepTimeTarget = props.user.sleepTimeTarget;
+    const trainingTimeGoal = props.user.trainingTimeGoal;
+    const stepTarget = props.user.stepTarget;
+    const caloriesBurnedTarget = props.user.caloriesBurnedTarget;
+    const username = props.user.username;
+    const password = props.user.password;
+    const name = props.user.name;
+    const breakfast = props.user.breakfast;
+    const lunch = props.user.lunch;
+    const dinner = props.user.dinner;
+    const snacks = props.user.snacks;
+    const id = props.user.id;
+
+    const standup = props.user.standup;
+    const sleep = props.user.sleep;
+    const [water, setWater] = useState(props.user.water);
+
+    const steps = props.user.steps;
+    const burnedCalories = props.user.burnedCalories;
+    const trainingTimes = props.user.trainingTimes;
+
+
+    const updateWater = async (updatedUserData: any) => {
+        axios
+            .put("/api/user/" + props.user.id, updatedUserData)
+            .then(() => {
+                navigate2("/water");
+            })
+            .catch((err) => {
+                alert(err.response.data.error);
+            });
+    }
+    const handleSave = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            const updatedUserDataWater = {
+                id,
+                username,
+                password,
+                name,
+                gender,
+                weight,
+                weightGoal,
+                sleepTimeTarget,
+                trainingTimeGoal,
+                stepTarget,
+                caloriesBurnedTarget,
+                steps,
+                burnedCalories,
+                trainingTimes,
+                breakfast,
+                lunch,
+                dinner,
+                snacks,
+                standup,
+                sleep,
+                water
+
+            };
+            await updateWater(updatedUserDataWater);
+            // show success message or navigate to a different page
+        } catch (error) {
+            console.error('Failed to update user data', error);
+            // show error message to the user
+        }
+    };
     const [cups, setCups] = useState<number[]>([0, 0, 0, 0, 0, 0, 0, 0]);
     const totalAmount = cups.reduce((acc, cur) => acc + cur, 0);
     const targetAmount = 2000;
@@ -34,33 +111,38 @@ export default function DrinkWater() {
         const newCups = [...cups];
         newCups[index] = newCups[index] === 0 ? 250 : 0;
         setCups(newCups);
-
-        console.log(totalAmount +250 )
+        setWater(totalAmount + 250)
+        console.log(totalAmount + 250)
     }
 
     return (
         <div className="Profile">
-            <h1>Wasser trinken</h1>
-            <h2>Ziel: 2 Liter / Tag</h2>
-            <div id="totalJar">
-                <div id="total">{`${((totalAmount / targetAmount) * 100) / 1000}L left`}</div>
-                <div
-                    id="percentage"
-                    style={{ height: `${(totalAmount / targetAmount) * 100}%` }}
-                ></div>
-            </div>
-            <h2>Wie viele hast du heute getrunken</h2>
-            <div className="cups">
-                {cups.map((amount, index) => (
-                    <Wasser
-                        key={index}
-                        amount={amount}
-                        index={index}
-                        onClick={handleCupClick}
+            <h1 id="title" className="title">Wasser trinken</h1>
+            <p id="description" className="title">Ziel: 2 Liter / Tag</p>
+            <form onSubmit={handleSave}>
+                <div id="totalJar">
+                    <div id="total">{`${((totalAmount / targetAmount) * 100) / 1000}L left`}</div>
+                    <div
+                        id="percentage"
+                        style={{height: `${(totalAmount / targetAmount) * 100}%`}}
+                    ></div>
+                </div>
+                <h2 className="title">Wie viele hast du heute getrunken</h2>
+                <div className="cups">
+                    {cups.map((amount, index) => (
+                        <Wasser
+                            key={index}
+                            amount={amount}
+                            index={index}
+                            onClick={handleCupClick}
 
-                    />
-                ))}
-            </div>
+
+                        />
+                    ))}
+                </div>
+                <button className="item8"> Speichern</button>
+
+            </form>
         </div>
     );
 }

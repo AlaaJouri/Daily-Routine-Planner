@@ -17,29 +17,36 @@ export default function Home(props: Props) {
 
     const steps = props.user.steps;
     const stepTarget = props.user.stepTarget;
-    const Ergbnis = (stepTarget / steps) * 100;
+    const resultSteps = ((stepTarget / steps) * 100);
 
     const trainingTimes = props.user.trainingTimes;
     const trainingTimeGoal = props.user.trainingTimeGoal;
-
+    const resultTrainingTimes = ((trainingTimeGoal / trainingTimes) * 100);
 
     const burnedCalories = props.user.burnedCalories;
     const caloriesBurnedTarget = props.user.caloriesBurnedTarget;
+    const resultBurnedCalories = ((caloriesBurnedTarget / burnedCalories) * 100);
 
 
     const weight = props.user.weight;
     const weightGoal = props.user.weightGoal;
+    const resultWeight = ((weightGoal / parseInt(weight)) * 100);
+
 
     const standup = props.user.standup;
     const sleep = props.user.sleep;
     const sleepTimeTarget = props.user.sleepTimeTarget;
+    const resultsleepTime = (sleepTimeTarget / (parseInt(sleep) - parseInt(standup)) * 100);
 
 
     const lunch = props.user.lunch;
     const dinner = props.user.dinner;
     const snacks = props.user.snacks;
     const breakfast = props.user.breakfast;
-    
+    const totalSum = (parseInt(lunch) + parseInt(dinner) + parseInt(snacks) + parseInt(breakfast));
+    const summe = (totalSum == 0 ? 1 : totalSum);
+    const resultNutrition = ((80 / summe) * 100);
+
 
     function fetchBuecher() {
         axios.get("/api/book")
@@ -48,6 +55,7 @@ export default function Home(props: Props) {
             })
             .catch(console.error);
     }
+
     useEffect(() => {
         fetchUser();
     }, []);
@@ -64,6 +72,7 @@ export default function Home(props: Props) {
                 alert(err.response.data.error);
             });
     }
+
     const requestURL: string = "/api/user/" + id
 
 
@@ -82,8 +91,12 @@ export default function Home(props: Props) {
 
 
         <>
-            <p>{Ergbnis}</p>
-
+            <p>{resultNutrition}</p>
+            <p>{resultSteps}</p>
+            <p>{resultsleepTime}</p>
+            <p>{resultWeight}</p>
+            <p>{resultTrainingTimes}</p>
+            <p>{resultBurnedCalories}</p>
         </>
     )
 }

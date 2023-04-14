@@ -64,6 +64,7 @@ export default function Schlafzeitenupdate(props: Props) {
     const trainingTimes = props.user.trainingTimes;
     const breakfast = props.user.breakfast;
     const weight = props.user.weight;
+    const water = props.user.water;
 
     const [standup, setStandup] = useState(props.user.standup);
     const [sleep, setSleep] = useState(props.user.sleep);
@@ -101,7 +102,8 @@ export default function Schlafzeitenupdate(props: Props) {
                 dinner,
                 snacks,
                 standup,
-                sleep
+                sleep,
+                water
 
             };
             await updateUserSleepTime(updatedUserData);

@@ -44,6 +44,7 @@ export default function ErnaehrungUpdate(props: Props) {
     const name = props.user.name;
     const steps = props.user.steps;
     const burnedCalories = props.user.burnedCalories;
+    const water = props.user.water;
     const trainingTimes = props.user.trainingTimes;
     const [breakfast, setBreakfast] = useState(props.user.breakfast);
     const [lunch, setLunch] = useState(props.user.lunch);
@@ -81,7 +82,8 @@ export default function ErnaehrungUpdate(props: Props) {
                 breakfast,
                 lunch,
                 dinner,
-                snacks
+                snacks,
+                water
 
 
             };
@@ -122,7 +124,7 @@ export default function ErnaehrungUpdate(props: Props) {
                             onChange={(e) => setBreakfast(e.target.value)}
                             variant="outlined"
                         >
-                            <MenuItem value={10}>Gesund</MenuItem>
+                            <MenuItem value={0}>Gesund</MenuItem>
                             <MenuItem value={20}>Ungesund</MenuItem>
                         </Select>
                     </FormControl>

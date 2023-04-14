@@ -23,6 +23,7 @@ export default function ProfileUserDataLoaded(props: Props) {
     const password = props.user.password;
     const [name, setName] = useState(props.user.name);
     const steps = props.user.steps;
+    const water = props.user.water;
     const burnedCalories = props.user.burnedCalories;
     const trainingTimes = props.user.trainingTimes;
 
@@ -53,7 +54,8 @@ export default function ProfileUserDataLoaded(props: Props) {
                 caloriesBurnedTarget,
                 steps,
                 burnedCalories,
-                trainingTimes
+                trainingTimes,
+                water
 
             };
             await updateUser(updatedUserData);

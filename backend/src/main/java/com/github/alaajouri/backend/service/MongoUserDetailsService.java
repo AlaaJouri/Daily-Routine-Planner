@@ -61,7 +61,8 @@ public class MongoUserDetailsService implements UserDetailsService {
                 userData.dinner(),
                 userData.snacks(),
                 userData.standup(),
-                userData.sleep()
+                userData.sleep(),
+                userData.water()
 
         );
 
@@ -105,7 +106,8 @@ public class MongoUserDetailsService implements UserDetailsService {
                 me.dinner(),
                 me.snacks(),
                 me.standup(),
-                me.sleep()
+                me.sleep(),
+                me.water()
         );
     }
 
@@ -144,7 +146,8 @@ public class MongoUserDetailsService implements UserDetailsService {
                 " ",
                 " ",
                 " ", null,
-                null
+                null,
+                0
 
 
         );
@@ -172,7 +175,8 @@ public class MongoUserDetailsService implements UserDetailsService {
                 out.dinner(),
                 out.snacks(),
                 out.standup(),
-                out.sleep()
+                out.sleep(),
+                out.water()
 
         );
     }

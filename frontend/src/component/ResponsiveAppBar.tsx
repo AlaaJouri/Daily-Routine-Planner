@@ -19,12 +19,16 @@ function ResponsiveAppBar() {
 
     const navigate = useNavigate();
 
-    const handleHomeSubmit = () => {
-        navigate('/home');
+    const handleWaterSubmit = () => {
+        navigate('/water');
 
     };
     const handleUserDataSubmit = () => {
         navigate('/profile');
+
+    };
+    const handleHomeSubmit = () => {
+        navigate('/home');
 
     };
     const handleLoginSubmit = () => {
@@ -122,6 +126,9 @@ function ResponsiveAppBar() {
                                 display: {xs: 'block', md: 'none'},
                             }}
                         >
+                            <MenuItem onClick={handleHomeSubmit}>
+                                <Typography textAlign="center">Home</Typography>
+                            </MenuItem>
                             <MenuItem onClick={handleActivitySubmit}>
                                 <Typography textAlign="center">Aktivitäten</Typography>
                             </MenuItem>
@@ -134,8 +141,8 @@ function ResponsiveAppBar() {
                             <MenuItem onClick={handleLesenSubmit}>
                                 <Typography textAlign="center">Lesen</Typography>
                             </MenuItem>
-                            <MenuItem onClick={handleHomeSubmit}>
-                                <Typography textAlign="center">Home</Typography>
+                            <MenuItem onClick={handleWaterSubmit}>
+                                <Typography textAlign="center">Wasser</Typography>
                             </MenuItem>
                         </Menu>
                     </Box>
@@ -159,7 +166,13 @@ function ResponsiveAppBar() {
                     </Typography>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
+                        <Button
 
+                            onClick={handleHomeSubmit}
+                            sx={{my: 2, color: 'white', display: 'block'}}
+                        >
+                            Home
+                        </Button>
                         <Button
 
                             onClick={handleActivitySubmit}
@@ -190,10 +203,10 @@ function ResponsiveAppBar() {
                         </Button>
                         <Button
 
-                            onClick={handleHomeSubmit}
+                            onClick={handleWaterSubmit}
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
-                            Home
+                           Wasser
                         </Button>
                     </Box>
 

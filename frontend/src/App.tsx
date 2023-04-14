@@ -13,7 +13,8 @@ import Sleeptimes from "./component/SchlafzeitenGet";
 import Lessen from "./component/LessenGet";
 import Book from "./component/UpdateBuch";
 import {Buch} from "./model/Buch";
-import DrinkWater from './component/Wasser';
+import DrinkWater from './component/WasserGet';
+import Home from './component/HomeGet';
 import useAuth, {User} from "./hooks/useAuth";
 
 axios.interceptors.request.use(function (config) {
@@ -57,7 +58,8 @@ function App() {
                 <Route path={"/sleep-times"} element={<Sleeptimes/>}/>
                 <Route path={"/lessen"} element={<Lessen/>}/>
                 <Route path={"/book/update/:id"} element={<Book buch={buch}  updateBuch={updateBuch} />}/>
-                <Route path={"/home"} element={<DrinkWater/>}/>
+                <Route path={"/water"} element={<DrinkWater />}/>
+                <Route path={"/home"} element={<Home/>}/>
             </Routes>
         </div>
             </>
