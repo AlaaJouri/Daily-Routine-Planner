@@ -7,7 +7,7 @@ import * as React from "react";
 type BuecherProps = {
 
     buecher: Buch[]
-    deleteBuch: (id: string) => void
+    deleteBook: (id: string) => void
 
 }
 
@@ -18,7 +18,7 @@ export default function LessenBuecher (props: BuecherProps) {
     const buecher = props.buecher
         .map((buecher) => {
             return (
-                <LessenBuch buch={buecher} key={buecher.id} deleteBuch={props.deleteBuch} />
+                <LessenBuch buch={buecher} key={buecher.id} deleteBuch={props.deleteBook} />
             )
         })
 

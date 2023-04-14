@@ -22,7 +22,7 @@ export default function LessenGet() {
             .catch(console.error);
     }
 
-    function deleteBuch(id: string) {
+    function deleteBook(id: string) {
         axios.delete("/api/book/" + id)
             .then(fetchBuecher)
             .catch(console.error);
@@ -56,7 +56,7 @@ export default function LessenGet() {
             <br/>
             <Divider/>
 
-            <LessenBuecher buecher={buch} deleteBuch={deleteBuch}/>
+            <LessenBuecher buecher={buch} deleteBook={deleteBook}/>
 
 
         </div>

@@ -13,7 +13,7 @@ interface CupProps {
     onClick: (index: number) => void;
 }
 
-function Wasser({amount, index, onClick}: CupProps) {
+function DrinkWasser({amount, index, onClick}: CupProps) {
 
     const isFull = amount > 0;
 
@@ -32,7 +32,8 @@ function Wasser({amount, index, onClick}: CupProps) {
     );
 }
 
-export default function DrinkWater(props: Props) {
+
+export default function Wasser(props: Props) {
     const navigate2 = useNavigate();
     const gender = props.user.gender;
     const weight = props.user.weight;
@@ -58,7 +59,7 @@ export default function DrinkWater(props: Props) {
     const burnedCalories = props.user.burnedCalories;
     const trainingTimes = props.user.trainingTimes;
 
-
+    let result = water;
     const updateWater = async (updatedUserData: any) => {
         axios
             .put("/api/user/" + props.user.id, updatedUserData)
@@ -90,10 +91,11 @@ export default function DrinkWater(props: Props) {
                 breakfast,
                 lunch,
                 dinner,
+                water,
                 snacks,
                 standup,
-                sleep,
-                water
+                sleep
+
 
             };
             await updateWater(updatedUserDataWater);
@@ -104,6 +106,10 @@ export default function DrinkWater(props: Props) {
         }
     };
     const [cups, setCups] = useState<number[]>([0, 0, 0, 0, 0, 0, 0, 0]);
+    if (result >= 250 && result <= 2000 && result % 250 === 0) {
+        let cupsToFill = result / 250;
+        cups.fill(250, 0, cupsToFill);
+    }
     const totalAmount = cups.reduce((acc, cur) => acc + cur, 0);
     const targetAmount = 2000;
 
@@ -111,8 +117,11 @@ export default function DrinkWater(props: Props) {
         const newCups = [...cups];
         newCups[index] = newCups[index] === 0 ? 250 : 0;
         setCups(newCups);
-        setWater(totalAmount + 250)
-        console.log(totalAmount + 250)
+
+        result = 250 + result;
+        setWater(result)
+
+
     }
 
     return (
@@ -130,7 +139,7 @@ export default function DrinkWater(props: Props) {
                 <h2 className="title">Wie viele hast du heute getrunken</h2>
                 <div className="cups">
                     {cups.map((amount, index) => (
-                        <Wasser
+                        <DrinkWasser
                             key={index}
                             amount={amount}
                             index={index}

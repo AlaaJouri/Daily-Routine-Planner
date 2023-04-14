@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 
 public class BuecherController {
@@ -31,7 +31,7 @@ public class BuecherController {
         return buecherService.getBuchByID(id);
     }
 
-    @DeleteMapping("book/{id}")
+    @DeleteMapping("/book/{id}")
     void deleteBuch(@PathVariable String id) {
         buecherService.deleteBuchById(id);
     }

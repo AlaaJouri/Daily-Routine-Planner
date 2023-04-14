@@ -29,7 +29,7 @@ public record MongoUser(
         String snacks,
         LocalTime standup,
         LocalTime sleep,
-int water
+        int water
 
 ) {
 }
