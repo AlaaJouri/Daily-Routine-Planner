@@ -39,9 +39,9 @@ export default function DrinkWater() {
     }
 
     return (
-        <div>
-            <h1>DrinkWater</h1>
-            <h2>Objective: 2 liters / day</h2>
+        <div className="Profile">
+            <h1>Wasser trinken</h1>
+            <h2>Ziel: 2 Liter / Tag</h2>
             <div id="totalJar">
                 <div id="total">{`${((totalAmount / targetAmount) * 100) / 1000}L left`}</div>
                 <div
@@ -49,7 +49,7 @@ export default function DrinkWater() {
                     style={{ height: `${(totalAmount / targetAmount) * 100}%` }}
                 ></div>
             </div>
-            <h2>How many you drank today</h2>
+            <h2>Wie viele hast du heute getrunken</h2>
             <div className="cups">
                 {cups.map((amount, index) => (
                     <Wasser
