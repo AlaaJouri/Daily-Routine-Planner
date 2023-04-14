@@ -37,7 +37,7 @@ public class BuecherController {
     }
 
     @PutMapping("/book/{id}")
-    public Buecher updateSleep(@PathVariable String id, @RequestBody BuecherDTO buchToChange) {
+    public Buecher updateBuch(@PathVariable String id, @RequestBody BuecherDTO buchToChange) {
         return buecherService.updateBuch(id, buchToChange);
     }
 
