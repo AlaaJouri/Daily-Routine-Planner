@@ -21,6 +21,7 @@ export default function LessenBuecher (props: BuecherProps) {
                 <LessenBuch buch={buecher} key={buecher.id} deleteBuch={props.deleteBuch} />
             )
         })
+
     return (
         <Layout>
             {!user ? <p>Loading...</p> : (

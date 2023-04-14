@@ -18,6 +18,11 @@ function ResponsiveAppBar() {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
     const navigate = useNavigate();
+
+    const handleHomeSubmit = () => {
+        navigate('/home');
+
+    };
     const handleUserDataSubmit = () => {
         navigate('/profile');
 
@@ -129,6 +134,9 @@ function ResponsiveAppBar() {
                             <MenuItem onClick={handleLesenSubmit}>
                                 <Typography textAlign="center">Lesen</Typography>
                             </MenuItem>
+                            <MenuItem onClick={handleHomeSubmit}>
+                                <Typography textAlign="center">Home</Typography>
+                            </MenuItem>
                         </Menu>
                     </Box>
                     <Typography
@@ -179,6 +187,13 @@ function ResponsiveAppBar() {
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
                             Lesen
+                        </Button>
+                        <Button
+
+                            onClick={handleHomeSubmit}
+                            sx={{my: 2, color: 'white', display: 'block'}}
+                        >
+                            Home
                         </Button>
                     </Box>
 
