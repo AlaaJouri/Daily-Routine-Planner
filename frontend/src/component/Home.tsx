@@ -50,48 +50,43 @@ export default function Home(props: Props) {
     const water = props.user.water;
     const resultWater = ((water / 2000) * 100);
 
+
+    const n = 0;
+
+
     function fetchBuecher() {
         axios.get("/api/book")
             .then(response => {
-                setBuch(response.data);
+                const books: Buch[] = response.data; // declare type of 'books'
+                // map through the array of books and assign 10 to a variable if ischecked is true
+                const checkedBooks: number[] = books.map((book: Buch) => {
+                    // declare types of 'book' and return value
+
+                    if (book.isChecked) {
+                        return 10;
+                    } else {
+                        return 0;
+                    }
+
+                });
+
+                // sum the values in the checkedBooks array to get the total value
+                const checkedBooksTotal: number = checkedBooks.reduce((total: number, value: number) => total + value, 0); // declare types of 'total' and 'value', and return value
+                console.log(checkedBooksTotal)
+
+                console.log(checkedBooks.length)
+                // do something with the total value
             })
             .catch(console.error);
     }
 
     useEffect(() => {
-        fetchUser();
+        fetchBuecher();
     }, []);
-
-    function fetchUser() {
-        const requestURL: string = "/api/user/" + id;
-        axios
-            .get(requestURL)
-            .then(response => {
-                const userData = response.data;
-                // do something with user data
-            })
-            .catch((err) => {
-                alert(err.response.data.error);
-            });
-    }
-
-    const requestURL: string = "/api/user/" + id
-
-
-    axios
-        .get(requestURL)
-        .then(() => {
-            navigate1("/Home");
-        })
-        .catch((err) => {
-            alert(err.response.data.error);
-        });
 
 
     if (!user) return <p> User not fund</p>;
     return (
-
-
         <>
             <p>{resultNutrition}</p>
             <p>{resultSteps}</p>
