@@ -7,6 +7,7 @@ import axios from "axios";
 import {Buch} from "../model/Buch";
 
 type Props = { user: User }
+let resultBooks = 0;
 export default function Home(props: Props) {
 
     const {user} = useAuth(false);
@@ -51,7 +52,7 @@ export default function Home(props: Props) {
     const resultWater = ((water / 2000) * 100);
 
 
-    const n = 0;
+    console.log(resultBooks)
 
 
     function fetchBuecher() {
@@ -75,11 +76,14 @@ export default function Home(props: Props) {
                 console.log(checkedBooksTotal)
 
                 console.log(checkedBooks.length)
+                resultBooks = ((checkedBooksTotal / (checkedBooks.length * 10)) * 100);
+                console.log(resultBooks)
                 // do something with the total value
             })
             .catch(console.error);
     }
 
+    console.log(resultBooks)
     useEffect(() => {
         fetchBuecher();
     }, []);
@@ -95,6 +99,7 @@ export default function Home(props: Props) {
             <p>{resultTrainingTimes}</p>
             <p>{resultBurnedCalories}</p>
             <p>{resultWater}</p>
+            <p>{resultBooks}</p>
         </>
     )
 }
