@@ -19,7 +19,7 @@ import TextField from "@mui/material/TextField";
 type Props = { user: User }
 
 
-export default function Schlafzeitenupdate(props: Props) {
+export default function SleepTimesUpdate(props: Props) {
 
     function padZero(num: number) {
         return num < 10 ? `0${num}` : `${num}`;

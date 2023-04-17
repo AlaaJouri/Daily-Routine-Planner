@@ -1,4 +1,4 @@
-import {Book} from "../model/Book";
+import {Book} from "../../model/Book";
 import {Link} from "react-router-dom";
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -10,17 +10,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import * as React from 'react';
 import {pink} from '@mui/material/colors';
-import {FormEvent} from "react";
 import axios from "axios";
 
 type BuchProps = {
     buch: Book
     deleteBuch: (id: string) => void
-
 }
 
 const label = {inputProps: {'aria-label': 'Checkbox demo'}};
-export default function LessenBuch(props: BuchProps) {
+export default function Book(props: BuchProps) {
 
 
     function handleDelete() {
@@ -64,8 +62,6 @@ export default function LessenBuch(props: BuchProps) {
                     },
                 }}/>}
             />
-
-
             <IconButton onClick={handleDelete} aria-label="delete">
                 <DeleteIcon/>
             </IconButton>

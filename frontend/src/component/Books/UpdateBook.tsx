@@ -1,4 +1,4 @@
-import {Book} from "../model/Book";
+import {Book} from "../../model/Book";
 import {ChangeEvent, FormEvent, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
@@ -10,7 +10,7 @@ type UpdateBuchProps = {
     updateBuch: (buchToUpdate: Book) => void
 }
 
-export default function UpdateBuch(props: UpdateBuchProps) {
+export default function UpdateBook(props: UpdateBuchProps) {
 
     const params = useParams()
     const id: string | undefined = params.id
@@ -18,7 +18,7 @@ export default function UpdateBuch(props: UpdateBuchProps) {
     const [buchToUpdate, setBuchToUpdate] = useState<Book>({
         id: id ? id : "",
         title: "",
-        isChecked:false
+        isChecked: false
     });
 
     const [buch] = useState<Book | undefined>();
@@ -41,11 +41,12 @@ export default function UpdateBuch(props: UpdateBuchProps) {
             title: ""
         })
     }
+
     return (
         <div className="Profile">
-            <form  onSubmit={onSave}>
+            <form onSubmit={onSave}>
                 <div className={"row"}>
-                    <input  className={"text-input"} type="text" placeholder={buch?.title} value={buchToUpdate.title}
+                    <input className={"text-input"} type="text" placeholder={buch?.title} value={buchToUpdate.title}
                            onChange={onChangeTitle}/>
                 </div>
                 <button>Update</button>

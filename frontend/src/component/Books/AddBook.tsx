@@ -5,7 +5,7 @@ type AddBuchProps = {
     addbuch: (buchToAdd: Book) => void,
 }
 
-export default function AddBuch(props: AddBuchProps) {
+export default function AddBook(props: AddBuchProps) {
 
     const [buchToAdd, setBuchToAdd] = useState<Book>({
         id: "",
