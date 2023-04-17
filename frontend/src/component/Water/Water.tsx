@@ -140,7 +140,6 @@ export default function Water(props: Props) {
                 <div className="cups">
                     {cups.map((amount, index) => (
                         <DrinkWasser
-                            key={index}
                             amount={amount}
                             index={index}
                             onClick={handleCupClick}
