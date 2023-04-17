@@ -6,30 +6,29 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-type PropsAktivitaeten = { user: User }
+type PropsActivity = { user: User }
 
-export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
+export default function ActivityUpdate(props: PropsActivity) {
 
-    const navigate2 = useNavigate();
+    const dinner = props.user.dinner;
+    const snacks = props.user.snacks;
+    const id = props.user.id;
+    const navigateActivity = useNavigate();
     const gender = props.user.gender;
     const weight = props.user.weight;
     const weightGoal = props.user.weightGoal;
     const sleepTimeTarget = props.user.sleepTimeTarget;
     const trainingTimeGoal = props.user.trainingTimeGoal;
     const stepTarget = props.user.stepTarget;
+    const standUp = props.user.standup;
+    const sleep = props.user.sleep;
+    const water = props.user.water;
     const caloriesBurnedTarget = props.user.caloriesBurnedTarget;
     const username = props.user.username;
     const password = props.user.password;
     const name = props.user.name;
     const breakfast = props.user.breakfast;
     const lunch = props.user.lunch;
-    const dinner = props.user.dinner;
-    const snacks = props.user.snacks;
-    const id = props.user.id;
-
-    const standup = props.user.standup;
-    const sleep = props.user.sleep;
-    const water = props.user.water;
     const [steps, setSteps] = useState(props.user.steps);
     const [burnedCalories, setBurnedCalories] = useState(props.user.burnedCalories);
     const [trainingTimes, setTrainingTimes] = useState(props.user.trainingTimes);
@@ -38,7 +37,7 @@ export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
         axios
             .put("/api/user/" + props.user.id, updatedUserData)
             .then(() => {
-                navigate2("/activity");
+                navigateActivity("/activity");
             })
             .catch((err) => {
                 alert(err.response.data.error);
@@ -47,7 +46,7 @@ export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
     const handleSave = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const updatedUserDataAktivity = {
+            const updatedUserDataActivity = {
                 id,
                 username,
                 password,
@@ -66,12 +65,12 @@ export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
                 lunch,
                 dinner,
                 snacks,
-                standup,
+                standup: standUp,
                 sleep,
                 water
 
             };
-            await updateAktivity(updatedUserDataAktivity);
+            await updateAktivity(updatedUserDataActivity);
             // show success message or navigate to a different page
         } catch (error) {
             console.error('Failed to update user data', error);
@@ -94,7 +93,7 @@ export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
                     noValidate
                     autoComplete="off"
                 >
-                    <TextField id="outlined-basic" label="Schritten" variant="outlined" value={steps}
+                    <TextField id="outlined-basic" label="Steps" variant="outlined" value={steps}
                                onChange={(e) => setSteps(parseInt(e.target.value))}
                                sx={{
                                    '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
@@ -105,7 +104,7 @@ export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
                                    },
                                }}/>
 
-                    <TextField id="outlined-basic" label="vebrannten Kaloriern" variant="outlined"
+                    <TextField id="outlined-basic" label="Burned Calories" variant="outlined"
                                value={burnedCalories} onChange={(e) => setBurnedCalories(parseInt(e.target.value))}
                                sx={{
                                    '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
@@ -116,7 +115,7 @@ export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
                                    },
                                }}/>
 
-                    <TextField id="outlined-basic" label="Trainingszeiten" variant="outlined" value={trainingTimes}
+                    <TextField id="outlined-basic" label="Training Times" variant="outlined" value={trainingTimes}
                                onChange={(e) => setTrainingTimes(parseInt(e.target.value))} sx={{
                         '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
                             borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
@@ -128,7 +127,7 @@ export default function AktivitaetenUpdate(props: PropsAktivitaeten) {
 
                 </Box>
 
-                <button className="item8"> Speichern</button>
+                <button className="item8"> Save</button>
 
             </form>
         </div>

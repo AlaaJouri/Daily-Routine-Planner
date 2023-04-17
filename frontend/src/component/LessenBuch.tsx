@@ -1,4 +1,4 @@
-import {Buch} from "../model/Buch";
+import {Book} from "../model/Book";
 import {Link} from "react-router-dom";
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -14,7 +14,7 @@ import {FormEvent} from "react";
 import axios from "axios";
 
 type BuchProps = {
-    buch: Buch
+    buch: Book
     deleteBuch: (id: string) => void
 
 }

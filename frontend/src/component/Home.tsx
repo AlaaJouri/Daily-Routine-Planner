@@ -3,9 +3,9 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import {Buch} from "../model/Buch";
+import {Book} from "../model/Book";
 import 'react-circular-progressbar/dist/styles.css';
-import {CircularProgressbarWithChildren} from 'react-circular-progressbar';
+import {CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 
 type Props = { user: User }
 let resultBooks = 0;
@@ -16,7 +16,7 @@ export default function Home(props: Props) {
     const {user} = useAuth(false);
 
     const navigate1 = useNavigate();
-    const [buch, setBuch] = useState<Buch[]>([])
+    const [buch, setBuch] = useState<Book[]>([])
     const id = props.user.id;
 
     const steps = props.user.steps;
@@ -72,9 +72,9 @@ export default function Home(props: Props) {
     function fetchBuecher() {
         axios.get("/api/book")
             .then(response => {
-                const books: Buch[] = response.data; // declare type of 'books'
+                const books: Book[] = response.data; // declare type of 'books'
                 // map through the array of books and assign 10 to a variable if ischecked is true
-                const checkedBooks: number[] = books.map((book: Buch) => {
+                const checkedBooks: number[] = books.map((book: Book) => {
                     // declare types of 'book' and return value
 
                     if (book.isChecked) {
@@ -105,17 +105,29 @@ export default function Home(props: Props) {
     return (
         <>
             <div className="Profile">
-                <button className="item8"> Prüfen</button>
+                <button className="item8"> Show the result </button>
                 <br/>
                 <br/>
                 <div style={{width: 300, height: 300}}>
-                    <CircularProgressbarWithChildren value={percentage}>
+                    <CircularProgressbarWithChildren value={percentage}  styles={{trail: {
+                        // Trail color
+                        stroke: '#d6d6d6',
+                        // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                        strokeLinecap: 'butt',
+                        // Rotate the trail
+                        transform: 'rotate(0.25turn)',
+                        transformOrigin: 'center center',
+                    },
+                        background: {
+                            fill: '#5acb1a',
+                        },
+                    }}>
                         {/* Put any JSX content in here that you'd like. It'll be vertically and horizonally centered. */}
                         <img style={{width: 40, marginTop: -5}} src={bild} alt="smi"/>
                         <div style={{fontSize: 20, marginTop: -5}}>
                             <strong>{`${percentage}%`}</strong> mate
                         </div>
-                    </CircularProgressbarWithChildren>;
+                    </CircularProgressbarWithChildren>
                 </div>
 
 

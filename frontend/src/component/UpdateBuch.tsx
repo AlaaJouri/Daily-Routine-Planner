@@ -1,4 +1,4 @@
-import {Buch} from "../model/Buch";
+import {Book} from "../model/Book";
 import {ChangeEvent, FormEvent, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
@@ -6,8 +6,8 @@ import * as React from "react";
 
 
 type UpdateBuchProps = {
-    buch: Buch[]
-    updateBuch: (buchToUpdate: Buch) => void
+    buch: Book[]
+    updateBuch: (buchToUpdate: Book) => void
 }
 
 export default function UpdateBuch(props: UpdateBuchProps) {
@@ -15,13 +15,13 @@ export default function UpdateBuch(props: UpdateBuchProps) {
     const params = useParams()
     const id: string | undefined = params.id
 
-    const [buchToUpdate, setBuchToUpdate] = useState<Buch>({
+    const [buchToUpdate, setBuchToUpdate] = useState<Book>({
         id: id ? id : "",
         title: "",
         isChecked:false
     });
 
-    const [buch] = useState<Buch | undefined>();
+    const [buch] = useState<Book | undefined>();
 
 
     function onChangeTitle(event: ChangeEvent<HTMLInputElement>) {

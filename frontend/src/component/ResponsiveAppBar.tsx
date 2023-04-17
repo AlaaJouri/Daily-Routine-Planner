@@ -80,21 +80,22 @@ function ResponsiveAppBar() {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
-                        variant="h6"
+                        variant="h1"
                         noWrap
                         component="a"
                         href="/"
                         sx={{
+
                             mr: 2,
                             display: {xs: 'none', md: 'flex'},
                             fontFamily: 'monospace',
-                            fontWeight: 700,
+                            fontWeight: 200,
                             letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
                     >
-                        Tagesplaner
+                        Daily Routine Planner
                     </Typography>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
@@ -127,22 +128,22 @@ function ResponsiveAppBar() {
                             }}
                         >
                             <MenuItem onClick={handleHomeSubmit}>
-                                <Typography textAlign="center">Home</Typography>
+                                <Typography textAlign="center">Homepage</Typography>
                             </MenuItem>
                             <MenuItem onClick={handleActivitySubmit}>
-                                <Typography textAlign="center">Aktivitäten</Typography>
+                                <Typography textAlign="center">Activity</Typography>
                             </MenuItem>
                             <MenuItem onClick={handleNutritionSubmit}>
-                                <Typography textAlign="center">Ernährung</Typography>
+                                <Typography textAlign="center">Nutrition</Typography>
                             </MenuItem>
                             <MenuItem onClick={handleSleeptimesSubmit}>
-                                <Typography textAlign="center">Schlafzeiten</Typography>
+                                <Typography textAlign="center">Sleep Times</Typography>
                             </MenuItem>
                             <MenuItem onClick={handleLesenSubmit}>
-                                <Typography textAlign="center">Lesen</Typography>
+                                <Typography textAlign="center">Books</Typography>
                             </MenuItem>
                             <MenuItem onClick={handleWaterSubmit}>
-                                <Typography textAlign="center">Wasser</Typography>
+                                <Typography textAlign="center">Water</Typography>
                             </MenuItem>
                         </Menu>
                     </Box>
@@ -162,7 +163,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        Tagesplaner
+                        Daily Planner
                     </Typography>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
@@ -171,42 +172,42 @@ function ResponsiveAppBar() {
                             onClick={handleHomeSubmit}
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
-                            Home
+                            Homepage
                         </Button>
                         <Button
 
                             onClick={handleActivitySubmit}
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
-                            Aktivitäten
+                            Activity
                         </Button>
                         <Button
 
                             onClick={handleNutritionSubmit}
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
-                            Ernährung
+                            Nutrition
                         </Button>
                         <Button
 
                             onClick={handleSleeptimesSubmit}
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
-                            Schlafzeiten
+                            Sleep Times
                         </Button>
                         <Button
 
                             onClick={handleLesenSubmit}
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
-                            Lesen
+                            Books
                         </Button>
                         <Button
 
                             onClick={handleWaterSubmit}
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
-                           Wasser
+                            Water
                         </Button>
                     </Box>
 
@@ -236,7 +237,7 @@ function ResponsiveAppBar() {
                                 <Typography textAlign="center">Profile</Typography>
                             </MenuItem>
                             <MenuItem onClick={handleLoginSubmit}>
-                                <Typography textAlign="center">Account</Typography>
+                                <Typography textAlign="center">Login</Typography>
                             </MenuItem>
                             <MenuItem onClick={handleLogoutSubmit}>
                                 <Typography textAlign="center">Logout</Typography>

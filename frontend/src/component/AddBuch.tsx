@@ -1,13 +1,13 @@
-import {Buch} from "../model/Buch";
+import {Book} from "../model/Book";
 import {ChangeEvent, useState} from "react";
 
 type AddBuchProps = {
-    addbuch: (buchToAdd: Buch) => void,
+    addbuch: (buchToAdd: Book) => void,
 }
 
 export default function AddBuch(props: AddBuchProps) {
 
-    const [buchToAdd, setBuchToAdd] = useState<Buch>({
+    const [buchToAdd, setBuchToAdd] = useState<Book>({
         id: "",
         title: "",
         isChecked: false

@@ -69,11 +69,11 @@ export default function ProfileUserDataLoaded(props: Props) {
         <div className="Profile">
             <div>
                 <h1 id="title" className="title">Profile</h1>
-                <p id="description" className="title">Planen Sie Ihren Tag</p>
+                <p id="description" className="title">Plan your day</p>
                 <hr/>
             </div>
 
-            <form   onSubmit={handleSave}>
+            <form onSubmit={handleSave}>
                 <Box
                     component="form"
                     sx={{
@@ -92,7 +92,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                         },
                     }}/>
 
-                    <TextField id="outlined-basic" label="Geschlecht" variant="outlined" value={gender}
+                    <TextField id="outlined-basic" label="Gender" variant="outlined" value={gender}
                                onChange={(e) => setGender(e.target.value)} sx={{
                         '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
                             borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
@@ -101,7 +101,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                             color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                         },
                     }}/>
-                    <TextField id="outlined-basic" label="Gewicht" variant="outlined" value={weight}
+                    <TextField id="outlined-basic" label="Weight" variant="outlined" value={weight}
                                onChange={(e) => setWeight(e.target.value)} sx={{
                         '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
                             borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
@@ -110,7 +110,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                             color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                         },
                     }}/>
-                    <TextField id="outlined-basic" label="Zielgewicht" variant="outlined" value={weightGoal}
+                    <TextField id="outlined-basic" label="Weight Goal" variant="outlined" value={weightGoal}
                                onChange={(e) => setWeightGoal(parseInt(e.target.value))} sx={{
                         '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
                             borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
@@ -119,7 +119,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                             color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                         },
                     }}/>
-                    <TextField id="outlined-basic" label="Schlafziel" value={sleepTimeTarget}
+                    <TextField id="outlined-basic" label="Sleep Time Target" value={sleepTimeTarget}
                                onChange={(e) => setSleepTimeTarget(parseInt(e.target.value))} sx={{
                         '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
                             borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
@@ -128,7 +128,8 @@ export default function ProfileUserDataLoaded(props: Props) {
                             color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                         },
                     }}/>
-                    <TextField id="outlined-basic" label="TrainingszeitZiel" variant="outlined" value={trainingTimeGoal}
+                    <TextField id="outlined-basic" label="Training Time Goal" variant="outlined"
+                               value={trainingTimeGoal}
                                onChange={(e) => setTrainingTimeGoal(parseInt(e.target.value))} sx={{
                         '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
                             borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
@@ -137,7 +138,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                             color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                         },
                     }}/>
-                    <TextField id="outlined-basic" label="SchrittZiel" variant="outlined" value={stepTarget}
+                    <TextField id="outlined-basic" label="Step Target" variant="outlined" value={stepTarget}
                                onChange={(e) => setStepTarget(parseInt(e.target.value))} sx={{
                         '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
                             borderColor: 'black', // Farbe des Rahmens ändern, wenn das Textfeld im Fokus ist
@@ -146,7 +147,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                             color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                         },
                     }}/>
-                    <TextField id="outlined-basic" label="KalorienverbrauchZiel" variant="outlined"
+                    <TextField id="outlined-basic" label="Calories Burned Target" variant="outlined"
                                value={caloriesBurnedTarget}
                                placeholder={"caloriesBurnedTarget"}
                                onChange={(e) => setCaloriesBurnedTarget(parseInt(e.target.value))} sx={{
@@ -159,9 +160,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                     }}/>
                 </Box>
                 <br/>
-
-                <button className="item8"> Speichern</button>
-
+                <button className="item8">Save</button>
             </form>
         </div>
     );

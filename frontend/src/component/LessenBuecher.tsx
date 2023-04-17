@@ -1,4 +1,4 @@
-import {Buch} from "../model/Buch";
+import {Book} from "../model/Book";
 import LessenBuch from "./LessenBuch";
 import useAuth from "../hooks/useAuth";
 import Layout from "./Layout";
@@ -7,7 +7,7 @@ import {FormEvent} from "react";
 
 type BuecherProps = {
 
-    buecher: Buch[]
+    books: Book[]
     deleteBook: (id: string) => void
 
 
@@ -17,7 +17,7 @@ export default function LessenBuecher (props: BuecherProps) {
     const user = useAuth(true);
 
 
-    const buecher = props.buecher
+    const buecher = props.books
         .map((buecher) => {
             return (
                 <LessenBuch buch={buecher} key={buecher.id} deleteBuch={props.deleteBook} />
@@ -29,7 +29,6 @@ export default function LessenBuecher (props: BuecherProps) {
             {!user ? <p>Loading...</p> : (
                 <div>
                     {buecher}
-
                 </div>
             )}
         </Layout>

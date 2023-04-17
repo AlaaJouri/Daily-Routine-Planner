@@ -1,9 +1,9 @@
 import "./UserData.css";
 import useAuth from "../hooks/useAuth";
-import LessenBuecher from "./LessenBuecher";
-import AddBuch from "./AddBuch";
+import ReadingBooks from "./LessenBuecher";
+import AddBook from "./AddBuch";
 import {useEffect, useState} from "react";
-import {Buch} from "../model/Buch";
+import {Book} from "../model/Book";
 import axios from "axios";
 import Divider from '@mui/material/Divider';
 import * as React from 'react';
@@ -11,32 +11,32 @@ import * as React from 'react';
 
 export default function LessenGet() {
     const {user} = useAuth(false);
-    const [buch, setBuch] = useState<Buch[]>([])
+    const [book, setBook] = useState<Book[]>([])
 
 
-    function fetchBuecher() {
+    function fetchBooks() {
         axios.get("/api/book")
             .then(response => {
-                setBuch(response.data);
+                setBook(response.data);
             })
             .catch(console.error);
     }
 
     function deleteBook(id: string) {
         axios.delete("/api/book/" + id)
-            .then(fetchBuecher)
+            .then(fetchBooks)
             .catch(console.error);
     }
 
 
     useEffect(() => {
-        fetchBuecher()
+        fetchBooks()
     }, [])
 
-    function addBuch(buchToAdd: Buch) {
-        axios.post("/api/book", buchToAdd)
+    function addBook(bookToAdd: Book) {
+        axios.post("/api/book", bookToAdd)
             .then((response) => {
-                setBuch([...buch, response.data])
+                setBook([...book, response.data])
             })
             .catch((error) => {
                 console.error("I'm sorry. Something went wrong!" + error)
@@ -48,15 +48,15 @@ export default function LessenGet() {
     return (
         <div className="Profile">
 
-            <h2>fügen Sie ein Buch ein</h2>
+            <h2>insert a book</h2>
 
-            <AddBuch addbuch={addBuch}/>
+            <AddBook addbuch={addBook}/>
             <br/>
             <br/>
             <br/>
             <Divider/>
 
-            <LessenBuecher buecher={buch} deleteBook={deleteBook}/>
+            <ReadingBooks books={book} deleteBook={deleteBook}/>
 
 
         </div>

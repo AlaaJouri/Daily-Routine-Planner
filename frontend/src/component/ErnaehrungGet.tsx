@@ -1,6 +1,6 @@
 import "./UserData.css";
 import useAuth from "../hooks/useAuth";
-import ErnaehrungUpdate from "./ErnaehrungUpdate";
+import NutritionUpdate from "./NutritionUpdate";
 
 export default function ErnaehrungGet() {
     const {user} = useAuth(false);
@@ -9,7 +9,7 @@ export default function ErnaehrungGet() {
     if (!user) return <p> User not fund</p>;
     return(
         <>
-            <ErnaehrungUpdate user={user}/>
+            <NutritionUpdate user={user}/>
         </>
     )
 }

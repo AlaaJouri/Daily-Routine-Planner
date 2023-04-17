@@ -40,7 +40,7 @@ export default function Schlafzeitenupdate(props: Props) {
         const hours = padZero(selectedTime.getHours());
         const minutes = padZero(selectedTime.getMinutes());
         const formattedTime = `${hours}:${minutes}`;
-        setStandup(formattedTime);
+        setStandUp(formattedTime);
     }
 
     const navigate1 = useNavigate();
@@ -66,7 +66,7 @@ export default function Schlafzeitenupdate(props: Props) {
     const weight = props.user.weight;
     const water = props.user.water;
 
-    const [standup, setStandup] = useState(props.user.standup);
+    const [standUp, setStandUp] = useState(props.user.standup);
     const [sleep, setSleep] = useState(props.user.sleep);
 
     const updateUserSleepTime = async (updatedUserData: any) => {
@@ -101,7 +101,7 @@ export default function Schlafzeitenupdate(props: Props) {
                 lunch,
                 dinner,
                 snacks,
-                standup,
+                standup: standUp,
                 sleep,
                 water
 
@@ -119,7 +119,7 @@ export default function Schlafzeitenupdate(props: Props) {
     return (
         <div className="Profile">
             <div>
-                <h1 id="title" className="title">Schlaffzeiten</h1>
+                <h1 id="title" className="title">Sleep times</h1>
                 <hr/>
             </div>
             <form  onSubmit={handleSaveSleepTime}>
@@ -138,7 +138,7 @@ export default function Schlafzeitenupdate(props: Props) {
                                 id="outlined-basic"
                                 type="time"
                                 variant="outlined"
-                                value={standup}
+                                value={standUp}
                                 onChange={handleTime2}
                                 sx={{
                                     '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
@@ -159,7 +159,7 @@ export default function Schlafzeitenupdate(props: Props) {
                         </TimelineSeparator>
                         <TimelineContent sx={{py: '12px', px: 2}}>
                             <Typography variant="h6" component="span">
-                                Aufstehen
+                                Stand up
                             </Typography>
                             <br/>
                             <br/>
@@ -200,7 +200,7 @@ export default function Schlafzeitenupdate(props: Props) {
                         </TimelineSeparator>
                         <TimelineContent sx={{py: '12px', px: 2}}>
                             <Typography variant="h6" component="span">
-                                Schlaffen
+                                Sleep
                             </Typography>
                             <br/> <br/>
                             <Typography> </Typography>

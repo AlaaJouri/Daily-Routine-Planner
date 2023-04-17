@@ -1,6 +1,6 @@
 import "./UserData.css";
 import useAuth from "../hooks/useAuth";
-import AktivitaetenUpdate from "./AktivitaetenUpdate";
+import ActivityUpdate from "./ActivityUpdate";
 
 export default function AktivitaetenGet() {
     const {user} = useAuth(false);
@@ -9,7 +9,7 @@ export default function AktivitaetenGet() {
     if (!user) return <p> User not fund</p>;
     return (
         <>
-            <AktivitaetenUpdate user={user}/>
+            <ActivityUpdate user={user}/>
         </>
     )
 }

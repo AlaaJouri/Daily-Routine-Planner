@@ -126,8 +126,8 @@ export default function Wasser(props: Props) {
 
     return (
         <div className="Profile">
-            <h1 id="title" className="title">Wasser trinken</h1>
-            <p id="description" className="title">Ziel: 2 Liter / Tag</p>
+            <h1 id="title" className="title">Drinking Water</h1>
+            <p id="description" className="title">Target: 2 liters / day</p>
             <form onSubmit={handleSave}>
                 <div id="totalJar">
                     <div id="total">{`${((totalAmount / targetAmount) * 100) / 1000}L left`}</div>
@@ -136,7 +136,7 @@ export default function Wasser(props: Props) {
                         style={{height: `${(totalAmount / targetAmount) * 100}%`}}
                     ></div>
                 </div>
-                <h2 className="title">Wie viele hast du heute getrunken</h2>
+                <h2 className="title">How many have you drunk today</h2>
                 <div className="cups">
                     {cups.map((amount, index) => (
                         <DrinkWasser
@@ -149,7 +149,7 @@ export default function Wasser(props: Props) {
                         />
                     ))}
                 </div>
-                <button className="item8"> Speichern</button>
+                <button className="item8">Save</button>
 
             </form>
         </div>
