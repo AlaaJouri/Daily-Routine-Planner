@@ -1,5 +1,5 @@
 import {Book} from "../../model/Book";
-import ReadingBook from "./Book";
+import ReadingBook from "./NewBook";
 import useAuth from "../../hooks/useAuth";
 import Layout from "./../Layout";
 import * as React from "react";

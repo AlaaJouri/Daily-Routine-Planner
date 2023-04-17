@@ -1,4 +1,4 @@
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import {useLocation} from "react-router-dom";
 

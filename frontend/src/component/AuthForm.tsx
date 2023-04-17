@@ -1,5 +1,5 @@
 import React, {FormEvent, useState} from "react";
-import "./Login.css"
+import "./../component/Login/Login.css"
 
 type AuthFormProps = {
     title: string;

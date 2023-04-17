@@ -1,5 +1,5 @@
-import "./UserData.css";
-import useAuth from "../hooks/useAuth";
+import "./../UserData.css";
+import useAuth from "../../hooks/useAuth";
 import ActivityUpdate from "./ActivityUpdate";
 
 export default function ActivityGet() {

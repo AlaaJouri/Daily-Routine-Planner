@@ -1,6 +1,6 @@
 import axios from "axios";
 import {ChangeEvent, FormEvent, useState} from "react";
-import {User} from "../hooks/useAuth";
+import {User} from "../../hooks/useAuth";
 import {useNavigate} from "react-router-dom";
 import * as React from "react";
 import Timeline from "@mui/lab/Timeline";

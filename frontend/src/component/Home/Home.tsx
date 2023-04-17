@@ -27,19 +27,33 @@ export default function Home(props: Props) {
 
     const weight = props.user.weight;
     const weightGoal = props.user.weightGoal;
-    const resultWeight = ((parseInt(weight) / weightGoal) * 100);
+    const resultWeight = ((weightGoal / parseInt(weight)) * 100);
 
-
-    const standup = props.user.standup;
+    const standUp = props.user.standup;
     const sleep = props.user.sleep;
     const sleepTimeTarget = props.user.sleepTimeTarget;
-    // const resultSleepTime = ((parseInt(sleep) - parseInt(standup) / sleepTimeTarget) * 100);
-    console.log("sleep" + sleep)
-    console.log("standup" + standup)
-    console.log("sleepTimeTarget" + sleepTimeTarget)
-    //const sleepTime = Date.parse(`1970-01-01T${sleep}:00.000Z`);
-    //const standupTime = Date.parse(`1970-01-01T${standup}:00.000Z`);
-    //const actualSleepTime = (standupTime - sleepTime) / (1000 * 60 * 60);
+
+
+    const standUpTime = new Date(`2000-01-01T${standUp}`).getTime();
+    const sleepTime = new Date(`2000-01-01T${sleep}`).getTime();
+    const timeDiffMs = sleepTime - standUpTime;
+    const hours = Math.floor(timeDiffMs / 1000 / 60 / 60);
+    const minutes = Math.floor((timeDiffMs / 1000 / 60) % 60);
+
+    const resultTime = new Date(`2000-01-01T${standUp}`);
+    resultTime.setHours(resultTime.getHours() + hours);
+    resultTime.setMinutes(resultTime.getMinutes() + minutes);
+
+    const formattedTime = resultTime.toLocaleTimeString('en-US', {
+        hour12: true,
+        hour: '2-digit',
+        minute: '2-digit'
+    }).slice(0, -3);
+
+    const [hours1, minutes1] = formattedTime.split(':');
+    const totalHours = parseInt(hours1) + parseInt(minutes1) / 60;
+    const resultSleepTime = (sleepTimeTarget / totalHours) * 100;
+
 
     const lunch = props.user.lunch;
     const dinner = props.user.dinner;
@@ -51,15 +65,8 @@ export default function Home(props: Props) {
 
     const water = props.user.water;
     const resultWater = ((water / 2000) * 100);
-    console.log("resultNutrition" + resultNutrition)
-    console.log("resultSteps" + resultSteps)
-    console.log("resultWeight" + resultWeight)
-    console.log("resultTrainingTimes" + resultTrainingTimes)
-    console.log("resultBurnedCalories" + resultBurnedCalories)
-    console.log("resultWater" + resultWater)
-    console.log(resultBooks)
-    const result = (resultWater + resultNutrition + resultWeight + resultBurnedCalories + resultTrainingTimes + resultSteps) / 6;
-    console.log(resultBooks)
+
+    const result = Math.floor((resultWater + resultNutrition + resultWeight + resultBurnedCalories + resultTrainingTimes + resultSteps + resultSleepTime) / 7);
 
 
     function fetchBuecher() {
@@ -82,7 +89,7 @@ export default function Home(props: Props) {
                 const checkedBooksTotal: number = checkedBooks.reduce((total: number, value: number) => total + value, 0); // declare types of 'total' and 'value', and return value
 
                 resultBooks = ((checkedBooksTotal / (checkedBooks.length * 10)) * 100);
-                console.log("result" + result)
+
                 // do something with the total value
             })
             .catch(console.error);
@@ -92,7 +99,7 @@ export default function Home(props: Props) {
     useEffect(() => {
         fetchBuecher();
     }, []);
-    const percentage = 50;
+    const percentage = result;
     const bild = "https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvcm0yMzViYXRjaDUtbm9vbi0yMi5wbmc.png?s=KXgrf2XQmoDOCW-VwE5n6CmnuHaa4vkQZLkArjjjhbk";
 
     return (

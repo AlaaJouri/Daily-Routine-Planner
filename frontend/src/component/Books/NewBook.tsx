@@ -18,7 +18,7 @@ type BuchProps = {
 }
 
 const label = {inputProps: {'aria-label': 'Checkbox demo'}};
-export default function Book(props: BuchProps) {
+export default function NewBook(props: BuchProps) {
 
 
     function handleDelete() {

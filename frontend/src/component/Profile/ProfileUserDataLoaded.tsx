@@ -1,6 +1,6 @@
 import axios from "axios";
 import {FormEvent, useState} from "react";
-import {User} from "../hooks/useAuth";
+import {User} from "../../hooks/useAuth";
 import {useNavigate} from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";

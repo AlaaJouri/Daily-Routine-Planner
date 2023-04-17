@@ -1,4 +1,4 @@
-import "./UserData.css";
+import "./../UserData.css";
 import useAuth from "../../hooks/useAuth";
 import Home from "./Home";
 

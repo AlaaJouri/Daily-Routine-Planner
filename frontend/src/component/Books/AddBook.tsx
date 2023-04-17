@@ -1,4 +1,4 @@
-import {Book} from "../model/Book";
+import {Book} from "../../model/Book";
 import {ChangeEvent, useState} from "react";
 
 type AddBuchProps = {
