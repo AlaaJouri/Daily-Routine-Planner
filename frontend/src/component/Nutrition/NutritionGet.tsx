@@ -1,8 +1,8 @@
 import "./UserData.css";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import NutritionUpdate from "./NutritionUpdate";
 
-export default function ErnaehrungGet() {
+export default function NutritionGet() {
     const {user} = useAuth(false);
 
 

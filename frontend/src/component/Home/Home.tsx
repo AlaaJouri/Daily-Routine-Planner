@@ -1,23 +1,16 @@
-import useAuth, {User} from "../hooks/useAuth";
+import {User} from "../../hooks/useAuth";
 import * as React from "react";
-import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 import axios from "axios";
-import {Book} from "../model/Book";
+import {Book} from "../../model/Book";
 import 'react-circular-progressbar/dist/styles.css';
-import {CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
+import {CircularProgressbarWithChildren} from 'react-circular-progressbar';
 
 type Props = { user: User }
 let resultBooks = 0;
 
 export default function Home(props: Props) {
 
-
-    const {user} = useAuth(false);
-
-    const navigate1 = useNavigate();
-    const [buch, setBuch] = useState<Book[]>([])
-    const id = props.user.id;
 
     const steps = props.user.steps;
     const stepTarget = props.user.stepTarget;
@@ -40,20 +33,20 @@ export default function Home(props: Props) {
     const standup = props.user.standup;
     const sleep = props.user.sleep;
     const sleepTimeTarget = props.user.sleepTimeTarget;
-    const resultSleepTime = ((parseInt(sleep) - parseInt(standup) / sleepTimeTarget) * 100);
+    // const resultSleepTime = ((parseInt(sleep) - parseInt(standup) / sleepTimeTarget) * 100);
     console.log("sleep" + sleep)
     console.log("standup" + standup)
     console.log("sleepTimeTarget" + sleepTimeTarget)
-    const sleepTime = Date.parse(`1970-01-01T${sleep}:00.000Z`);
-    const standupTime = Date.parse(`1970-01-01T${standup}:00.000Z`);
-    const actualSleepTime = (standupTime - sleepTime) / (1000 * 60 * 60);
+    //const sleepTime = Date.parse(`1970-01-01T${sleep}:00.000Z`);
+    //const standupTime = Date.parse(`1970-01-01T${standup}:00.000Z`);
+    //const actualSleepTime = (standupTime - sleepTime) / (1000 * 60 * 60);
 
     const lunch = props.user.lunch;
     const dinner = props.user.dinner;
     const snacks = props.user.snacks;
     const breakfast = props.user.breakfast;
     const totalSum = (parseInt(lunch) + parseInt(dinner) + parseInt(snacks) + parseInt(breakfast));
-    const summe = (totalSum == 0 ? 1 : totalSum);
+    const summe = (totalSum === 0 ? 1 : totalSum);
     const resultNutrition = ((summe / 80) * 100);
 
     const water = props.user.water;
@@ -105,24 +98,24 @@ export default function Home(props: Props) {
     return (
         <>
             <div className="Profile">
-                <button className="item8"> Show the result </button>
+                <button className="item8"> Show the result</button>
                 <br/>
                 <br/>
                 <div style={{width: 300, height: 300}}>
-                    <CircularProgressbarWithChildren value={percentage}  styles={{trail: {
-                        // Trail color
-                        stroke: '#d6d6d6',
-                        // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-                        strokeLinecap: 'butt',
-                        // Rotate the trail
-                        transform: 'rotate(0.25turn)',
-                        transformOrigin: 'center center',
-                    },
+                    <CircularProgressbarWithChildren value={percentage} styles={{
+                        trail: {
+                            // Trail color
+                            stroke: '#d6d6d6',
+                            // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                            strokeLinecap: 'butt',
+                            // Rotate the trail
+                            transform: 'rotate(0.25turn)',
+                            transformOrigin: 'center center',
+                        },
                         background: {
                             fill: '#5acb1a',
                         },
                     }}>
-                        {/* Put any JSX content in here that you'd like. It'll be vertically and horizonally centered. */}
                         <img style={{width: 40, marginTop: -5}} src={bild} alt="smi"/>
                         <div style={{fontSize: 20, marginTop: -5}}>
                             <strong>{`${percentage}%`}</strong> mate

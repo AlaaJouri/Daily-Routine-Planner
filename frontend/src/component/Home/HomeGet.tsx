@@ -1,15 +1,15 @@
 import "./UserData.css";
-import useAuth from "../hooks/useAuth";
-import Wasser from "./Wasser";
+import useAuth from "../../hooks/useAuth";
+import Home from "./Home";
 
-export default function WasserGet() {
+export default function HomeGet() {
     const {user} = useAuth(false);
 
 
     if (!user) return <p> User not fund</p>;
     return (
         <>
-            <Wasser user={user}/>
+            <Home user={user}/>
         </>
     )
 }

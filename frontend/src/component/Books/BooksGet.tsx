@@ -1,15 +1,15 @@
 import "./UserData.css";
-import useAuth from "../hooks/useAuth";
-import ReadingBooks from "./LessenBuecher";
-import AddBook from "./AddBuch";
+import useAuth from "../../hooks/useAuth";
+import ReadingBooks from "./Books";
+import AddBook from "./AddBook";
 import {useEffect, useState} from "react";
-import {Book} from "../model/Book";
+import {Book} from "../../model/Book";
 import axios from "axios";
 import Divider from '@mui/material/Divider';
 import * as React from 'react';
 
 
-export default function LessenGet() {
+export default function BooksGet() {
     const {user} = useAuth(false);
     const [book, setBook] = useState<Book[]>([])
 

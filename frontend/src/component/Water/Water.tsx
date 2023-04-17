@@ -1,7 +1,7 @@
 import {FormEvent, useState} from "react";
-import "./Wasser.css";
+import "./Water.css";
 import * as React from "react";
-import {User} from "../hooks/useAuth";
+import {User} from "../../hooks/useAuth";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
@@ -33,7 +33,7 @@ function DrinkWasser({amount, index, onClick}: CupProps) {
 }
 
 
-export default function Wasser(props: Props) {
+export default function Water(props: Props) {
     const navigate2 = useNavigate();
     const gender = props.user.gender;
     const weight = props.user.weight;
@@ -140,12 +140,9 @@ export default function Wasser(props: Props) {
                 <div className="cups">
                     {cups.map((amount, index) => (
                         <DrinkWasser
-                            key={index}
                             amount={amount}
                             index={index}
                             onClick={handleCupClick}
-
-
                         />
                     ))}
                 </div>
