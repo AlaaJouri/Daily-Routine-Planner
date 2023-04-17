@@ -1,14 +1,17 @@
-import "./UserData.css";
 import useAuth, {User} from "../hooks/useAuth";
 import * as React from "react";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {Buch} from "../model/Buch";
+import 'react-circular-progressbar/dist/styles.css';
+import {CircularProgressbarWithChildren} from 'react-circular-progressbar';
 
 type Props = { user: User }
 let resultBooks = 0;
+
 export default function Home(props: Props) {
+
 
     const {user} = useAuth(false);
 
@@ -37,8 +40,13 @@ export default function Home(props: Props) {
     const standup = props.user.standup;
     const sleep = props.user.sleep;
     const sleepTimeTarget = props.user.sleepTimeTarget;
-    const resultsleepTime = ((parseInt(sleep) - parseInt(standup) / sleepTimeTarget) * 100);
-
+    const resultSleepTime = ((parseInt(sleep) - parseInt(standup) / sleepTimeTarget) * 100);
+    console.log("sleep" + sleep)
+    console.log("standup" + standup)
+    console.log("sleepTimeTarget" + sleepTimeTarget)
+    const sleepTime = Date.parse(`1970-01-01T${sleep}:00.000Z`);
+    const standupTime = Date.parse(`1970-01-01T${standup}:00.000Z`);
+    const actualSleepTime = (standupTime - sleepTime) / (1000 * 60 * 60);
 
     const lunch = props.user.lunch;
     const dinner = props.user.dinner;
@@ -50,8 +58,14 @@ export default function Home(props: Props) {
 
     const water = props.user.water;
     const resultWater = ((water / 2000) * 100);
-
-
+    console.log("resultNutrition" + resultNutrition)
+    console.log("resultSteps" + resultSteps)
+    console.log("resultWeight" + resultWeight)
+    console.log("resultTrainingTimes" + resultTrainingTimes)
+    console.log("resultBurnedCalories" + resultBurnedCalories)
+    console.log("resultWater" + resultWater)
+    console.log(resultBooks)
+    const result = (resultWater + resultNutrition + resultWeight + resultBurnedCalories + resultTrainingTimes + resultSteps) / 6;
     console.log(resultBooks)
 
 
@@ -73,33 +87,42 @@ export default function Home(props: Props) {
 
                 // sum the values in the checkedBooks array to get the total value
                 const checkedBooksTotal: number = checkedBooks.reduce((total: number, value: number) => total + value, 0); // declare types of 'total' and 'value', and return value
-                console.log(checkedBooksTotal)
 
-                console.log(checkedBooks.length)
                 resultBooks = ((checkedBooksTotal / (checkedBooks.length * 10)) * 100);
-                console.log(resultBooks)
+                console.log("result" + result)
                 // do something with the total value
             })
             .catch(console.error);
     }
 
-    console.log(resultBooks)
+
     useEffect(() => {
         fetchBuecher();
     }, []);
+    const percentage = 50;
+    const bild = "https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvcm0yMzViYXRjaDUtbm9vbi0yMi5wbmc.png?s=KXgrf2XQmoDOCW-VwE5n6CmnuHaa4vkQZLkArjjjhbk";
 
-
-    if (!user) return <p> User not fund</p>;
     return (
         <>
-            <p>{resultNutrition}</p>
-            <p>{resultSteps}</p>
-            <p>{resultsleepTime}</p>
-            <p>{resultWeight}</p>
-            <p>{resultTrainingTimes}</p>
-            <p>{resultBurnedCalories}</p>
-            <p>{resultWater}</p>
-            <p>{resultBooks}</p>
+            <div className="Profile">
+                <button className="item8"> Prüfen</button>
+                <br/>
+                <br/>
+                <div style={{width: 300, height: 300}}>
+                    <CircularProgressbarWithChildren value={percentage}>
+                        {/* Put any JSX content in here that you'd like. It'll be vertically and horizonally centered. */}
+                        <img style={{width: 40, marginTop: -5}} src={bild} alt="smi"/>
+                        <div style={{fontSize: 20, marginTop: -5}}>
+                            <strong>{`${percentage}%`}</strong> mate
+                        </div>
+                    </CircularProgressbarWithChildren>;
+                </div>
+
+
+            </div>
         </>
-    )
-}
+    );
+};
+
+
+// const [progress] = useState(283);
