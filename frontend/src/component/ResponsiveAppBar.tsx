@@ -37,7 +37,7 @@ function ResponsiveAppBar() {
     };
     const handleSignupSubmit = () => {
 
-        navigate('/sign-up');
+        navigate('/Sign-up');
     };
     const handleLogoutSubmit = () => {
 
@@ -242,7 +242,7 @@ function ResponsiveAppBar() {
                                 <Typography textAlign="center">Logout</Typography>
                             </MenuItem>
                             <MenuItem onClick={handleSignupSubmit}>
-                                <Typography textAlign="center">sign-up</Typography>
+                                <Typography textAlign="center">Sign-up</Typography>
                             </MenuItem>
                         </Menu>
                     </Box>

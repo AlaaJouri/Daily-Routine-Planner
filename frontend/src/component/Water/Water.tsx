@@ -132,6 +132,7 @@ export default function Water(props: Props) {
         <div className="Profile">
             <h1 id="title" className="title">Drinking Water</h1>
             <p id="description" className="title">Target: 2 liters / day</p>
+            <hr/>
             <form onSubmit={handleSave}>
                 <div id="totalJar">
                     <div id="total">{`${((totalAmount / targetAmount) * 100) / 1000}L left`}</div>

@@ -103,7 +103,7 @@ export default function ActivityUpdate(props: PropsActivity) {
                                        color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                                    },
                                }}/>
-
+                    <br/>
                     <TextField id="outlined-basic" label="Burned Calories" variant="outlined"
                                value={burnedCalories} onChange={(e) => setBurnedCalories(parseInt(e.target.value))}
                                sx={{
@@ -114,7 +114,7 @@ export default function ActivityUpdate(props: PropsActivity) {
                                        color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                                    },
                                }}/>
-
+                    <br/>
                     <TextField id="outlined-basic" label="Training Times" variant="outlined" value={trainingTimes}
                                onChange={(e) => setTrainingTimes(parseInt(e.target.value))} sx={{
                         '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
@@ -124,8 +124,8 @@ export default function ActivityUpdate(props: PropsActivity) {
                             color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                         },
                     }}/>
-
                 </Box>
+                <br/>
 
                 <button className="item8"> Save</button>
 

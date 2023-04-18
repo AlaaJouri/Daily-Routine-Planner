@@ -75,8 +75,8 @@ console.log(resultNutrition)
     const water = props.user.water;
     const resultWater = ((water / 2000) * 100);
 
-   // const result = Math.floor((resultWater + resultNutrition + resultWeight + resultBurnedCalories + resultTrainingTimes + resultSteps + resultSleepTime+resultBooks) / 8);
-const result=60;
+   const result = Math.floor((resultWater + resultNutrition + resultWeight + resultBurnedCalories + resultTrainingTimes + resultSteps + resultSleepTime+resultBooks) / 8);
+
     console.log(resultWater)
     console.log(resultNutrition)
     console.log(resultWeight)
@@ -137,8 +137,9 @@ console.log("resultBooks"+resultBooks)
 
     return (
         <>
-            <div className="Profile">
+            <div className="Profile1">
                 <h1 id="title" className="title">The result of the day</h1>
+                <br/>
                 <button onClick={Show}>Show the result</button>
                 <hr/>
                 <br/>
@@ -162,12 +163,16 @@ console.log("resultBooks"+resultBooks)
                         <img style={{width: 100, marginTop: -5}} src={bild} alt="smi"/>
                         <br/>
                         <br/>
-                        <div style={{fontSize: 20, marginTop: -5}}>
+                        <div style={{fontSize: 20, marginTop: -5 ,color:"black"}}>
                             <strong>{`${percentage}%`}</strong> {resultLabel}
                         </div>
+                        <br/>
                     </CircularProgressbarWithChildren>
+
                     }
-                    <br/> <br/>
+                    <br/>
+                    <br/><br/>
+                    <br/>
                 </div>
 
 
