@@ -123,10 +123,12 @@ export default function Water(props: Props) {
         setCups(newCups);
 
         result = 250 + result;
-        setWater(result)
+        setWater(totalAmount+250)
 
 
     }
+console.log(totalAmount )
+    console.log(((totalAmount / targetAmount) * 100) / 1000)
 
     return (
         <div className="Profile">
