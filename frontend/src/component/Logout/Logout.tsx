@@ -13,6 +13,6 @@ export default function Logout () {
                     "signInRedirect",
                     location.pathname || "/"
                 );
-              window.location.href = "/sign-up";
+              window.location.href = "/Sign-up";
             });
         }}>Logout </button>)}

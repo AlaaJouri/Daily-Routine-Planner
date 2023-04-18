@@ -50,9 +50,11 @@ function App() {
         <>
             <div className="App">
                 <ResponsiveAppBar/>
+
                 <Routes>
+
                     <Route path={"/login"} element={<Login/>}/>
-                    <Route path={"/sign-up"} element={<SignUpPage/>}/>
+                    <Route path={"/Sign-up"} element={<SignUpPage/>}/>
                     <Route path={"/profile"} element={<ProfileUserData/>}/>
                     <Route path={"/logout"} element={<Logout/>}/>
                     <Route path={"/activity"} element={<Activity/>}/>
@@ -63,7 +65,6 @@ function App() {
                     <Route path={"/water"} element={<DrinkWater/>}/>
                     <Route path={"/home"} element={<Home/>}/>
                 </Routes>
-                <Footer/>
             </div>
         </>
     );

@@ -91,7 +91,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                             color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                         },
                     }}/>
-
+<br/>
                     <TextField id="outlined-basic" label="Gender" variant="outlined" value={gender}
                                onChange={(e) => setGender(e.target.value)} sx={{
                         '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
@@ -101,6 +101,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                             color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                         },
                     }}/>
+                    <br/>
                     <TextField id="outlined-basic" label="Weight" variant="outlined" value={weight}
                                onChange={(e) => setWeight(e.target.value)} sx={{
                         '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
@@ -110,6 +111,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                             color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                         },
                     }}/>
+                    <br/>
                     <TextField id="outlined-basic" label="Weight Goal" variant="outlined" value={weightGoal}
                                onChange={(e) => setWeightGoal(parseInt(e.target.value))} sx={{
                         '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
@@ -119,6 +121,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                             color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                         },
                     }}/>
+                    <br/>
                     <TextField id="outlined-basic" label="Sleep Time Target" value={sleepTimeTarget}
                                onChange={(e) => setSleepTimeTarget(parseInt(e.target.value))} sx={{
                         '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
@@ -128,6 +131,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                             color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                         },
                     }}/>
+                    <br/>
                     <TextField id="outlined-basic" label="Training Time Goal" variant="outlined"
                                value={trainingTimeGoal}
                                onChange={(e) => setTrainingTimeGoal(parseInt(e.target.value))} sx={{
@@ -138,6 +142,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                             color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                         },
                     }}/>
+                    <br/>
                     <TextField id="outlined-basic" label="Step Target" variant="outlined" value={stepTarget}
                                onChange={(e) => setStepTarget(parseInt(e.target.value))} sx={{
                         '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
@@ -147,6 +152,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                             color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                         },
                     }}/>
+                    <br/>
                     <TextField id="outlined-basic" label="Calories Burned Target" variant="outlined"
                                value={caloriesBurnedTarget}
                                placeholder={"caloriesBurnedTarget"}
