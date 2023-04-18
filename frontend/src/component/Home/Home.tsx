@@ -75,8 +75,8 @@ console.log(resultNutrition)
     const water = props.user.water;
     const resultWater = ((water / 2000) * 100);
 
-    const result = Math.floor((resultWater + resultNutrition + resultWeight + resultBurnedCalories + resultTrainingTimes + resultSteps + resultSleepTime+resultBooks) / 8);
-
+   // const result = Math.floor((resultWater + resultNutrition + resultWeight + resultBurnedCalories + resultTrainingTimes + resultSteps + resultSleepTime+resultBooks) / 8);
+const result=60;
     console.log(resultWater)
     console.log(resultNutrition)
     console.log(resultWeight)
@@ -142,7 +142,7 @@ console.log("resultBooks"+resultBooks)
                 <button onClick={Show}>Show the result</button>
                 <hr/>
                 <br/>
-
+                <br/>
                 <div style={{width: 300, height: 300}}>
                     {show &&
                     <CircularProgressbarWithChildren value={percentage} styles={{
@@ -167,6 +167,7 @@ console.log("resultBooks"+resultBooks)
                         </div>
                     </CircularProgressbarWithChildren>
                     }
+                    <br/> <br/>
                 </div>
 
 

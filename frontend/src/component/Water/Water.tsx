@@ -20,7 +20,6 @@ function DrinkWasser({amount, index, onClick}: CupProps) {
     function handleClick() {
         onClick(index);
     }
-
     return (
         <div
             className={`water-cup ${isFull ? "full" : ""}`}
