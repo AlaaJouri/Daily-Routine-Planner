@@ -44,7 +44,7 @@ function App() {
     }
 
     const user = useAuth(true);
-    if (!user) return <p> User not fund</p>;
+    if (!user) return <p></p>;
     return (
         <>
             <div className="App">

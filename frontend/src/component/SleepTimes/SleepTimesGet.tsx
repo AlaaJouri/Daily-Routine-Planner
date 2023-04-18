@@ -6,7 +6,7 @@ export default function SleepTimesGet() {
     const {user} = useAuth(false);
 
 
-    if (!user) return <p> User not fund</p>;
+    if (!user) return <p> </p>;
     return (
         <>
             <SleepTimesUpdate user={user}/>

@@ -72,7 +72,9 @@ export default function Water(props: Props) {
     }
     const handleSave = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
         try {
+
             const updatedUserDataWater = {
                 id,
                 username,
@@ -103,7 +105,9 @@ export default function Water(props: Props) {
         } catch (error) {
             console.error('Failed to update user data', error);
             // show error message to the user
+
         }
+
     };
     const [cups, setCups] = useState<number[]>([0, 0, 0, 0, 0, 0, 0, 0]);
     if (result >= 250 && result <= 2000 && result % 250 === 0) {
@@ -114,6 +118,7 @@ export default function Water(props: Props) {
     const targetAmount = 2000;
 
     function handleCupClick(index: number) {
+
         const newCups = [...cups];
         newCups[index] = newCups[index] === 0 ? 250 : 0;
         setCups(newCups);

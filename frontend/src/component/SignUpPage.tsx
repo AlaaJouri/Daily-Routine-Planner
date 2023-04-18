@@ -10,7 +10,7 @@ export default function SignUpPage() {
         axios
             .post("/api/user", {username, password})
             .then(() => {
-                navigate("/sign-in");
+                navigate("/login");
             })
             .catch((err) => {
                 alert(err.response.data.error);

@@ -19,8 +19,8 @@ export default function Login() {
                 })
             .then(() => {
                 const redirect =
-                    window.sessionStorage.getItem("signInRedirect") || "/";
-                window.sessionStorage.removeItem("signInRedirect");
+                    window.sessionStorage.getItem("login") || "/";
+                window.sessionStorage.removeItem("login");
                 navigate(redirect);
 
             })

@@ -44,12 +44,12 @@ export default function BooksGet() {
     }
 
 
-    if (!user) return <p> User not fund</p>;
+    if (!user) return <p> </p>;
     return (
         <div className="Profile">
-
-            <h2>insert a book</h2>
-
+            <h1 id="title" className="title">Books</h1>
+            <p id="description" className="title">insert a book</p>
+            <hr/>
             <AddBook addbuch={addBook}/>
             <br/>
             <br/>

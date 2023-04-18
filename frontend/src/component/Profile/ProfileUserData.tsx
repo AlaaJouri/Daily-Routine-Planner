@@ -6,7 +6,7 @@ export default function ProfileUserData() {
     const {user} = useAuth(false);
 
 
-    if (!user) return <p> User not fund</p>;
+    if (!user) return <p> </p>;
 return(
     <>
         <ProfileUserDataLoaded user={user}/>

@@ -80,7 +80,7 @@ export default function ActivityUpdate(props: PropsActivity) {
     return (
         <div className="Profile">
             <div>
-                <h1 id="title" className="title">Aktivitäten</h1>
+                <h1 id="title" className="title">Aktivity</h1>
                 <hr/>
             </div>
             <form onSubmit={handleSave}>
