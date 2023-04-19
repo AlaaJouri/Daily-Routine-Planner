@@ -1,8 +1,7 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import AuthForm from "../component/AuthForm";
-
+import AuthForm from "../../component/AuthForm";
 
 
 
@@ -20,8 +19,8 @@ export default function Login() {
                 })
             .then(() => {
                 const redirect =
-                    window.sessionStorage.getItem("signInRedirect") || "/";
-                window.sessionStorage.removeItem("signInRedirect");
+                    window.sessionStorage.getItem("login") || "/";
+                window.sessionStorage.removeItem("login");
                 navigate(redirect);
 
             })

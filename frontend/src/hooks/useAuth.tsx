@@ -5,18 +5,26 @@ import {useLocation, useNavigate} from "react-router-dom";
 export type User = {
     id: string;
     username: string;
-    password:string;
+    password: string;
     role: string;
-    name:string,
-    gender:string,
-    weight:string,
-    weightGoal:number,
-    sleepTimeTarget:number,
-    trainingTimeGoal:number,
-    stepTarget:number,
-    caloriesBurnedTarget:number
-
-
+    name: string,
+    gender: string,
+    weight: string,
+    weightGoal: number,
+    sleepTimeTarget: number,
+    trainingTimeGoal: number,
+    stepTarget: number,
+    caloriesBurnedTarget: number,
+    steps: number,
+    burnedCalories: number,
+    trainingTimes: number,
+    breakfast: string,
+    lunch: string,
+    dinner: string,
+    snacks: string
+     standup: string,
+     sleep:string,
+    water:number
 
 }
 
@@ -35,7 +43,7 @@ export default function useAuth(redirectToSignIn?: boolean) {
         }).catch(e => {
             if (redirectToSignIn && e.response.status === 401) {
                 window.sessionStorage.setItem("signInRedirect", pathname || "/");
-                navigate("/sign-in");
+                navigate("/login");
             }
         });
     }, [pathname, navigate, redirectToSignIn]);

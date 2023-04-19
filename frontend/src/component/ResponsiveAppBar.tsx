@@ -11,7 +11,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import {useNavigate} from 'react-router-dom';
 
 function ResponsiveAppBar() {
@@ -19,8 +18,17 @@ function ResponsiveAppBar() {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
     const navigate = useNavigate();
+
+    const handleWaterSubmit = () => {
+        navigate('/water');
+
+    };
     const handleUserDataSubmit = () => {
         navigate('/profile');
+
+    };
+    const handleHomeSubmit = () => {
+        navigate('/home');
 
     };
     const handleLoginSubmit = () => {
@@ -29,13 +37,28 @@ function ResponsiveAppBar() {
     };
     const handleSignupSubmit = () => {
 
-        navigate('/sign-up');
+        navigate('/Sign-up');
     };
     const handleLogoutSubmit = () => {
 
         navigate('/logout');
     };
+    const handleActivitySubmit = () => {
 
+        navigate('/activity');
+    };
+    const handleNutritionSubmit = () => {
+
+        navigate('/nutrition');
+    };
+    const handleSleeptimesSubmit = () => {
+
+        navigate('/sleep-times');
+    };
+    const handleLesenSubmit = () => {
+
+        navigate('/lessen');
+    };
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -71,7 +94,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        Tagesplaner
+                        Daily Planner
                     </Typography>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
@@ -103,10 +126,26 @@ function ResponsiveAppBar() {
                                 display: {xs: 'block', md: 'none'},
                             }}
                         >
-
+                            <MenuItem onClick={handleHomeSubmit}>
+                                <Typography textAlign="center">Homepage</Typography>
+                            </MenuItem>
+                            <MenuItem onClick={handleActivitySubmit}>
+                                <Typography textAlign="center">Activity</Typography>
+                            </MenuItem>
+                            <MenuItem onClick={handleNutritionSubmit}>
+                                <Typography textAlign="center">Nutrition</Typography>
+                            </MenuItem>
+                            <MenuItem onClick={handleSleeptimesSubmit}>
+                                <Typography textAlign="center">Sleep Times</Typography>
+                            </MenuItem>
+                            <MenuItem onClick={handleLesenSubmit}>
+                                <Typography textAlign="center">Books</Typography>
+                            </MenuItem>
+                            <MenuItem onClick={handleWaterSubmit}>
+                                <Typography textAlign="center">Water</Typography>
+                            </MenuItem>
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>
                     <Typography
                         variant="h5"
                         noWrap
@@ -123,37 +162,51 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        Daily Planner
                     </Typography>
+
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-
                         <Button
 
-                            onClick={handleCloseNavMenu}
+                            onClick={handleHomeSubmit}
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
-                            Aktivitäten
+                            Homepage
                         </Button>
                         <Button
 
-                            onClick={handleCloseNavMenu}
+                            onClick={handleActivitySubmit}
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
-                            Ernährung
+                            Activity
                         </Button>
                         <Button
 
-                            onClick={handleCloseNavMenu}
+                            onClick={handleNutritionSubmit}
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
-                            Schlafzeiten
+                            Nutrition
                         </Button>
                         <Button
 
-                            onClick={handleCloseNavMenu}
+                            onClick={handleSleeptimesSubmit}
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
-                            Lesen
+                            Sleep Times
+                        </Button>
+                        <Button
+
+                            onClick={handleLesenSubmit}
+                            sx={{my: 2, color: 'white', display: 'block'}}
+                        >
+                            Books
+                        </Button>
+                        <Button
+
+                            onClick={handleWaterSubmit}
+                            sx={{my: 2, color: 'white', display: 'block'}}
+                        >
+                            Water
                         </Button>
                     </Box>
 
@@ -183,13 +236,13 @@ function ResponsiveAppBar() {
                                 <Typography textAlign="center">Profile</Typography>
                             </MenuItem>
                             <MenuItem onClick={handleLoginSubmit}>
-                                <Typography textAlign="center">Account</Typography>
+                                <Typography textAlign="center">Login</Typography>
                             </MenuItem>
                             <MenuItem onClick={handleLogoutSubmit}>
                                 <Typography textAlign="center">Logout</Typography>
                             </MenuItem>
                             <MenuItem onClick={handleSignupSubmit}>
-                                <Typography textAlign="center">sign-up</Typography>
+                                <Typography textAlign="center">Sign-up</Typography>
                             </MenuItem>
                         </Menu>
                     </Box>

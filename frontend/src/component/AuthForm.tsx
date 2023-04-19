@@ -1,5 +1,5 @@
 import React, {FormEvent, useState} from "react";
-import "./Login.css"
+import "./../component/Login/Login.css"
 
 type AuthFormProps = {
     title: string;
@@ -27,11 +27,11 @@ export default function AuthForm({title, buttonText, onSubmit}: AuthFormProps) {
                         Username
                     </label>
                     <br></br>
-                        <input
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.currentTarget.value)}
-                        />
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.currentTarget.value)}
+                    />
 
                 </div>
 

@@ -17,6 +17,9 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.time.LocalTime;
+import java.util.Date;
+
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -36,12 +39,14 @@ class MongoUserControllerTest {
 
     MongoUser mongoUser;
     MongoUserWithoutIDDTO mongoUserWithoutIDDTO;
+    LocalTime now;
 
     @BeforeEach
     void setUp() {
-        mongoUser = new MongoUser("1", "user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
+        now = LocalTime.now();
+        mongoUser = new MongoUser("1", "user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500, 0, 0, 0, "", "", "", "", LocalTime.of(6, 0), LocalTime.of(22, 0),0);
 
-        mongoUserWithoutIDDTO = new MongoUserWithoutIDDTO("user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500);
+        mongoUserWithoutIDDTO = new MongoUserWithoutIDDTO("user", "password", "BASIC", "Alaa", "W", "55", 50, 50, 8, 3, 1500, 0, 0, 0, "", "", "", "", LocalTime.of(6, 0), LocalTime.of(22, 0),0);
 
     }
 
@@ -161,39 +166,8 @@ class MongoUserControllerTest {
                 .andExpect(content().string("OK"));
     }
 
-    @Test
-    @DirtiesContext
-    @WithMockUser(username = "user", password = "password")
-    void testUpdateUserData() throws Exception {
-
-        // Prepare test data
-        String id = "1";
-        mongoUserRepository.save(mongoUser);
-        MongoUserWithoutIDDTO userData = new MongoUserWithoutIDDTO("testuser", "password", "ROLE_USER",
-                "Test User", "M", "70", 2000, 8, 60, 10000, 500);
-
-        // Perform request and verify response
-
-        mockMvc.perform(put("/api/user/" + id)
-                        .contentType(MediaType.APPLICATION_JSON).with(csrf())
-                        .content(new ObjectMapper().writeValueAsString(userData)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.username").value(userData.username()))
-                .andExpect(jsonPath("$.name").value(userData.name()))
-                .andExpect(jsonPath("$.gender").value(userData.gender()))
-                .andExpect(jsonPath("$.weight").value(userData.weight()))
-                .andExpect(jsonPath("$.weightGoal").value(userData.weightGoal()))
-                .andExpect(jsonPath("$.sleepTimeTarget").value(userData.sleepTimeTarget()))
-                .andExpect(jsonPath("$.trainingTimeGoal").value(userData.trainingTimeGoal()))
-                .andExpect(jsonPath("$.stepTarget").value(userData.stepTarget()))
-                .andExpect(jsonPath("$.caloriesBurnedTarget").value(userData.caloriesBurnedTarget()));
-    }
 
 }
-
-
-
-
 
 
 

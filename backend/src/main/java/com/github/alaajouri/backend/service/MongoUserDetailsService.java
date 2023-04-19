@@ -29,7 +29,6 @@ public class MongoUserDetailsService implements UserDetailsService {
     private final MongoUserRepository mongoUserRepository;
     private final PasswordEncoder passwordEncoder;
 
-
     public MongoUser getUserDataByID(String id) {
         return mongoUserRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
@@ -53,11 +52,23 @@ public class MongoUserDetailsService implements UserDetailsService {
                 userData.sleepTimeTarget(),
                 userData.trainingTimeGoal(),
                 userData.stepTarget(),
-                userData.caloriesBurnedTarget()
+                userData.caloriesBurnedTarget(),
+                userData.steps(),
+                userData.burnedCalories(),
+                userData.trainingTimes(),
+                userData.breakfast(),
+                userData.lunch(),
+                userData.dinner(),
+                userData.snacks(),
+                userData.standup(),
+                userData.sleep(),
+                userData.water()
+
         );
 
         return mongoUserRepository.save(updatedUserData);
     }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         MongoUser mongoUser = mongoUserRepository.findByUsername(username)
@@ -68,6 +79,7 @@ public class MongoUserDetailsService implements UserDetailsService {
                 List.of(new SimpleGrantedAuthority("ROLE_" + mongoUser.role()))
         );
     }
+
     public MongoUser getMe(Principal principal) {
         MongoUser me = mongoUserRepository
                 .findByUsername(principal.getName())
@@ -85,8 +97,20 @@ public class MongoUserDetailsService implements UserDetailsService {
                 me.sleepTimeTarget(),
                 me.trainingTimeGoal(),
                 me.stepTarget(),
-                me.caloriesBurnedTarget()
-        );}
+                me.caloriesBurnedTarget(),
+                me.steps(),
+                me.burnedCalories(),
+                me.trainingTimes(),
+                me.breakfast(),
+                me.lunch(),
+                me.dinner(),
+                me.snacks(),
+                me.standup(),
+                me.sleep(),
+                me.water()
+        );
+    }
+
     public MongoUser create(MongoUserDTO user) {
         if (user.username() == null || user.username().length() == 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username is required");
@@ -102,7 +126,6 @@ public class MongoUserDetailsService implements UserDetailsService {
                     "User already exists"
             );
         }
-
         MongoUser newUser = new MongoUser(
                 UUID.randomUUID().toString(),
                 user.username(),
@@ -115,6 +138,15 @@ public class MongoUserDetailsService implements UserDetailsService {
                 0,
                 0,
                 0,
+                0,
+                0,
+                0,
+                0,
+                " ",
+                " ",
+                " ",
+                " ", null,
+                null,
                 0
 
 
@@ -134,8 +166,17 @@ public class MongoUserDetailsService implements UserDetailsService {
                 out.sleepTimeTarget(),
                 out.trainingTimeGoal(),
                 out.stepTarget(),
-                out.caloriesBurnedTarget()
-
+                out.caloriesBurnedTarget(),
+                out.steps(),
+                out.burnedCalories(),
+                out.trainingTimes(),
+                out.breakfast(),
+                out.lunch(),
+                out.dinner(),
+                out.snacks(),
+                out.standup(),
+                out.sleep(),
+                out.water()
 
         );
     }

@@ -1,0 +1,73 @@
+body {
+    background-image: url("https://img.freepik.com/fotos-premium/3d-happy-face-und-helle-gluehbirne-auf-ausgewogenen-gewichtsskalen-ausgleich-des-eq-und-iq-konzepts_641940-356.jpg");
+    background-size: cover;
+    color: white;
+
+}
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    margin: 1rem 0;
+    font-size: 1rem;
+}
+
+#totalJar {
+    border: 5px solid #144fc6;
+    background-color: #eee;
+    display: grid;
+    flex-direction: column;
+    place-items: center;
+    width: 10rem;
+    height: 20rem;
+    color: #3f70d1;
+    position: relative;
+}
+
+#total {
+    z-index: 1;
+    color: #144fc6;
+}
+
+#percentage {
+    width: 100%;
+    height: 0;
+    background-color: #6ab3f8;
+    position: absolute;
+    bottom: 0;
+    transition: 400ms all;
+}
+
+.cups {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+}
+
+.custom-cup {
+    border-radius: 50%;
+    background-color: #144fc6;
+    color: #eee;
+}
+
+.water-cup {
+    cursor: pointer;
+    border: 5px solid #144fc6;
+    color: #3f70d1;
+    background-color: #eee;
+    border-radius: 0 0 20% 20%;
+    font-size: 15px;
+    margin: 0.2rem;
+    width: 3rem;
+    height: 7rem;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    transition: 400ms;
+}
+
+.full {
+    background-color: #6ab3f8;
+    color: #eee;
+}

@@ -3,6 +3,8 @@ package com.github.alaajouri.backend.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalTime;
+
 @Document("mongoUser")
 public record MongoUser(
         @Id
@@ -17,8 +19,17 @@ public record MongoUser(
         int sleepTimeTarget,
         int trainingTimeGoal,
         int stepTarget,
-        int caloriesBurnedTarget
-
+        int caloriesBurnedTarget,
+        int steps,
+        int burnedCalories,
+        int trainingTimes,
+        String breakfast,
+        String lunch,
+        String dinner,
+        String snacks,
+        LocalTime standup,
+        LocalTime sleep,
+        int water
 
 ) {
 }

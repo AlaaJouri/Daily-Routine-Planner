@@ -50,6 +50,7 @@ public class MongoUserController {
     public String getStatus() {
         return "OK";
     }
+
     @PutMapping("{id}")
     public MongoUser updateUserData(@PathVariable String id, @RequestBody MongoUserWithoutIDDTO userdata) {
         return userDataService.updateUserData(id, userdata);
