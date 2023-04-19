@@ -7,6 +7,7 @@ import {Book} from "../../model/Book";
 import axios from "axios";
 import Divider from '@mui/material/Divider';
 import * as React from 'react';
+import Footer from "./../Footer";
 
 
 export default function BooksGet() {
@@ -59,7 +60,7 @@ export default function BooksGet() {
 
             <ReadingBooks books={book} deleteBook={deleteBook}/>
 
-
+        <Footer/>
         </div>
     )
 }

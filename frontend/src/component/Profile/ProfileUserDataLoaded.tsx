@@ -91,7 +91,7 @@ export default function ProfileUserDataLoaded(props: Props) {
                             color: 'black', // Farbe des Labels ändern, wenn das Textfeld im Fokus ist
                         },
                     }}/>
-<br/>
+                    <br/>
                     <TextField id="outlined-basic" label="Gender" variant="outlined" value={gender}
                                onChange={(e) => setGender(e.target.value)} sx={{
                         '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {

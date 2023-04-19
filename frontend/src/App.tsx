@@ -16,7 +16,6 @@ import {Book} from "./model/Book";
 import DrinkWater from './component/Water/WaterGet';
 import Home from './component/Home/HomeGet';
 import useAuth from "./hooks/useAuth";
-import Footer from "./component/Footer";
 
 axios.interceptors.request.use(function (config) {
     return fetch("/api/csrf").then(() => {
