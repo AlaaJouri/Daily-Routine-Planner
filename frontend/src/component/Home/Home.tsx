@@ -61,13 +61,10 @@ export default function Home(props: Props) {
     const breakfast = props.user.breakfast;
     let resultNutrition = 0;
     let totalSum = 0;
-    if ((parseInt(lunch) + parseInt(dinner) + parseInt(snacks) + parseInt(breakfast)) === 0) {
-
-    } else {
+    if ((parseInt(lunch) + parseInt(dinner) + parseInt(snacks) + parseInt(breakfast)) !== 0) {
         totalSum = (parseInt(lunch) + parseInt(dinner) + parseInt(snacks) + parseInt(breakfast));
         resultNutrition = ((totalSum / 40) * 100);
     }
-
 
     const water = props.user.water;
     const resultWater = ((water / 2000) * 100);
