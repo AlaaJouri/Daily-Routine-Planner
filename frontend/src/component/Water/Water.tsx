@@ -107,7 +107,6 @@ export default function Water(props: Props) {
             // show error message to the user
 
         }
-
     };
     const [cups, setCups] = useState<number[]>([0, 0, 0, 0, 0, 0, 0, 0]);
     if (result >= 250 && result <= 2000 && result % 250 === 0) {
@@ -120,16 +119,12 @@ export default function Water(props: Props) {
     function handleCupClick(index: number) {
         const newCups = [...cups];
         const cupAmount = newCups[index];
-        if (cupAmount > 0) {
-            newCups[index] = 0;
-            setCups(newCups);
-            setWater(totalAmount - cupAmount);
-        } else {
+
             setCups(newCups);
 
             result = 250 + result;
             setWater(totalAmount + 250)
-        }
+
     }
 
     console.log(totalAmount)
