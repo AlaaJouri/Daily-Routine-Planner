@@ -20,6 +20,7 @@ function DrinkWasser({amount, index, onClick}: CupProps) {
     function handleClick() {
         onClick(index);
     }
+
     return (
         <div
             className={`water-cup ${isFull ? "full" : ""}`}
@@ -117,17 +118,21 @@ export default function Water(props: Props) {
     const targetAmount = 2000;
 
     function handleCupClick(index: number) {
-
         const newCups = [...cups];
-        newCups[index] = newCups[index] === 0 ? 250 : 0;
-        setCups(newCups);
+        const cupAmount = newCups[index];
+        if (cupAmount > 0) {
+            newCups[index] = 0;
+            setCups(newCups);
+            setWater(totalAmount - cupAmount);
+        } else {
+            setCups(newCups);
 
-        result = 250 + result;
-        setWater(totalAmount+250)
-
-
+            result = 250 + result;
+            setWater(totalAmount + 250)
+        }
     }
-console.log(totalAmount )
+
+    console.log(totalAmount)
     console.log(((totalAmount / targetAmount) * 100) / 1000)
 
     return (
@@ -147,9 +152,9 @@ console.log(totalAmount )
                 <div className="cups">
                     {cups.map((amount, index) => (
                         <DrinkWasser key={index}
-                            amount={amount}
-                            index={index}
-                            onClick={handleCupClick}
+                                     amount={amount}
+                                     index={index}
+                                     onClick={handleCupClick}
                         />
                     ))}
                 </div>

@@ -115,7 +115,8 @@ export default function SleepTimesUpdate(props: Props) {
     };
 
 
-    console.log(sleep)
+    console.log("sleep"+sleep)
+    console.log("stand"+standUp)
     return (
         <div className="Profile">
             <div>
