@@ -107,7 +107,6 @@ export default function Water(props: Props) {
             // show error message to the user
 
         }
-
     };
     const [cups, setCups] = useState<number[]>([0, 0, 0, 0, 0, 0, 0, 0]);
     if (result >= 250 && result <= 2000 && result % 250 === 0) {
