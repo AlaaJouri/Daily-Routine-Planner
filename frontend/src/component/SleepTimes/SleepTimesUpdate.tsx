@@ -134,7 +134,6 @@ export default function SleepTimesUpdate(props: Props) {
                             variant="body2"
                             color="text.secondary"
                         >
-
                             <TextField
                                 id="outlined-basic"
                                 type="time"
