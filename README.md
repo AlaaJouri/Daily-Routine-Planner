@@ -1,11 +1,11 @@
-# Daily Routine Planner
+Daily Routine Planner
 
 My app is called "Daily Routine Planner" and it allows users to plan and organize their daily routine.
 The application provides features to plan activities, nutrition, sleep times, reading books, and drinking habits. At the
 end of the day, users can view the results.
 This app could help motivate users to adopt a healthier lifestyle.
 
-## Set up
+Set up
 
 To get started with the project, follow these steps:
 
