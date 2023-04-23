@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-class BuecherControllerTest {
+class BuecherServiceTest {
     BuecherService buecherService;
     BuecherRepository buecherRepository;
     IdGenerator idGenerator;
