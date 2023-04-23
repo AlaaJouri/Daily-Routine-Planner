@@ -151,7 +151,7 @@ export default function Water(props: Props) {
                 <h2 className="title">How many have you drunk today</h2>
                 <div className="cups">
                     {cups.map((amount, index) => (
-                        <DrinkWasser key={index}
+                        <DrinkWasser
                                      amount={amount}
                                      index={index}
                                      onClick={handleCupClick}
